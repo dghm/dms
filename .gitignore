@@ -28,6 +28,8 @@ Thumbs.db
 # Build 產出（如果有的話）
 build/
 # dist/ - 保留 dist 資料夾給 Netlify 部署使用
+# 專案內的 dist 目錄（monorepo 統一使用根目錄的 dist/Projects/）
+src/Projects/*/dist/
 
 # 測試覆蓋率
 coverage/

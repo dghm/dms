@@ -1,0 +1,49 @@
+// DGHM 色彩系統
+
+primary-color = #0037D3
+secondary-color = #52BDFF
+neutral-light = #F8F8F8
+neutral-dark = #1E1E1E
+neutral-gray = #666666
+base-white = #ffffff
+accent-color = #FEC629
+
+shadow = 0 5px 10px rgba(53, 53, 53, 0.15)
+panel-shadow = 0 5px 10px rgba(51, 51, 51, 0.4)
+
+container-max-width = 1280px
+container-padding-x = 50px
+
+// 響應式容器內距
+container-padding-x-tablet = 30px
+container-padding-x-mobile = 20px
+
+layout-container()
+  max-width container-max-width
+  width 100%
+  margin 0 auto
+  padding 0 container-padding-x
+  box-sizing border-box
+  
+  +respond(tablet)
+    padding 0 container-padding-x-tablet
+  
+  +respond(mobile)
+    padding 0 container-padding-x-mobile
+
+breakpoints = {
+  desktop: 1280px,
+  laptop: 1024px,
+  tablet: 768px,
+  mobile: 480px
+}
+
+respond(size)
+  breakpoint = breakpoints[size]
+  if breakpoint
+    @media (max-width: breakpoint)
+      {block}
+  else
+    @media (max-width: size)
+      {block}
+

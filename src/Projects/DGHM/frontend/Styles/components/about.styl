@@ -1,0 +1,210 @@
+// About Section Styles
+
+.about-section
+  padding 5rem 0
+  background-image url('../images/section-bg1-1024x626.png')
+  background-size cover
+  background-position center
+  background-repeat no-repeat
+  position relative
+  
+  +respond(tablet)
+    padding 4rem 0
+  
+  +respond(mobile)
+    padding 3rem 0
+
+  .container
+    layout-container()
+
+.about-content
+  display grid
+  grid-template-columns 1fr 1fr
+  gap 4rem
+  align-items center
+  
+  +respond(laptop)
+    gap 3rem
+  
+  +respond(tablet)
+    grid-template-columns 1fr
+    gap 2rem
+  
+  +respond(mobile)
+    gap 1.5rem
+
+// About Image
+.about-image
+  display flex
+  justify-content center
+  align-items center
+  
+  +respond(tablet)
+    order -1
+
+.about-illustration
+  max-width 100%
+  height auto
+  display block
+  object-fit contain
+  
+  +respond(tablet)
+    max-width 80%
+  
+  +respond(mobile)
+    max-width 100%
+
+// About Text
+.about-text
+  display flex
+  flex-direction column
+  gap 2rem
+  
+  +respond(tablet)
+    text-align center
+    align-items center
+  
+  +respond(mobile)
+    gap 1.5rem
+
+.about-title
+  font-size 2.5rem
+  font-weight 700
+  color primary-color
+  margin 0
+  line-height 1.2
+  
+  +respond(laptop)
+    font-size 2.25rem
+  
+  +respond(tablet)
+    font-size 2rem
+  
+  +respond(mobile)
+    font-size 1.75rem
+
+.about-description
+  font-size 1.125rem
+  font-weight 400
+  color neutral-gray
+  line-height 1.7
+  margin 0
+  
+  +respond(tablet)
+    font-size 1.05rem
+    max-width 600px
+  
+  +respond(mobile)
+    font-size 1rem
+    line-height 1.6
+
+// About Info Grid
+.about-info-grid
+  display grid
+  grid-template-columns 1fr
+  gap 1.5rem
+  
+  +respond(mobile)
+    gap 1.25rem
+
+.info-block
+  display flex
+  align-items flex-start
+  gap 1.5rem
+  background-color base-white
+  border 1px solid #e0e0e0
+  border-radius 8px
+  padding 1.5rem
+  transition all 0.3s ease
+  
+  +respond(tablet)
+    justify-content flex-start
+    text-align left
+  
+  +respond(mobile)
+    padding 1.25rem
+    gap 1.25rem
+  
+  &:hover
+    border-color primary-color
+    box-shadow 0 5px 15px rgba(0, 0, 0, 0.08)
+
+.info-icon
+  flex-shrink 0
+  width 60px
+  height 60px
+  display flex
+  align-items center
+  justify-content center
+  
+  +respond(mobile)
+    width 50px
+    height 50px
+
+  img
+    max-width 100%
+    max-height 100%
+    height auto
+    object-fit contain
+
+.info-content
+  flex 1
+  display flex
+  flex-direction column
+  gap 0.5rem
+
+.info-number
+  font-size 1.25rem
+  font-weight 600
+  color primary-color
+  line-height 1.3
+  
+  +respond(tablet)
+    font-size 1.125rem
+  
+  +respond(mobile)
+    font-size 1.1rem
+
+.info-label
+  font-size 0.95rem
+  font-weight 400
+  color neutral-gray
+  line-height 1.5
+  
+  +respond(tablet)
+    font-size 0.9rem
+  
+  +respond(mobile)
+    font-size 0.875rem
+
+.about-cta-button
+  display inline-block
+  padding 1rem 2.5rem
+  background-color accent-color
+  color #000
+  text-decoration none
+  font-size 1rem
+  font-weight 600
+  text-transform uppercase
+  letter-spacing 1px
+  border-radius 6px
+  transition all 0.3s ease
+  align-self flex-start
+  margin-top 0.5rem
+  
+  +respond(tablet)
+    align-self center
+  
+  +respond(mobile)
+    padding 0.875rem 2rem
+    font-size 0.95rem
+  
+  &:hover
+    background-color primary-color
+    color #fff
+    transform translateY(-2px)
+  
+  &:active
+    transform translateY(0)
+    box-shadow 0 4px 10px rgba(254, 198, 41, 0.2)
+

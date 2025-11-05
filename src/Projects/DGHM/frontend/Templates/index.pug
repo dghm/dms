@@ -1,0 +1,41 @@
+doctype html
+html(lang="zh-TW")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    title Digi-Handyman | 萬能數維有限公司
+    // Favicon
+    link(rel="icon", type="image/webp", href="images/logo-300x286.webp")
+    link(rel="shortcut icon", type="image/webp", href="images/logo-300x286.webp")
+    link(rel="apple-touch-icon", href="images/logo-300x286.webp")
+    link(rel="preconnect", href="https://fonts.googleapis.com")
+    link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=K2D:wght@300;400;500;600;700&display=swap", rel="stylesheet")
+    link(rel="stylesheet", href="css/main.css")
+    script(src="js/config.js")
+    script(src="js/app.js")
+  body
+    include components/header.pug
+
+    main.main-content
+      include components/hero.pug
+      include components/services.pug
+      include components/solutions.pug
+      include components/about.pug
+      include components/howIWork.pug
+      include components/testimonials.pug
+      include components/cta.pug
+
+    footer.site-footer
+      .container
+        .footer-content
+          .footer-brand
+            img.footer-logo(src="images/logo-gray-1.webp", alt="萬能數維有限公司")
+            .footer-brand-info
+              .footer-company-name 萬能數維有限公司
+              .footer-contact
+                .footer-address 公司地址：桃園市楊梅區梅高路120巷33號
+                .footer-phone 聯絡電話：0937-805149
+                .footer-email 電子郵件：help@dghm.tw
+          p.footer-copyright DGHM COPYRIGHT © 2025 All Right Reserved
+

@@ -1,0 +1,22 @@
+{
+  "name": "dghm",
+  "version": "1.0.0",
+  "description": "DGHM Project",
+  "main": "compile.js",
+  "scripts": {
+    "compile": "node compile.js",
+    "build": "node compile.js",
+    "watch": "node watch.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "pug": "^3.0.3",
+    "stylus": "^0.63.0"
+  },
+  "devDependencies": {
+    "chokidar": "^3.5.3"
+  }
+}
+
