@@ -1,14 +1,14 @@
-# Netlify Configuration for TailorMed track
+# Netlify Configuration for DGHM trackingSystem (client-b)
 
 [build]
-  # 建置命令 - 編譯 Pug 和 Stylus
-  command = "cd src/Projects/TailorMed/track && node compile.js"
+  # 建置命令 - 編譯 Pug 和 Stylus（編譯 client-b）
+  command = "cd src/Projects/DGHM/trackingSystem && CLIENT_ID=client-b node compile-multi-client.js"
   
   # 發布目錄（相對於 repository root）
-  publish = "dist/Projects/TailorMed/track"
+  publish = "src/Projects/DGHM/trackingSystem/dist/client-b"
   
   # Netlify Functions 目錄（相對於 repository root）
-  functions = "src/Projects/TailorMed/track/backend/netlify/functions"
+  functions = "src/Projects/DGHM/trackingSystem/backend/netlify/functions"
 
 # Node.js 版本（Netlify 預設使用 Node 18）
 [build.environment]
@@ -36,6 +36,31 @@
 [[redirects]]
   from = "/api/health"
   to = "/.netlify/functions/tracking"
+  status = 200
+
+[[redirects]]
+  from = "/api/list"
+  to = "/.netlify/functions/tracking"
+  status = 200
+
+[[redirects]]
+  from = "/api/update-checkbox"
+  to = "/.netlify/functions/tracking"
+  status = 200
+
+[[redirects]]
+  from = "/list"
+  to = "/list.html"
+  status = 200
+
+[[redirects]]
+  from = "/dashboard"
+  to = "/dashboard.html"
+  status = 200
+
+[[redirects]]
+  from = "/dashboard-list"
+  to = "/dashboard-list.html"
   status = 200
 
 [[redirects]]
