@@ -1,0 +1,51 @@
+# Netlify Configuration for TailorMed 文檔系統 (tm-docs)
+
+[build]
+  # 建置命令 - Netlify 的 base directory 已設為 tm-docs，所以直接執行即可
+  # 使用 --legacy-peer-deps 來解決 React 19 與搜尋插件的依賴衝突
+  command = "npm install --legacy-peer-deps && npm run build"
+  
+  # 發布目錄（Docusaurus 建置後的輸出目錄）
+  # Netlify 的 base directory 已設為 tm-docs，所以這裡只需要相對路徑
+  publish = "build"
+  
+  # 建置環境變數
+  [build.environment]
+    # Node.js 版本（Docusaurus 需要 >= 20.0）
+    NODE_VERSION = "20"
+    # NPM 版本
+    NPM_VERSION = "10"
+
+# 重定向規則 - 確保所有路由都正確處理
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# 安全標頭
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    # 允許搜尋索引檔案載入
+    Access-Control-Allow-Origin = "*"
+
+# 快取設定 - 靜態資源長期快取
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/search/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
