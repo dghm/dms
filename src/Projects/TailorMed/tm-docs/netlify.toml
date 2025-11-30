@@ -1,12 +1,13 @@
 # Netlify Configuration for TailorMed 文檔系統 (tm-docs)
 
 [build]
-  # 建置命令 - 進入 tm-docs 目錄並執行建置
+  # 建置命令 - Netlify 的 base directory 已設為 tm-docs，所以直接執行即可
   # 使用 --legacy-peer-deps 來解決 React 19 與搜尋插件的依賴衝突
-  command = "cd src/Projects/TailorMed/tm-docs && npm install --legacy-peer-deps && npm run build"
+  command = "npm install --legacy-peer-deps && npm run build"
   
   # 發布目錄（Docusaurus 建置後的輸出目錄）
-  publish = "src/Projects/TailorMed/tm-docs/build"
+  # Netlify 的 base directory 已設為 tm-docs，所以這裡只需要相對路徑
+  publish = "build"
   
   # 建置環境變數
   [build.environment]
