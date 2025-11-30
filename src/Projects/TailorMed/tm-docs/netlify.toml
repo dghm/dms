@@ -2,7 +2,8 @@
 
 [build]
   # 建置命令 - 進入 tm-docs 目錄並執行建置
-  command = "cd src/Projects/TailorMed/tm-docs && npm install && npm run build"
+  # 使用 --legacy-peer-deps 來解決 React 19 與搜尋插件的依賴衝突
+  command = "cd src/Projects/TailorMed/tm-docs && npm install --legacy-peer-deps && npm run build"
   
   # 發布目錄（Docusaurus 建置後的輸出目錄）
   publish = "src/Projects/TailorMed/tm-docs/build"
