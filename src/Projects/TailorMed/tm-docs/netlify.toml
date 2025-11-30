@@ -2,11 +2,8 @@
 
 [build]
   # 建置命令 - 進入 tm-docs 目錄並執行建置
-  # 使用 GIT_LFS_SKIP_SMUDGE 和忽略 submodule 錯誤
-  command = "cd src/Projects/TailorMed/tm-docs && npm install && npm run build"
-  
-  # 忽略 Git submodules（避免建置錯誤）
-  ignore = "git submodule"
+  # 先設定 Git 配置跳過 submodule 檢查，然後執行建置
+  command = "git config --global --add safe.directory '*' && cd src/Projects/TailorMed/tm-docs && npm install && npm run build"
   
   # 發布目錄（Docusaurus 建置後的輸出目錄）
   publish = "src/Projects/TailorMed/tm-docs/build"
