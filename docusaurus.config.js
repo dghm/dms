@@ -13,6 +13,8 @@ const config = {
   },
 
   // Set the production url of your site here
+  // 部署到 Netlify 後，請更新為您的 Netlify 域名
+  // 例如：url: 'https://dms-dghm.netlify.app'
   url: 'https://your-docusaurus-site.example.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
