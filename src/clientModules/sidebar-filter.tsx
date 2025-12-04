@@ -35,9 +35,15 @@ if (typeof window !== 'undefined') {
         
         const pathLower = path.toLowerCase();
         
-        // 允許首頁和 intro
-        if (path === '/' || path.includes('intro')) {
+        // tailormed 用戶不允許訪問 intro（DGHM 文件管理系統）
+        // 只允許首頁
+        if (path === '/') {
           return true;
+        }
+        
+        // 不允許 intro 路徑
+        if (path.includes('intro')) {
+          return false;
         }
         
         // 只允許包含以下路徑段的內容：
@@ -409,9 +415,16 @@ if (typeof window !== 'undefined') {
             console.log('顯示項目:', text, href);
           }
         } else {
-          // 但保留根節點（DGHM 文件管理系統）
-          if (href && (href === '/' || href.includes('intro'))) {
+          // tailormed 用戶不顯示 intro（DGHM 文件管理系統）連結
+          // 只保留首頁連結
+          if (href && href === '/') {
             listItemElement.style.display = '';
+          } else if (href && href.includes('intro')) {
+            // 隱藏 intro 連結
+            listItemElement.style.display = 'none';
+            if (process.env.NODE_ENV === 'development') {
+              console.log('隱藏 intro 連結:', text, href);
+            }
           } else {
             listItemElement.style.display = 'none';
             if (process.env.NODE_ENV === 'development' && text?.includes('TailorMed')) {
