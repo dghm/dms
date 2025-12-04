@@ -89,10 +89,10 @@ const config = {
     ],
   ],
 
-  // 客戶端模組 - 用於動態修改 mermaid 顏色、添加登出按鈕和過濾 sidebar
+  // 客戶端模組 - 用於動態修改 mermaid 顏色和過濾 sidebar
+  // 注意：登出按鈕已通過 Navbar/Content wrapper 實現，不需要客戶端模組
   clientModules: [
     './src/clientModules/mermaid-theme.ts',
-    './src/clientModules/navbar-logout.tsx',
     './src/clientModules/sidebar-filter.tsx',
   ],
 
