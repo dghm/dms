@@ -43,9 +43,14 @@ export function checkPermission(path: string, role: UserRole | null): boolean {
 
   // tailormed 只能看到 TailorMed/Website/2026/網站改版/WF說明/ 下的內容
   if (role === 'tailormed') {
-    // 允許首頁和 intro
-    if (path === '/' || path.includes('intro')) {
+    // 只允許首頁，不允許 intro（DGHM 文件管理系統）
+    if (path === '/') {
       return true;
+    }
+    
+    // 不允許訪問 intro
+    if (path.includes('intro')) {
+      return false;
     }
     
     // 只允許訪問 TailorMed/Website/2026/網站改版/WF說明/ 下的路徑
