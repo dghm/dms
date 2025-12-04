@@ -131,8 +131,10 @@ const config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    // Open Graph 圖片（用於社交媒體分享，如 Line、Facebook 等）
+    // 建議尺寸：1200x630 像素
+    // 圖片應放在 static/img/ 目錄下
+    image: 'img/dghm-og-image.jpg', // 自訂 OG 圖片
     colorMode: {
       respectPrefersColorScheme: true,
     },
@@ -162,7 +164,7 @@ const config = {
     footer: {
       style: 'dark',
       links: [],
-      copyright: `Copyright © ${new Date().getFullYear()} DGHM. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} DGHM.`,
     },
     prism: {
       theme: prismThemes.github,
