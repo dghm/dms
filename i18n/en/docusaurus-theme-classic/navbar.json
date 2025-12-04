@@ -1,0 +1,11 @@
+{
+  "title": {
+    "message": "Document Management System (DMS)",
+    "description": "The title in the navbar"
+  },
+  "item.label.Docs": {
+    "message": "Docs",
+    "description": "Navbar item with label Docs"
+  }
+}
+

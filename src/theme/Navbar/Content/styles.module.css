@@ -1,0 +1,68 @@
+.logoutButtonContainer {
+  display: flex;
+  align-items: center;
+  margin-left: 0.75rem;
+  margin-right: 0.5rem;
+}
+
+.logoutButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 6px;
+  color: var(--ifm-navbar-link-color);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.logoutButton:hover {
+  background: var(--ifm-color-emphasis-200);
+  border-color: var(--ifm-color-emphasis-400);
+  color: var(--ifm-navbar-link-hover-color);
+  transform: translateY(-1px);
+}
+
+.logoutButton:hover {
+  background: var(--ifm-color-emphasis-200);
+  border-color: var(--ifm-color-emphasis-400);
+  color: var(--ifm-navbar-link-hover-color);
+}
+
+.logoutIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.logoutText {
+  font-weight: 500;
+}
+
+/* 響應式設計：在小螢幕上隱藏文字，只顯示圖示 */
+@media (max-width: 768px) {
+  .logoutText {
+    display: none;
+  }
+  
+  .logoutButton {
+    padding: 0.5rem;
+    min-width: 40px;
+    justify-content: center;
+  }
+}
+
+/* 深色模式支援 */
+[data-theme='dark'] .logoutButton {
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] .logoutButton:hover {
+  background: var(--ifm-color-emphasis-200);
+  border-color: var(--ifm-color-emphasis-400);
+}
+

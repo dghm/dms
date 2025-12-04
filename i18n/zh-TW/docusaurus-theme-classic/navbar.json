@@ -1,0 +1,11 @@
+{
+  "title": {
+    "message": "文件管理系統(DMS)",
+    "description": "The title in the navbar"
+  },
+  "item.label.Docs": {
+    "message": "文件",
+    "description": "Navbar item with label Docs"
+  }
+}
+
