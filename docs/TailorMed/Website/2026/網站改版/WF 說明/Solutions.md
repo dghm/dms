@@ -6,6 +6,8 @@ sidebar_position: 2
 
 Solutions 頁面作為 TailorMed 的核心服務展示頁，需全面呈現物流解決方案、服務等級、技術能力與合規標準，協助客戶理解 TailorMed 如何解決其物流痛點。
 
+[Solutions Wireframe](https://tailormed-website-wireframe.netlify.app/tailormed/solutions/)
+
 ---
 
 ## 1. Hero Section（主視覺區）

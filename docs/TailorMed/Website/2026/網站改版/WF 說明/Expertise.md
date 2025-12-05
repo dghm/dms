@@ -6,6 +6,8 @@ sidebar_position: 4
 
 Expertise 頁面作為 TailorMed 的技術專業與合規能力展示頁，需詳細呈現技術能力、合規標準與認證文件，建立客戶對 TailorMed 專業技術與合規能力的信任。
 
+[Expertise Wireframe](https://tailormed-website-wireframe.netlify.app/tailormed/expertise/)
+
 ---
 
 ## 1. Hero Section（主視覺區）

@@ -6,6 +6,8 @@ sidebar_position: 3
 
 Industries 頁面作為 TailorMed 的產業服務展示頁，需清楚呈現五大生命科學產業的物流需求與 TailorMed 的對應解決方案，協助不同產業的客戶快速識別相關服務。
 
+[Industries Wireframe](https://tailormed-website-wireframe.netlify.app/tailormed/industries/)
+
 ---
 
 ## 1. Hero Section（主視覺區）

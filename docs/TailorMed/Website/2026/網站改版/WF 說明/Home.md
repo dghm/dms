@@ -6,6 +6,8 @@ sidebar_position: 2
 
 首頁作為 TailorMed 的入口頁，需有效傳達品牌定位、展示核心優勢、提供主要任務導流並建立信任感。
 
+[Home Wireframe](https://tailormed-website-wireframe.netlify.app/)
+
 ---
 
 ## 1. Hero Section（主視覺區）
