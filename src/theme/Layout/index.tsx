@@ -52,8 +52,8 @@ export default function LayoutWrapper(props: Props): ReactNode {
       if (!checkPermission(currentPath, userRole)) {
         // 沒有權限訪問此頁面，導向首頁或允許的頁面
         if (userRole === 'tailormed') {
-          // tailormed 用戶只能看到 WF說明 目錄下的內容，導向到 Home 頁面
-          window.location.href = '/docs/TailorMed/Website/2026/網站改版/WF說明/Home';
+          // tailormed 用戶只能看到 WF 說明 目錄下的內容，導向到 Home 頁面
+          window.location.href = '/docs/tailormed/website/2026/網站改版/wf%20說明/home';
         } else {
           window.location.href = '/';
         }

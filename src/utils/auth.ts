@@ -53,21 +53,26 @@ export function checkPermission(path: string, role: UserRole | null): boolean {
       return false;
     }
     
-    // 只允許訪問 TailorMed/Website/2026/網站改版/WF說明/ 下的路徑
+    // 只允許訪問 TailorMed/Website/2026/網站改版/WF 說明/ 下的路徑
     const pathLower = path.toLowerCase();
     
-    // 必需的路徑段
+    // 必需的路徑段（注意：WF 說明 有空格，URL 中會編碼為 %20）
     const requiredPathSegments = [
       'tailormed',
       'website',
       '2026',
       '網站改版',
-      'wf說明'
+      'wf 說明'  // 資料夾名稱是 "WF 說明"（有空格）
     ];
     
     // 檢查路徑是否包含所有必需的段落
+    // 需要同時檢查有空格和沒有空格的情況（URL 編碼問題）
     const hasAllSegments = requiredPathSegments.every(segment => {
-      return pathLower.includes(segment.toLowerCase());
+      const segmentLower = segment.toLowerCase();
+      // 檢查原始路徑和 URL 解碼後的路徑
+      return pathLower.includes(segmentLower) || 
+             pathLower.includes(segmentLower.replace(' ', '')) ||
+             decodeURIComponent(pathLower).includes(segmentLower);
     });
     
     return hasAllSegments;
