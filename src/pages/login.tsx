@@ -41,8 +41,9 @@ export default function Login(): JSX.Element {
         } else {
           // 根據角色導向不同頁面
           if (role === 'tailormed') {
-            // tailormed 用戶只能看到 WF說明 目錄下的內容，導向到 Home 頁面
-            window.location.href = '/docs/TailorMed/Website/2026/網站改版/WF說明/Home';
+            // tailormed 用戶只能看到 WF 說明 目錄下的內容，導向到 Home 頁面
+            // 注意：資料夾名稱是 "WF 說明"（有空格），URL 中會編碼為 %20
+            window.location.href = '/docs/tailormed/website/2026/網站改版/wf%20說明/home';
           } else {
             window.location.href = '/';
           }
