@@ -1,9 +1,13 @@
-import React, {type ReactNode, useEffect} from 'react';
+import React, { type ReactNode, useEffect } from 'react';
 import Layout from '@theme-original/Layout';
 import type LayoutType from '@theme/Layout';
-import type {WrapperProps} from '@docusaurus/types';
-import {useLocation} from '@docusaurus/router';
-import { checkPermission, getCurrentUserRole, LOGIN_STORAGE_KEY } from '@site/src/utils/auth';
+import type { WrapperProps } from '@docusaurus/types';
+import { useLocation } from '@docusaurus/router';
+import {
+  checkPermission,
+  getCurrentUserRole,
+  LOGIN_STORAGE_KEY,
+} from '@site/src/utils/auth';
 
 type Props = WrapperProps<typeof LayoutType>;
 
@@ -33,7 +37,7 @@ export default function LayoutWrapper(props: Props): ReactNode {
     }
 
     // 檢查是否是需要保護的路徑前綴
-    const isProtectedPath = PROTECTED_PATH_PREFIXES.some(prefix => 
+    const isProtectedPath = PROTECTED_PATH_PREFIXES.some((prefix) =>
       currentPath.startsWith(prefix)
     );
 
@@ -52,8 +56,9 @@ export default function LayoutWrapper(props: Props): ReactNode {
       if (!checkPermission(currentPath, userRole)) {
         // 沒有權限訪問此頁面，導向首頁或允許的頁面
         if (userRole === 'tailormed') {
-          // tailormed 用戶只能看到 WF 說明 目錄下的內容，導向到 Home 頁面
-          window.location.href = '/docs/tailormed/website/2026/網站改版/wf%20說明/home';
+          // tailormed 用戶只能看到供應商稽核數位化方案目錄下的內容，導向到總覽頁面
+          window.location.href =
+            '/docs/TailorMed/Website/2026/供應商稽核數位化方案/supplier-questionnaire';
         } else {
           window.location.href = '/';
         }

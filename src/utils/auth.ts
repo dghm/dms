@@ -33,7 +33,7 @@ export type UserRole = 'admin' | 'tailormed';
 export function checkPermission(path: string, role: UserRole | null): boolean {
   if (!role) return false;
 
-  const account = Object.values(ACCOUNTS).find(acc => acc.role === role);
+  const account = Object.values(ACCOUNTS).find((acc) => acc.role === role);
   if (!account) return false;
 
   // admin 有完整權限
@@ -41,40 +41,41 @@ export function checkPermission(path: string, role: UserRole | null): boolean {
     return true;
   }
 
-  // tailormed 只能看到 TailorMed/Website/2026/網站改版/WF說明/ 下的內容
+  // tailormed 只能看到 TailorMed/Website/2026/供應商稽核數位化方案/ 下的內容
   if (role === 'tailormed') {
     // 只允許首頁，不允許 intro（DGHM 文件管理系統）
     if (path === '/') {
       return true;
     }
-    
+
     // 不允許訪問 intro
     if (path.includes('intro')) {
       return false;
     }
-    
-    // 只允許訪問 TailorMed/Website/2026/網站改版/WF 說明/ 下的路徑
+
+    // 只允許訪問 TailorMed/Website/2026/供應商稽核數位化方案/ 下的路徑
     const pathLower = path.toLowerCase();
-    
-    // 必需的路徑段（注意：WF 說明 有空格，URL 中會編碼為 %20）
+
+    // 必需的路徑段
     const requiredPathSegments = [
       'tailormed',
       'website',
       '2026',
-      '網站改版',
-      'wf 說明'  // 資料夾名稱是 "WF 說明"（有空格）
+      '供應商稽核數位化方案',
     ];
-    
+
     // 檢查路徑是否包含所有必需的段落
     // 需要同時檢查有空格和沒有空格的情況（URL 編碼問題）
-    const hasAllSegments = requiredPathSegments.every(segment => {
+    const hasAllSegments = requiredPathSegments.every((segment) => {
       const segmentLower = segment.toLowerCase();
       // 檢查原始路徑和 URL 解碼後的路徑
-      return pathLower.includes(segmentLower) || 
-             pathLower.includes(segmentLower.replace(' ', '')) ||
-             decodeURIComponent(pathLower).includes(segmentLower);
+      return (
+        pathLower.includes(segmentLower) ||
+        pathLower.includes(segmentLower.replace(' ', '')) ||
+        decodeURIComponent(pathLower).includes(segmentLower)
+      );
     });
-    
+
     return hasAllSegments;
   }
 
@@ -82,9 +83,12 @@ export function checkPermission(path: string, role: UserRole | null): boolean {
 }
 
 // 驗證登入
-export function validateLogin(username: string, password: string): UserRole | null {
+export function validateLogin(
+  username: string,
+  password: string
+): UserRole | null {
   const account = Object.values(ACCOUNTS).find(
-    acc => acc.username === username && acc.password === password
+    (acc) => acc.username === username && acc.password === password
   );
   return account ? account.role : null;
 }
@@ -101,4 +105,3 @@ export function isLoggedIn(): boolean {
   if (typeof window === 'undefined') return false;
   return localStorage.getItem(LOGIN_STORAGE_KEY) === 'true';
 }
-

@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '@theme/Layout';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import { validateLogin, LOGIN_STORAGE_KEY, USER_ROLE_STORAGE_KEY } from '@site/src/utils/auth';
+import {
+  validateLogin,
+  LOGIN_STORAGE_KEY,
+  USER_ROLE_STORAGE_KEY,
+} from '@site/src/utils/auth';
 import styles from './login.module.css';
 
 export default function Login(): JSX.Element {
@@ -27,12 +31,12 @@ export default function Login(): JSX.Element {
     // 簡單的延遲以模擬登入過程
     setTimeout(() => {
       const role = validateLogin(username, password);
-      
+
       if (role) {
         // 登入成功，儲存狀態和角色
         localStorage.setItem(LOGIN_STORAGE_KEY, 'true');
         localStorage.setItem(USER_ROLE_STORAGE_KEY, role);
-        
+
         // 檢查是否有原本要訪問的路徑
         const redirectPath = sessionStorage.getItem('redirectAfterLogin');
         if (redirectPath) {
@@ -41,9 +45,9 @@ export default function Login(): JSX.Element {
         } else {
           // 根據角色導向不同頁面
           if (role === 'tailormed') {
-            // tailormed 用戶只能看到 WF 說明 目錄下的內容，導向到 Home 頁面
-            // 注意：資料夾名稱是 "WF 說明"（有空格），URL 中會編碼為 %20
-            window.location.href = '/docs/tailormed/website/2026/網站改版/wf%20說明/home';
+            // tailormed 用戶只能看到供應商稽核數位化方案目錄下的內容，導向到總覽頁面
+            window.location.href =
+              '/docs/TailorMed/Website/2026/供應商稽核數位化方案/supplier-questionnaire';
           } else {
             window.location.href = '/';
           }
@@ -63,7 +67,7 @@ export default function Login(): JSX.Element {
             <h1 className={styles.loginTitle}>{siteConfig.title}</h1>
             <p className={styles.loginSubtitle}>請登入以繼續</p>
           </div>
-          
+
           <form onSubmit={handleSubmit} className={styles.loginForm}>
             <div className={styles.formGroup}>
               <label htmlFor="username" className={styles.label}>
@@ -111,4 +115,3 @@ export default function Login(): JSX.Element {
     </Layout>
   );
 }
-
