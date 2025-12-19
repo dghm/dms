@@ -15,10 +15,14 @@ if (typeof window !== 'undefined') {
       return;
     }
 
-    // tailormed 只能看到 TailorMed/Website/2026/供應商稽核數位化方案/ 下的內容
+    // tailormed 只能看到以下路徑的內容：
+    // 1. TailorMed/Website/2026/供應商稽核數位化方案/
+    // 2. TailorMed/Airtable/Data/
+    // 3. TailorMed/Airtable/Interface/CRM/
+    // 注意：tailormed 不能看到 TailorMed/Airtable/Billing Info/
     if (userRole === 'tailormed') {
       console.log(
-        '🔍 TailorMed 用戶登入，開始過濾 sidebar（僅顯示供應商稽核數位化方案目錄）'
+        '🔍 TailorMed 用戶登入，開始過濾 sidebar（顯示供應商稽核數位化方案、Airtable/Data 和 Airtable/Interface/CRM 目錄，不顯示 Billing Info）'
       );
 
       // 檢查 sidebar 是否存在
@@ -31,11 +35,16 @@ if (typeof window !== 'undefined') {
       console.log('✅ Sidebar 已找到');
 
       // 檢查路徑是否匹配允許的模式
-      // 只允許 TailorMed/Website/2026/供應商稽核數位化方案/ 下的內容
+      // 允許以下路徑：
+      // 1. TailorMed/Website/2026/供應商稽核數位化方案/
+      // 2. TailorMed/Airtable/Data/
+      // 3. TailorMed/Airtable/Interface/CRM/
+      // 注意：不允許 TailorMed/Airtable/Billing Info/
       function isPathAllowed(path: string): boolean {
         if (!path) return false;
 
         const pathLower = path.toLowerCase();
+        const decodedPath = decodeURIComponent(pathLower);
 
         // tailormed 用戶不允許訪問 intro（DGHM 文件管理系統）
         // 只允許首頁
@@ -48,40 +57,109 @@ if (typeof window !== 'undefined') {
           return false;
         }
 
-        // 只允許包含以下路徑段的內容：
-        // /docs/TailorMed/Website/2026/供應商稽核數位化方案/
-        const requiredPathSegments = [
+        // 明確禁止訪問 Billing Info
+        if (
+          pathLower.includes('billing') &&
+          (pathLower.includes('info') || decodedPath.includes('billing info'))
+        ) {
+          return false;
+        }
+
+        // 檢查路徑 1: TailorMed/Website/2026/供應商稽核數位化方案/
+        const websitePathSegments = [
           'tailormed',
           'website',
           '2026',
           '供應商稽核數位化方案',
         ];
 
-        // 檢查路徑是否包含所有必需的段落
-        // 需要同時檢查有空格和沒有空格的情況（URL 編碼問題）
-        const hasAllSegments = requiredPathSegments.every((segment) => {
+        const hasWebsitePath = websitePathSegments.every((segment) => {
           const segmentLower = segment.toLowerCase();
-          // 檢查原始路徑和 URL 解碼後的路徑
           return (
             pathLower.includes(segmentLower) ||
             pathLower.includes(segmentLower.replace(' ', '')) ||
-            decodeURIComponent(pathLower).includes(segmentLower)
+            decodedPath.includes(segmentLower)
           );
         });
 
-        return hasAllSegments;
+        if (hasWebsitePath) {
+          return true;
+        }
+
+        // 檢查路徑 2: TailorMed/Airtable/Data/
+        const airtableDataPathSegments = ['tailormed', 'airtable', 'data'];
+
+        const hasAirtableDataPath = airtableDataPathSegments.every(
+          (segment) => {
+            const segmentLower = segment.toLowerCase();
+            return (
+              pathLower.includes(segmentLower) ||
+              decodedPath.includes(segmentLower)
+            );
+          }
+        );
+
+        if (hasAirtableDataPath) {
+          return true;
+        }
+
+        // 檢查路徑 3: TailorMed/Airtable/Interface/CRM/
+        const airtableInterfacePathSegments = [
+          'tailormed',
+          'airtable',
+          'interface',
+          'crm',
+        ];
+
+        const hasAirtableInterfacePath = airtableInterfacePathSegments.every(
+          (segment) => {
+            const segmentLower = segment.toLowerCase();
+            return (
+              pathLower.includes(segmentLower) ||
+              decodedPath.includes(segmentLower)
+            );
+          }
+        );
+
+        return hasAirtableInterfacePath;
       }
 
       // 檢查文字是否屬於允許的分類
-      // 只允許 TailorMed、Website、2026、供應商稽核數位化方案 相關的分類
+      // 允許 TailorMed、Website、2026、供應商稽核數位化方案、Airtable、Data、Interface、CRM 相關的分類
+      // 注意：不允許 Billing Info
       function isCategoryAllowed(text: string): boolean {
         if (!text) return false;
         const textLower = text.toLowerCase();
+
+        // 明確排除 Billing Info
+        if (textLower.includes('billing') && textLower.includes('info')) {
+          return false;
+        }
+
         return (
           textLower.includes('tailormed') ||
           textLower.includes('website') ||
           textLower === '2026' ||
-          textLower.includes('供應商稽核數位化方案')
+          textLower.includes('供應商稽核數位化方案') ||
+          textLower.includes('airtable') ||
+          textLower === 'data' ||
+          textLower === 'interface' ||
+          textLower === 'crm' ||
+          textLower.includes('介面設計總覽') ||
+          textLower.includes('業務主管介面') ||
+          textLower.includes('使用者角色') ||
+          textLower.includes('dashboard') ||
+          textLower.includes('區塊') ||
+          textLower.includes('kpi') ||
+          textLower.includes('風險') ||
+          textLower.includes('警示') ||
+          textLower.includes('介入') ||
+          textLower.includes('主管') ||
+          textLower.includes('在看') ||
+          textLower.includes('overview') ||
+          textLower.includes('sales-director') ||
+          textLower.includes('user') ||
+          textLower.includes('role')
         );
       }
 
@@ -95,14 +173,56 @@ if (typeof window !== 'undefined') {
         const parentLower = parentText.toLowerCase();
         const childLower = childText.toLowerCase();
 
-        // TailorMed 下只允許 Website，不允許 DataBase
+        // TailorMed 下允許 Website 和 Airtable
         if (parentLower.includes('tailormed')) {
-          return childLower.includes('website');
+          return (
+            childLower.includes('website') || childLower.includes('airtable')
+          );
         }
 
         // Website 下只允許 2026
         if (parentLower.includes('website')) {
           return childLower === '2026';
+        }
+
+        // Airtable 下允許 Data 和 Interface，不允許 Billing Info
+        if (parentLower.includes('airtable')) {
+          return childLower === 'data' || childLower === 'interface';
+        }
+
+        // Interface 下只允許 CRM
+        if (parentLower.includes('interface')) {
+          return childLower === 'crm';
+        }
+
+        // CRM 下允許所有子分類：介面設計總覽、業務主管介面、使用者角色
+        if (parentLower === 'crm') {
+          return (
+            childLower.includes('介面設計總覽') ||
+            childLower.includes('業務主管介面') ||
+            childLower.includes('使用者角色') ||
+            childLower.includes('overview') ||
+            childLower.includes('sales-director') ||
+            childLower.includes('user') ||
+            childLower.includes('role')
+          );
+        }
+
+        // 業務主管介面下允許所有子分類：Dashboard 區塊說明等
+        if (
+          parentLower.includes('業務主管介面') ||
+          parentLower.includes('sales-director')
+        ) {
+          return (
+            childLower.includes('dashboard') ||
+            childLower.includes('區塊') ||
+            childLower.includes('kpi') ||
+            childLower.includes('風險') ||
+            childLower.includes('警示') ||
+            childLower.includes('介入') ||
+            childLower.includes('主管') ||
+            childLower.includes('在看')
+          );
         }
 
         // 2026 下只允許"供應商稽核數位化方案"
@@ -146,6 +266,16 @@ if (typeof window !== 'undefined') {
               const subLink = subItem.querySelector('a.menu__link');
               const subHref = subLink?.getAttribute('href');
               const subText = subLink?.textContent?.trim() || '';
+              const subTextLower = subText.toLowerCase();
+
+              // 明確排除 Billing Info
+              if (
+                subTextLower.includes('billing') &&
+                subTextLower.includes('info')
+              ) {
+                console.log('  🚫 排除 Billing Info 子項目:', subText);
+                return;
+              }
 
               // 檢查子分類是否應該被允許
               if (!subHref || subHref === '#') {
@@ -173,6 +303,24 @@ if (typeof window !== 'undefined') {
                 const subFullPath = subHref.startsWith('/')
                   ? subHref
                   : `/${subHref}`;
+
+                // 檢查路徑是否包含 billing info
+                const pathLower = subFullPath.toLowerCase();
+                const decodedPath = decodeURIComponent(pathLower);
+                if (
+                  pathLower.includes('billing') &&
+                  (pathLower.includes('info') ||
+                    decodedPath.includes('billing info'))
+                ) {
+                  console.log(
+                    '  🚫 排除 Billing Info 路徑:',
+                    subText,
+                    '→',
+                    subFullPath
+                  );
+                  return;
+                }
+
                 if (isPathAllowed(subFullPath)) {
                   hasAllowedDirectSubItem = true;
                   console.log('  ✅ 允許子項目:', subText, '→', subFullPath);
@@ -192,6 +340,22 @@ if (typeof window !== 'undefined') {
         }
 
         const fullPath = href.startsWith('/') ? href : `/${href}`;
+
+        // 明確排除 Billing Info
+        const textLower = text.toLowerCase();
+        const pathLower = fullPath.toLowerCase();
+        const decodedPath = decodeURIComponent(pathLower);
+
+        if (
+          (textLower.includes('billing') && textLower.includes('info')) ||
+          (pathLower.includes('billing') &&
+            (pathLower.includes('info') ||
+              decodedPath.includes('billing info')))
+        ) {
+          console.log('🚫 排除 Billing Info:', text, '→', fullPath);
+          return;
+        }
+
         allLinksInfo.push({ text, href, fullPath });
 
         if (isPathAllowed(fullPath)) {
@@ -384,9 +548,9 @@ if (typeof window !== 'undefined') {
             }
           });
 
-          // 如果沒有符合條件的子項目，且不是 TailorMed 本身（因為它需要顯示 Website），則移除
+          // 如果沒有符合條件的子項目，且不是 TailorMed 本身（因為它需要顯示 Website 或 Airtable/Data），則移除
           if (!hasAllowedSubItem && !textLower.includes('tailormed')) {
-            // 但如果是 TailorMed 的直接子項目（Website），需要檢查
+            // 但如果是 TailorMed 的直接子項目（Website 或 Airtable），需要檢查
             const parentListItem = listItemElement
               .closest('li.menu__list-item')
               ?.parentElement?.closest('li.menu__list-item');
@@ -394,14 +558,18 @@ if (typeof window !== 'undefined') {
             const parentText = parentLink?.textContent?.trim() || '';
 
             if (parentText && textLower.includes('tailormed')) {
-              // 這是 TailorMed 分類，檢查是否有 Website 子項目
+              // 這是 TailorMed 分類，檢查是否有 Website 或 Airtable 子項目
               if (
                 !directSubItems.length ||
                 !Array.from(directSubItems).some((item) => {
                   const itemText =
                     item.querySelector('a.menu__link')?.textContent?.trim() ||
                     '';
-                  return itemText.toLowerCase().includes('website');
+                  const itemTextLower = itemText.toLowerCase();
+                  return (
+                    itemTextLower.includes('website') ||
+                    itemTextLower.includes('airtable')
+                  );
                 })
               ) {
                 itemsToRemove.add(listItemElement);
@@ -441,11 +609,38 @@ if (typeof window !== 'undefined') {
           const subLink = subItem.querySelector('a.menu__link');
           const subHref = subLink?.getAttribute('href');
           const subText = subLink?.textContent?.trim() || '';
+          const subTextLower = subText.toLowerCase();
+
+          // 明確排除 Billing Info
+          if (
+            subTextLower.includes('billing') &&
+            subTextLower.includes('info')
+          ) {
+            console.log('  🚫 排除 Billing Info 子項目:', subText);
+            return;
+          }
 
           if (subHref && subHref !== '#') {
             const subFullPath = subHref.startsWith('/')
               ? subHref
               : `/${subHref}`;
+
+            // 檢查路徑是否包含 billing info
+            const pathLower = subFullPath.toLowerCase();
+            const decodedPath = decodeURIComponent(pathLower);
+            if (
+              pathLower.includes('billing') &&
+              (pathLower.includes('info') ||
+                decodedPath.includes('billing info'))
+            ) {
+              console.log(
+                '  🚫 排除 Billing Info 路徑:',
+                subText,
+                '→',
+                subFullPath
+              );
+              return;
+            }
 
             // 只允許符合特定路徑的內容
             if (isPathAllowed(subFullPath)) {
@@ -491,7 +686,33 @@ if (typeof window !== 'undefined') {
         const listItemElement = listItem as HTMLElement;
         const link = listItem.querySelector('a.menu__link');
         const href = link?.getAttribute('href');
-        const text = link?.textContent?.trim();
+        const text = link?.textContent?.trim() || '';
+        const textLower = text.toLowerCase();
+
+        // 明確隱藏 Billing Info，無論是否在白名單中
+        if (textLower.includes('billing') && textLower.includes('info')) {
+          listItemElement.style.display = 'none';
+          if (process.env.NODE_ENV === 'development') {
+            console.log('🚫 強制隱藏 Billing Info:', text, href);
+          }
+          return;
+        }
+
+        // 檢查路徑是否包含 billing info
+        if (href) {
+          const pathLower = href.toLowerCase();
+          const decodedPath = decodeURIComponent(pathLower);
+          if (
+            pathLower.includes('billing') &&
+            (pathLower.includes('info') || decodedPath.includes('billing info'))
+          ) {
+            listItemElement.style.display = 'none';
+            if (process.env.NODE_ENV === 'development') {
+              console.log('🚫 強制隱藏 Billing Info 路徑:', text, href);
+            }
+            return;
+          }
+        }
 
         if (itemsToShow.has(listItemElement)) {
           listItemElement.style.display = '';

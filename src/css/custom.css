@@ -13,7 +13,7 @@
 /* DGHM 品牌顏色變數 - Day Mode */
 :root {
   /* 主要顏色 */
-  --ifm-color-primary: #0037d3;
+  --ifm-color-primary: #2d4483;
   --ifm-color-primary-dark: #2d4483;
   --ifm-color-primary-darker: #1f2f5a;
   --ifm-color-primary-darkest: #001a4d;
@@ -35,17 +35,17 @@
 
   /* 中性顏色 */
   --ifm-color-neutral-dark: #0e0e0f;
-  --ifm-color-neutral: #666666;
+  --ifm-color-neutral: #666;
   --ifm-color-neutral-light: #d9d9d9;
 
   /* 背景顏色 */
-  --ifm-background-color: #efefef;
-  --ifm-background-surface-color: #ffffff;
+  --ifm-background-color: #fff;
+  --ifm-background-surface-color: #fff;
 
   /* 文字顏色 */
-  --ifm-font-color-base: #666666;
+  --ifm-font-color-base: #666;
   --ifm-heading-color: var(--ifm-color-primary-dark);
-  --ifm-color-content: #666666;
+  --ifm-color-content: #666;
   --ifm-color-content-secondary: #999999;
 
   /* 其他設定 */
@@ -60,7 +60,7 @@
 /* 深色模式 - Night Mode */
 [data-theme='dark'] {
   /* 保留 Primary 和 Secondary 變數（維持原有值） */
-  --ifm-color-primary: #4d6fe9;
+  --ifm-color-primary: #2d4483;
   --ifm-color-primary-dark: #3d5fe0;
   --ifm-color-primary-darker: #3659dd;
   --ifm-color-primary-darkest: #2d4bc7;
@@ -87,7 +87,33 @@
   --ifm-color-content: #efefef;
   --ifm-color-content-secondary: #cccccc;
 
+  /* 側邊欄選單連結顏色 */
+  --ifm-menu-color: #8daff1;
+  --ifm-menu-color-active: #5d7feb;
+  --ifm-menu-color-background-active: rgba(93, 127, 235, 0.15);
+
   --docusaurus-highlighted-code-line-bg: rgba(0, 55, 211, 0.3);
+}
+
+/* ============================================
+   夜間模式側邊欄選單連結對比度增強
+   ============================================ */
+[data-theme='dark'] .menu__link {
+  color: #8daff1 !important;
+  opacity: 1 !important;
+}
+
+[data-theme='dark'] .menu__link:hover {
+  color: #5d7feb !important;
+}
+
+[data-theme='dark'] .menu__link--active {
+  color: #5d7feb !important;
+  font-weight: 600;
+}
+
+[data-theme='dark'] .menu__list-item-collapsible .menu__link {
+  color: #8daff1 !important;
 }
 
 /* ============================================
@@ -203,13 +229,126 @@
 }
 
 .navbar__search-input::placeholder {
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .navbar__search-input:focus {
-  background-color: rgba(255, 255, 255, 0.25);
-  border-color: var(--ifm-color-secondary);
+  background-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
   outline: none;
+  color: #ffffff;
+}
+
+/* Navbar 右上角按鈕和圖示對比度增強 */
+.navbar .navbar__item button,
+.navbar .navbar__item .navbar__link,
+.navbar .navbar__item svg,
+.navbar .navbar__item [class*='icon'],
+.navbar .navbar__item [class*='Icon'] {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+.navbar .navbar__item button:hover,
+.navbar .navbar__item .navbar__link:hover {
+  color: var(--ifm-color-accent) !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* 主題切換按鈕 */
+.navbar .navbar__item [aria-label*='theme'],
+.navbar .navbar__item [aria-label*='Theme'],
+.navbar .navbar__item button[aria-label*='theme'],
+.navbar .navbar__item button[aria-label*='Theme'] {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+.navbar .navbar__item button[aria-label*='theme']:hover,
+.navbar .navbar__item button[aria-label*='Theme']:hover {
+  color: var(--ifm-color-accent) !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* 登出按鈕 - 使用屬性選擇器匹配 CSS Module 類名和 data 屬性 */
+.navbar button[data-logout-button],
+.navbar [class*='logoutButton'],
+.navbar button[aria-label='登出'],
+.navbar .navbar__item button:has([class*='logout']),
+.navbar .navbar__item button:has([class*='Logout']),
+.navbar .navbar__item [class*='logout'],
+.navbar .navbar__item [class*='Logout'] {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.navbar button[data-logout-button]:hover,
+.navbar [class*='logoutButton']:hover,
+.navbar button[aria-label='登出']:hover,
+.navbar .navbar__item button:has([class*='logout']):hover,
+.navbar .navbar__item button:has([class*='Logout']):hover {
+  color: #ffffff !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.navbar button[data-logout-button]:focus,
+.navbar [class*='logoutButton']:focus,
+.navbar button[aria-label='登出']:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 登出按鈕內的文字和圖示 */
+.navbar button[data-logout-button] *,
+.navbar [class*='logoutButton'] *,
+.navbar button[aria-label='登出'] *,
+.navbar .navbar__item button:has([class*='logout']) *,
+.navbar .navbar__item button:has([class*='Logout']) *,
+.navbar .navbar__item [class*='logout'] *,
+.navbar .navbar__item [class*='Logout'] * {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+.navbar button[data-logout-button]:hover *,
+.navbar [class*='logoutButton']:hover *,
+.navbar button[aria-label='登出']:hover *,
+.navbar .navbar__item button:has([class*='logout']):hover *,
+.navbar .navbar__item button:has([class*='Logout']):hover * {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* Navbar 右側所有按鈕通用樣式 */
+.navbar .navbar__items--right .navbar__item button,
+.navbar .navbar__items--right .navbar__item .navbar__link {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 6px !important;
+  padding: 0.5rem 1rem !important;
+  transition: all 0.2s ease !important;
+}
+
+.navbar .navbar__items--right .navbar__item button:hover,
+.navbar .navbar__items--right .navbar__item .navbar__link:hover {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.navbar .navbar__items--right .navbar__item button svg,
+.navbar .navbar__items--right .navbar__item .navbar__link svg,
+.navbar .navbar__items--right .navbar__item svg {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+  opacity: 1 !important;
 }
 
 /* 隱藏 Navbar 搜尋欄中的放大鏡圖標 - 最全面的選擇器 */
@@ -555,7 +694,7 @@ a:hover {
 
 /* 段落文字 - 使用 Neutral Color */
 .markdown p {
-  color: var(--ifm-color-content);
+  color: #333;
   line-height: 1.5;
   margin-bottom: 1rem;
 }
@@ -604,6 +743,7 @@ a:hover {
 }
 
 .markdown li {
+  color: #333;
   margin-bottom: 0.5rem;
   line-height: 1.8;
 }
@@ -762,6 +902,10 @@ a:hover {
 
 [data-theme='dark'] .markdown p {
   color: var(--ifm-color-content);
+}
+
+[data-theme='dark'] .markdown li {
+  color: var(--ifm-color-content-secondary);
 }
 
 /* Night Mode 連結 hover 效果 - 使用 Accent 色 */

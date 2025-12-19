@@ -25,17 +25,19 @@ if (typeof window !== 'undefined') {
       align-items: center;
       gap: 0.5rem;
       padding: 0.5rem 1rem;
-      background: transparent;
-      border: 1px solid var(--ifm-color-emphasis-300);
+      background: rgba(255, 255, 255, 0.15) !important;
+      border: 1px solid rgba(255, 255, 255, 0.4) !important;
       border-radius: 6px;
-      color: var(--ifm-navbar-link-color);
+      color: #ffffff !important;
       font-size: 0.875rem;
-      font-weight: 500;
+      font-weight: 600 !important;
       cursor: pointer;
       margin-left: 0.75rem;
       white-space: nowrap;
       transition: all 0.2s;
       font-family: inherit;
+      outline: none !important;
+      box-shadow: none !important;
     `;
 
     // SVG 圖示
@@ -44,23 +46,31 @@ if (typeof window !== 'undefined') {
     svg.setAttribute('height', '16');
     svg.setAttribute('viewBox', '0 0 24 24');
     svg.setAttribute('fill', 'none');
-    svg.setAttribute('stroke', 'currentColor');
+    svg.setAttribute('stroke', '#ffffff');
     svg.setAttribute('stroke-width', '2');
     svg.setAttribute('stroke-linecap', 'round');
     svg.setAttribute('stroke-linejoin', 'round');
-    
-    const path1 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    svg.style.color = '#ffffff';
+    svg.style.stroke = '#ffffff';
+
+    const path1 = document.createElementNS(
+      'http://www.w3.org/2000/svg',
+      'path'
+    );
     path1.setAttribute('d', 'M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4');
-    
-    const polyline = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+
+    const polyline = document.createElementNS(
+      'http://www.w3.org/2000/svg',
+      'polyline'
+    );
     polyline.setAttribute('points', '16 17 21 12 16 7');
-    
+
     const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
     line.setAttribute('x1', '21');
     line.setAttribute('y1', '12');
     line.setAttribute('x2', '9');
     line.setAttribute('y2', '12');
-    
+
     svg.appendChild(path1);
     svg.appendChild(polyline);
     svg.appendChild(line);
@@ -68,19 +78,23 @@ if (typeof window !== 'undefined') {
     // 文字
     const span = document.createElement('span');
     span.textContent = '登出';
+    span.style.color = '#ffffff';
+    span.style.fontWeight = '600';
 
     button.appendChild(svg);
     button.appendChild(span);
 
     // 滑鼠懸停效果
     button.addEventListener('mouseenter', () => {
-      button.style.background = 'var(--ifm-color-emphasis-200)';
-      button.style.borderColor = 'var(--ifm-color-emphasis-400)';
+      button.style.background = 'rgba(255, 255, 255, 0.25)';
+      button.style.borderColor = 'rgba(255, 255, 255, 0.6)';
+      button.style.color = '#ffffff';
     });
 
     button.addEventListener('mouseleave', () => {
-      button.style.background = 'transparent';
-      button.style.borderColor = 'var(--ifm-color-emphasis-300)';
+      button.style.background = 'rgba(255, 255, 255, 0.15)';
+      button.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+      button.style.color = '#ffffff';
     });
 
     // 點擊事件
@@ -170,4 +184,3 @@ if (typeof window !== 'undefined') {
     init();
   }
 }
-

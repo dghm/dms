@@ -18,18 +18,28 @@ DGHM 文件管理系統提供了一個統一的平台，讓團隊成員可以輕
 
 ### TailorMed 專案文檔
 
-#### DataBase（資料庫）
+#### Data（資料庫）
+
 - **CRM**：客戶關係管理系統相關文檔
   - 系統介紹、資料結構、自動化流程
 - **FIN**：財務系統相關文檔
   - 系統介紹、資料結構、自動化流程、工作流程圖
 - **OMS**：訂單管理系統相關文檔
 
+#### Interface（介面）
+
+- **CRM**：CRM 系統介面相關文檔
+  - 系統介紹
+  - Role and Context：角色與上下文
+  - Data Logic：資料邏輯
+  - Interface Design：介面設計
+
 #### Website（網站）
+
 - **2025 版本**：2025 年網站相關文檔
   - 首頁、關於我們、解決方案、專業領域、最新消息、聯絡我們
 - **2026 版本**：2026 年網站改版相關文檔
-  - 網站改版工作流程說明（WF說明）
+  - 網站改版工作流程說明（WF 說明）
   - 參考資料和文檔模板
   - 文案內容
 
@@ -56,7 +66,7 @@ DGHM 文件管理系統提供了一個統一的平台，讓團隊成員可以輕
 
 - [文檔編輯指南](/docs/操作手冊/文檔編輯指南) - 學習如何編輯文檔
 - [Markdown 快速參考](/docs/操作手冊/Markdown快速參考) - 查詢 Markdown 語法
-- [TailorMed DataBase 介紹](/docs/TailorMed/DataBase) - 資料庫系統文檔
+- [TailorMed Data 介紹](/docs/TailorMed/Airtable/Data) - 資料庫系統文檔
 
 ## 🎯 使用說明
 
@@ -65,7 +75,7 @@ DGHM 文件管理系統提供了一個統一的平台，讓團隊成員可以輕
 根據您的帳號權限，您可能只能看到部分文檔：
 
 - **Admin 帳號**：可以查看所有文檔
-- **TailorMed 帳號**：只能查看 TailorMed/Website/2026/網站改版/WF說明 目錄下的內容
+- **TailorMed 帳號**：只能查看 TailorMed/Website/2026/網站改版/WF 說明 目錄下的內容
 
 ### 瀏覽文檔
 
