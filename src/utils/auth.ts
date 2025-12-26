@@ -49,6 +49,7 @@ export function checkPermission(path: string, role: UserRole | null): boolean {
   // 1. TailorMed/Website/2026/供應商稽核數位化方案/
   // 2. TailorMed/Airtable/Data/
   // 3. TailorMed/Airtable/Interface/CRM/
+  // 4. TailorMed/Airtable/Interface/FIN/SoA/
   // 注意：tailormed 不能訪問 TailorMed/Airtable/Billing Info/
   if (role === 'tailormed') {
     // 只允許首頁，不允許 intro（DGHM 文件管理系統）
@@ -108,14 +109,14 @@ export function checkPermission(path: string, role: UserRole | null): boolean {
     }
 
     // 檢查路徑 3: TailorMed/Airtable/Interface/CRM/
-    const airtableInterfacePathSegments = [
+    const airtableInterfaceCrmPathSegments = [
       'tailormed',
       'airtable',
       'interface',
       'crm',
     ];
 
-    const hasAirtableInterfacePath = airtableInterfacePathSegments.every(
+    const hasAirtableInterfaceCrmPath = airtableInterfaceCrmPathSegments.every(
       (segment) => {
         const segmentLower = segment.toLowerCase();
         return (
@@ -124,7 +125,28 @@ export function checkPermission(path: string, role: UserRole | null): boolean {
       }
     );
 
-    return hasAirtableInterfacePath;
+    if (hasAirtableInterfaceCrmPath) {
+      return true;
+    }
+
+    // 檢查路徑 4: TailorMed/Airtable/Interface/FIN/SoA/
+    const airtableInterfaceFinSoaPathSegments = [
+      'tailormed',
+      'airtable',
+      'interface',
+      'fin',
+      'soa',
+    ];
+
+    const hasAirtableInterfaceFinSoaPath =
+      airtableInterfaceFinSoaPathSegments.every((segment) => {
+        const segmentLower = segment.toLowerCase();
+        return (
+          pathLower.includes(segmentLower) || decodedPath.includes(segmentLower)
+        );
+      });
+
+    return hasAirtableInterfaceFinSoaPath;
   }
 
   return false;

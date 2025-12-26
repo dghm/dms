@@ -19,10 +19,11 @@ if (typeof window !== 'undefined') {
     // 1. TailorMed/Website/2026/供應商稽核數位化方案/
     // 2. TailorMed/Airtable/Data/
     // 3. TailorMed/Airtable/Interface/CRM/
+    // 4. TailorMed/Airtable/Interface/FIN/SoA/
     // 注意：tailormed 不能看到 TailorMed/Airtable/Billing Info/
     if (userRole === 'tailormed') {
       console.log(
-        '🔍 TailorMed 用戶登入，開始過濾 sidebar（顯示供應商稽核數位化方案、Airtable/Data 和 Airtable/Interface/CRM 目錄，不顯示 Billing Info）'
+        '🔍 TailorMed 用戶登入，開始過濾 sidebar（顯示供應商稽核數位化方案、Airtable/Data、Airtable/Interface/CRM 和 Airtable/Interface/FIN/SoA 目錄，不顯示 Billing Info）'
       );
 
       // 檢查 sidebar 是否存在
@@ -39,6 +40,7 @@ if (typeof window !== 'undefined') {
       // 1. TailorMed/Website/2026/供應商稽核數位化方案/
       // 2. TailorMed/Airtable/Data/
       // 3. TailorMed/Airtable/Interface/CRM/
+      // 4. TailorMed/Airtable/Interface/FIN/SoA/
       // 注意：不允許 TailorMed/Airtable/Billing Info/
       function isPathAllowed(path: string): boolean {
         if (!path) return false;
@@ -104,28 +106,49 @@ if (typeof window !== 'undefined') {
         }
 
         // 檢查路徑 3: TailorMed/Airtable/Interface/CRM/
-        const airtableInterfacePathSegments = [
+        const airtableInterfaceCrmPathSegments = [
           'tailormed',
           'airtable',
           'interface',
           'crm',
         ];
 
-        const hasAirtableInterfacePath = airtableInterfacePathSegments.every(
-          (segment) => {
+        const hasAirtableInterfaceCrmPath =
+          airtableInterfaceCrmPathSegments.every((segment) => {
             const segmentLower = segment.toLowerCase();
             return (
               pathLower.includes(segmentLower) ||
               decodedPath.includes(segmentLower)
             );
-          }
-        );
+          });
 
-        return hasAirtableInterfacePath;
+        if (hasAirtableInterfaceCrmPath) {
+          return true;
+        }
+
+        // 檢查路徑 4: TailorMed/Airtable/Interface/FIN/SoA/
+        const airtableInterfaceFinSoaPathSegments = [
+          'tailormed',
+          'airtable',
+          'interface',
+          'fin',
+          'soa',
+        ];
+
+        const hasAirtableInterfaceFinSoaPath =
+          airtableInterfaceFinSoaPathSegments.every((segment) => {
+            const segmentLower = segment.toLowerCase();
+            return (
+              pathLower.includes(segmentLower) ||
+              decodedPath.includes(segmentLower)
+            );
+          });
+
+        return hasAirtableInterfaceFinSoaPath;
       }
 
       // 檢查文字是否屬於允許的分類
-      // 允許 TailorMed、Website、2026、供應商稽核數位化方案、Airtable、Data、Interface、CRM 相關的分類
+      // 允許 TailorMed、Website、2026、供應商稽核數位化方案、Airtable、Data、Interface、CRM、FIN、SoA 相關的分類
       // 注意：不允許 Billing Info
       function isCategoryAllowed(text: string): boolean {
         if (!text) return false;
@@ -145,6 +168,8 @@ if (typeof window !== 'undefined') {
           textLower === 'data' ||
           textLower === 'interface' ||
           textLower === 'crm' ||
+          textLower === 'fin' ||
+          textLower === 'soa' ||
           textLower.includes('介面設計總覽') ||
           textLower.includes('業務主管介面') ||
           textLower.includes('使用者角色') ||
@@ -159,7 +184,13 @@ if (typeof window !== 'undefined') {
           textLower.includes('overview') ||
           textLower.includes('sales-director') ||
           textLower.includes('user') ||
-          textLower.includes('role')
+          textLower.includes('role') ||
+          textLower.includes('基礎介紹') ||
+          textLower.includes('interface') ||
+          textLower.includes('元件說明') ||
+          textLower.includes('資料結構') ||
+          textLower.includes('automation') ||
+          textLower.includes('設計說明')
         );
       }
 
@@ -190,9 +221,9 @@ if (typeof window !== 'undefined') {
           return childLower === 'data' || childLower === 'interface';
         }
 
-        // Interface 下只允許 CRM
+        // Interface 下允許 CRM 和 FIN
         if (parentLower.includes('interface')) {
-          return childLower === 'crm';
+          return childLower === 'crm' || childLower === 'fin';
         }
 
         // CRM 下允許所有子分類：介面設計總覽、業務主管介面、使用者角色
@@ -205,6 +236,24 @@ if (typeof window !== 'undefined') {
             childLower.includes('sales-director') ||
             childLower.includes('user') ||
             childLower.includes('role')
+          );
+        }
+
+        // FIN 下只允許 SoA
+        if (parentLower === 'fin') {
+          return childLower === 'soa';
+        }
+
+        // SoA 下允許所有子分類：基礎介紹、Interface 說明、資料結構說明、Automation 設計說明等
+        if (parentLower === 'soa') {
+          return (
+            childLower.includes('基礎介紹') ||
+            childLower.includes('intro') ||
+            childLower.includes('interface') ||
+            childLower.includes('元件說明') ||
+            childLower.includes('資料結構') ||
+            childLower.includes('automation') ||
+            childLower.includes('設計說明')
           );
         }
 
