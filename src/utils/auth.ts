@@ -50,6 +50,7 @@ export function checkPermission(path: string, role: UserRole | null): boolean {
   // 2. TailorMed/Airtable/Data/
   // 3. TailorMed/Airtable/Interface/CRM/
   // 4. TailorMed/Airtable/Interface/FIN/SoA/
+  // 5. TailorMed/Airtable/Change-Log/
   // 注意：tailormed 不能訪問 TailorMed/Airtable/Billing Info/
   if (role === 'tailormed') {
     // 只允許首頁，不允許 intro（DGHM 文件管理系統）
@@ -146,7 +147,27 @@ export function checkPermission(path: string, role: UserRole | null): boolean {
         );
       });
 
-    return hasAirtableInterfaceFinSoaPath;
+    if (hasAirtableInterfaceFinSoaPath) {
+      return true;
+    }
+
+    // 檢查路徑 5: TailorMed/Airtable/Change-Log/
+    const airtableChangeLogPathSegments = [
+      'tailormed',
+      'airtable',
+      'change-log',
+    ];
+
+    const hasAirtableChangeLogPath = airtableChangeLogPathSegments.every(
+      (segment) => {
+        const segmentLower = segment.toLowerCase();
+        return (
+          pathLower.includes(segmentLower) || decodedPath.includes(segmentLower)
+        );
+      }
+    );
+
+    return hasAirtableChangeLogPath;
   }
 
   return false;

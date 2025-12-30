@@ -20,10 +20,11 @@ if (typeof window !== 'undefined') {
     // 2. TailorMed/Airtable/Data/
     // 3. TailorMed/Airtable/Interface/CRM/
     // 4. TailorMed/Airtable/Interface/FIN/SoA/
+    // 5. TailorMed/Airtable/Change-Log/
     // 注意：tailormed 不能看到 TailorMed/Airtable/Billing Info/
     if (userRole === 'tailormed') {
       console.log(
-        '🔍 TailorMed 用戶登入，開始過濾 sidebar（顯示供應商稽核數位化方案、Airtable/Data、Airtable/Interface/CRM 和 Airtable/Interface/FIN/SoA 目錄，不顯示 Billing Info）'
+        '🔍 TailorMed 用戶登入，開始過濾 sidebar（顯示供應商稽核數位化方案、Airtable/Data、Airtable/Interface/CRM、Airtable/Interface/FIN/SoA 和 Airtable/Change-Log 目錄，不顯示 Billing Info）'
       );
 
       // 檢查 sidebar 是否存在
@@ -41,6 +42,7 @@ if (typeof window !== 'undefined') {
       // 2. TailorMed/Airtable/Data/
       // 3. TailorMed/Airtable/Interface/CRM/
       // 4. TailorMed/Airtable/Interface/FIN/SoA/
+      // 5. TailorMed/Airtable/Change-Log/
       // 注意：不允許 TailorMed/Airtable/Billing Info/
       function isPathAllowed(path: string): boolean {
         if (!path) return false;
@@ -144,11 +146,32 @@ if (typeof window !== 'undefined') {
             );
           });
 
-        return hasAirtableInterfaceFinSoaPath;
+        if (hasAirtableInterfaceFinSoaPath) {
+          return true;
+        }
+
+        // 檢查路徑 5: TailorMed/Airtable/Change-Log/
+        const airtableChangeLogPathSegments = [
+          'tailormed',
+          'airtable',
+          'change-log',
+        ];
+
+        const hasAirtableChangeLogPath = airtableChangeLogPathSegments.every(
+          (segment) => {
+            const segmentLower = segment.toLowerCase();
+            return (
+              pathLower.includes(segmentLower) ||
+              decodedPath.includes(segmentLower)
+            );
+          }
+        );
+
+        return hasAirtableChangeLogPath;
       }
 
       // 檢查文字是否屬於允許的分類
-      // 允許 TailorMed、Website、2026、供應商稽核數位化方案、Airtable、Data、Interface、CRM、FIN、SoA 相關的分類
+      // 允許 TailorMed、Website、2026、供應商稽核數位化方案、Airtable、Data、Interface、CRM、FIN、SoA、Change-Log 相關的分類
       // 注意：不允許 Billing Info
       function isCategoryAllowed(text: string): boolean {
         if (!text) return false;
@@ -170,6 +193,9 @@ if (typeof window !== 'undefined') {
           textLower === 'crm' ||
           textLower === 'fin' ||
           textLower === 'soa' ||
+          textLower.includes('change-log') ||
+          textLower.includes('changelog') ||
+          textLower.includes('變更記錄') ||
           textLower.includes('介面設計總覽') ||
           textLower.includes('業務主管介面') ||
           textLower.includes('使用者角色') ||
@@ -216,9 +242,15 @@ if (typeof window !== 'undefined') {
           return childLower === '2026';
         }
 
-        // Airtable 下允許 Data 和 Interface，不允許 Billing Info
+        // Airtable 下允許 Data、Interface 和 Change-Log，不允許 Billing Info
         if (parentLower.includes('airtable')) {
-          return childLower === 'data' || childLower === 'interface';
+          return (
+            childLower === 'data' ||
+            childLower === 'interface' ||
+            childLower.includes('change-log') ||
+            childLower.includes('changelog') ||
+            childLower.includes('變更記錄')
+          );
         }
 
         // Interface 下允許 CRM 和 FIN

@@ -22,7 +22,16 @@ sidebar_position: 2
 
 | 說明                   | 對應欄位      |
 | ---------------------- | ------------- |
+| 對帳帳期       | Billing Month |
+| 請款對象         | Billing To    |
+| 請款對象之 Debit Notes | Debit Notes   |
+| 收款銀行         | Bank Account  |
+| SoA PDF          | Attachment    |
+
+| AAA               | 對應欄位      |
+| ---------------------- | ------------- |
 | 對帳帳期               | Billing Month |
+| 請款對象               | Billing To    |
 | 請款對象               | Billing To    |
 | 請款對象之 Debit Notes | Debit Notes   |
 | 收款銀行               | Bank Account  |
@@ -91,3 +100,5 @@ SoA 的處理流程由上而下依序為：
 避免不同狀態的資料混用，提升帳務管理效率與透明度。
 
 ---
+
+
