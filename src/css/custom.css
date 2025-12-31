@@ -10,210 +10,60 @@
  * - Neutral Gray: #666666 (灰色)
  */
 
+/* 導入 Encode Sans Expanded 字型 */
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300;500;700;800;900&display=swap');
+
 /* DGHM 品牌顏色變數 - Day Mode */
 :root {
-  /* 主要顏色 */
-  --ifm-color-primary: #2d4483;
-  --ifm-color-primary-dark: #2d4483;
-  --ifm-color-primary-darker: #1f2f5a;
-  --ifm-color-primary-darkest: #001a4d;
-  --ifm-color-primary-light: #c6cde0;
-  --ifm-color-primary-lighter: #d4d9e8;
-  --ifm-color-primary-lightest: #e8ebf2;
+  --ifm-color-primary: #293c61;
+  --ifm-color-primary-dark: #3c5e90;
+  --ifm-color-primary-darker: #5588bf;
+  --ifm-color-primary-darkest: #60a3d9;
+  --ifm-color-primary-light: #8bb5e6;
+  --ifm-color-primary-lighter: #bcd1f2;
+  --ifm-color-primary-lightest: #f2f6ff;
 
-  /* 次要顏色 */
-  --ifm-color-secondary: #202833;
-  --ifm-color-secondary-dark: #181c24;
-  --ifm-color-secondary-darker: #12151a;
-  --ifm-color-secondary-darkest: #0a0c0f;
-  --ifm-color-secondary-light: #3d4551;
-  --ifm-color-secondary-lighter: #4d5766;
-  --ifm-color-secondary-lightest: #6d7a8c;
+  /* 背景顏色 - Light Mode */
+  --ifm-background-color: #efefef;
+  --ifm-background-surface-color: #fcfcfc;
 
-  /* 強調顏色 */
-  --ifm-color-accent: #ffb700;
+  /* 字型設定 */
+  --ifm-font-family-base: 'Encode Sans Expanded', -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --ifm-font-family-monospace: 'SFMono-Regular', Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
 
-  /* 中性顏色 */
-  --ifm-color-neutral-dark: #0e0e0f;
-  --ifm-color-neutral: #666;
-  --ifm-color-neutral-light: #d9d9d9;
-
-  /* 背景顏色 */
-  --ifm-background-color: #fff;
-  --ifm-background-surface-color: #fff;
-
-  /* 文字顏色 */
-  --ifm-font-color-base: #666;
-  --ifm-heading-color: var(--ifm-color-primary-dark);
-  --ifm-color-content: #666;
-  --ifm-color-content-secondary: #999999;
-
-  /* 其他設定 */
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 55, 211, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 
-  /* 字體設定 */
-  --ifm-font-family-base: 'Noto Sans', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  /* Sidebar caret 圖標大小 */
+  /* 注意：可以通過調整 SVG 的 width/height 或使用 CSS 來控制大小 */
 }
 
-/* 深色模式 - Night Mode */
+/* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  /* 保留 Primary 和 Secondary 變數（維持原有值） */
-  --ifm-color-primary: #2d4483;
-  --ifm-color-primary-dark: #3d5fe0;
-  --ifm-color-primary-darker: #3659dd;
-  --ifm-color-primary-darkest: #2d4bc7;
-  --ifm-color-primary-light: #5d7feb;
-  --ifm-color-primary-lighter: #6d8fed;
-  --ifm-color-primary-lightest: #8daff1;
+  --ifm-color-primary: #b1bad5;;
+  --ifm-color-primary-dark: #4f5a81
+  --ifm-color-primary-darker: #232942;
+  --ifm-color-primary-darkest: #171b2d;
+  --ifm-color-primary-light: #7985ab;
+  --ifm-color-primary-lighter: #b1bad5;
+  --ifm-color-primary-lightest: #f2f6ff;
 
-  --ifm-color-secondary: #6ac4ff;
-  --ifm-color-secondary-dark: #5ab8ff;
-  --ifm-color-secondary-darker: #52b3ff;
-  --ifm-color-secondary-darkest: #3aa0ef;
-  --ifm-color-secondary-light: #7accff;
-  --ifm-color-secondary-lighter: #8ad2ff;
-  --ifm-color-secondary-lightest: #aadeff;
+  /* 背景顏色 - Dark Mode */
+  --ifm-background-color: #18191a;
+  --ifm-background-surface-color: #242526;
 
-  --ifm-color-accent: #ffd966;
+  /* 字型設定（Dark Mode 通常與 Light Mode 相同） */
+  /* 如需不同的字型，可以在這裡重新定義 */
+  /* --ifm-font-family-base: ... */
 
-  /* Night Mode 專屬顏色 */
-  --ifm-color-neutral-dark: #3a3a3a;
-  --ifm-background-color: #0e0e0e;
-  --ifm-background-surface-color: #1a1a1a;
-  --ifm-font-color-base: #efefef;
-  --ifm-heading-color: var(--ifm-color-primary-dark);
-  --ifm-color-content: #efefef;
-  --ifm-color-content-secondary: #cccccc;
-
-  /* 側邊欄選單連結顏色 */
-  --ifm-menu-color: #8daff1;
-  --ifm-menu-color-active: #5d7feb;
-  --ifm-menu-color-background-active: rgba(93, 127, 235, 0.15);
-
-  --docusaurus-highlighted-code-line-bg: rgba(0, 55, 211, 0.3);
-}
-
-/* ============================================
-   夜間模式側邊欄選單連結對比度增強
-   ============================================ */
-[data-theme='dark'] .menu__link {
-  color: #8daff1 !important;
-  opacity: 1 !important;
-}
-
-[data-theme='dark'] .menu__link:hover {
-  color: #5d7feb !important;
-}
-
-[data-theme='dark'] .menu__link--active {
-  color: #5d7feb !important;
-  font-weight: 600;
-}
-
-[data-theme='dark'] .menu__list-item-collapsible .menu__link {
-  color: #8daff1 !important;
-}
-
-/* ============================================
-   DGHM Hero 區塊樣式
-   ============================================ */
-
-/* Hero 區塊背景色 - 使用 Primary-dark */
-.hero--primary {
-  background-color: var(--ifm-color-primary-dark) !important;
-}
-
-/* Hero 標題顏色 - 使用 Accent 色 */
-.hero__title {
-  color: var(--ifm-color-accent) !important;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
 /* ============================================
    DGHM Navbar 自訂樣式
    ============================================ */
-
-/* Navbar 主容器 */
-.navbar {
-  background-color: var(--ifm-color-primary-dark);
-  box-shadow: 0 2px 8px rgba(45, 68, 131, 0.15);
-  padding: 0.75rem 1rem;
-  min-height: 70px;
-}
-
-/* Navbar 品牌 Logo 和標題 */
-.navbar__brand {
-  color: #ffffff;
-  font-weight: 600;
-  font-size: 1.25rem;
-  margin-right: 2rem;
-  transition: color 0.2s ease;
-}
-
-.navbar__brand:hover {
-  color: var(--ifm-color-accent);
-  text-decoration: none;
-}
-
-.navbar__logo {
-  height: 32px;
-  margin-right: 0.75rem;
-}
-
-/* Navbar 連結樣式 */
-.navbar__item {
-  color: #ffffff;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  transition: all 0.2s ease;
-}
-
-.navbar__item:hover {
-  color: var(--ifm-color-accent);
-  background-color: rgba(151, 211, 223, 0.1);
-  border-radius: 6px;
-}
-
-/* Navbar 連結（active 狀態） */
-.navbar__link--active {
-  color: #ffffff;
-  font-weight: 600;
-  border-bottom: 2px solid #ffffff;
-  padding-bottom: 0.3rem;
-}
-
-.navbar__link--active:hover {
-  color: var(--ifm-color-accent);
-  border-bottom-color: var(--ifm-color-accent);
-}
-
-/* Navbar 下拉選單 */
-.navbar__dropdown {
-  background-color: #ffffff;
-  border: 1px solid rgba(0, 55, 211, 0.1);
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 55, 211, 0.15);
-  margin-top: 0.5rem;
-  padding: 0.5rem 0;
-}
-
-.navbar__dropdown__link {
-  color: var(--ifm-color-primary);
-  padding: 0.5rem 1.5rem;
-  transition: all 0.2s ease;
-}
-
-.navbar__dropdown__link:hover {
-  background-color: rgba(0, 55, 211, 0.05);
-  color: var(--ifm-color-accent);
-}
-
-.navbar__dropdown__link--active {
-  background-color: rgba(0, 55, 211, 0.1);
-  color: var(--ifm-color-primary);
-  font-weight: 600;
-}
 
 /* Navbar 搜尋框 */
 .navbar__search-input {
@@ -221,22 +71,22 @@
   /* background: var(--ifm-navbar-search-input-background-color) var(--ifm-navbar-search-input-icon) no-repeat 0.75rem center / 1rem 1rem; */
   background-color: rgba(255, 255, 255, 0.15) !important;
   background-image: none !important;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid#ccc;
   border-radius: 6px;
-  color: #ffffff;
+  color: #ccc;
   padding: 0.5rem 1rem;
   transition: all 0.2s ease;
 }
 
 .navbar__search-input::placeholder {
-  color: rgba(255, 255, 255, 0.85);
+  color: #ccc(255, 255, 255, 0.85);
 }
 
 .navbar__search-input:focus {
-  background-color: rgba(255, 255, 255, 0.3);
-  border-color: rgba(255, 255, 255, 0.5);
+  background-color: #ccc(255, 255, 255, 0.85);
+  border-color: #ccc(255, 255, 255, 0.85);
   outline: none;
-  color: #ffffff;
+  color: #ccc;
 }
 
 /* Navbar 右上角按鈕和圖示對比度增強 */
@@ -245,14 +95,14 @@
 .navbar .navbar__item svg,
 .navbar .navbar__item [class*='icon'],
 .navbar .navbar__item [class*='Icon'] {
-  color: #ffffff !important;
+  color: #ccc !important;
   opacity: 1 !important;
 }
 
 .navbar .navbar__item button:hover,
 .navbar .navbar__item .navbar__link:hover {
   color: var(--ifm-color-accent) !important;
-  background-color: rgba(255, 255, 255, 0.15) !important;
+  background-color: #ccc !important;
 }
 
 /* 主題切換按鈕 */
@@ -1312,6 +1162,125 @@ a:hover {
     width: 100%;
     max-width: 100%;
   }
+}
+
+/* ============================================
+   Sidebar 選單連結字體大小
+   ============================================ */
+
+/* Sidebar 選單連結字體大小 */
+.menu__link {
+  font-size: 0.8rem; /* 預設約 14.4px，可調整此值 */
+}
+
+/* Sidebar 選單連結 hover 顏色 */
+.menu__link:hover {
+  color: var(--ifm-color-primary-dark); /* hover 時的文字顏色 */
+  background-color: rgba(0, 0, 0, 0.05); /* hover 時的背景顏色 */
+}
+
+[data-theme='dark'] .menu__link:hover {
+  color: var(--ifm-color-primary-light); /* Dark mode hover 時的文字顏色 */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.05
+  ); /* Dark mode hover 時的背景顏色 */
+}
+
+/* 如果需要不同層級的字體大小 */
+.menu__list-item-collapsible > .menu__link {
+  font-size: 0.8rem;
+}
+
+.menu__list-item > .menu__link {
+  font-size: 0.775rem; /* 子項目可以稍小一點，約 14px */
+}
+
+/* ============================================
+   Sidebar 選單項目圖標 (Icon)
+   ============================================ */
+
+/* 資料夾圖標（所有 collapsible 項目，即資料夾） */
+.menu__list-item-collapsible > .menu__link::before,
+.theme-doc-sidebar-container
+  .menu__list-item-collapsible
+  > .menu__link::before {
+  content: '' !important;
+  display: inline-block !important;
+  width: 18px !important;
+  height: 18px !important;
+  margin-right: 0.5rem !important;
+  background-image: url('/img/folder.svg') !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: contain !important;
+  vertical-align: middle !important;
+}
+
+/* 文件圖標（所有非 collapsible 的 menu__list-item，即 markdown 文件） */
+/* 包含嵌套在資料夾內的文件 */
+.menu__list-item:not(.menu__list-item-collapsible) > .menu__link::before,
+.menu__list-item:not(.menu__list-item-collapsible)
+  > .menu__link--active::before,
+.menu__list-item:not(.menu__list-item-collapsible):not(.icon-folder)
+  > .menu__link::before,
+.menu__list
+  .menu__list-item:not(.menu__list-item-collapsible)
+  > .menu__link::before,
+.theme-doc-sidebar-container
+  .menu__list-item:not(.menu__list-item-collapsible):not(.icon-folder)
+  > .menu__link::before {
+  content: '' !important;
+  display: inline-block !important;
+  width: 18px !important;
+  height: 18px !important;
+  margin-right: 0.5rem !important;
+  background-image: url('/img/docu.svg') !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: contain !important;
+  vertical-align: middle !important;
+}
+
+/* 確保資料夾內的子項目（文件）也使用 docu.svg */
+.menu__list-item-collapsible
+  .menu__list
+  .menu__list-item:not(.menu__list-item-collapsible)
+  > .menu__link::before {
+  content: '' !important;
+  display: inline-block !important;
+  width: 18px !important;
+  height: 18px !important;
+  margin-right: 0.5rem !important;
+  background-image: url('/img/docu.svg') !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: contain !important;
+  vertical-align: middle !important;
+}
+
+/* ============================================
+   Sidebar 選單展開/收合圖標 (Caret Icon)
+   ============================================ */
+
+/* 調整 caret 圖標大小 - 使用 ::after 偽元素（Infima 使用 SVG 背景圖） */
+.menu__link--sublist::after,
+.menu__caret::before {
+  width: 1rem !important; /* 調整圖標寬度 */
+  height: 1rem !important; /* 調整圖標高度 */
+  background-size: 1rem 1rem !important; /* 調整 SVG 背景圖大小 */
+}
+
+/* 更具體的選擇器確保樣式被應用 */
+.menu__list-item-collapsible .menu__link--sublist::after,
+.menu__list-item-collapsible .menu__caret::before,
+.theme-doc-sidebar-container .menu__link--sublist::after,
+.theme-doc-sidebar-container .menu__caret::before {
+  width: 1rem !important;
+  height: 1rem !important;
+  background-size: 1rem 1rem !important;
 }
 
 /* ============================================
