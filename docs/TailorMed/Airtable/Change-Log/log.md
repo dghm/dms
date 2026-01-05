@@ -5,6 +5,19 @@ sidebar_position: 1
 
 ## Airtable Change Log
 
+### 2026-01-05
+
+### DataBase:【TailorMed】FIN
+
+| 需求方 | 範圍(Table)    | 欄位(Field) | 異動     | 備註                                                                                |
+| ------ | -------------- | ----------- | -------- | ----------------------------------------------------------------------------------- |
+| Cody   | Charge Catalog | •           | 新增項目 | Nera, IC Biomedical                                                                 |
+| Cody   | Charge Catalog | ••          | 新增項目 | M+56, M56, M+12, M12, M16, M28, D15, D6, V168, V36, 4/2, 4XD, CX100, XC CryoShipper |
+| Cody   | Charge Catalog | •••         | 新增項目 | 15 ~ 25, 2 ~ 8, -15 ~ 25                                                            |
+| Cody   | Charge Catalog | •           | 調整     | 移除 XC CRYOSHIPPER                                                                 |
+
+---
+
 ### 2026-01-02
 
 ### DataBase:【TailorMed】OMS
