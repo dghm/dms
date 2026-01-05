@@ -5,6 +5,17 @@ sidebar_position: 1
 
 ## Airtable Change Log
 
+### 2026-01-02
+
+### DataBase:【TailorMed】OMS
+
+| 需求方 | 範圍(Table)                        | 欄位(Field)      | 異動 | 備註                         |
+| ------ | ---------------------------------- | ---------------- | ---- | ---------------------------- |
+| Cody   | ✏️ AIRWAYBILL/POD Page Design 文件 | ITEM DESCRIPTION | 調整 | ITEM 品項名稱文字靠左        |
+| Cody   | ✏️ AIRWAYBILL/POD Page Design 文件 | ITEM DESCRIPTION | 調整 | ITEM 品項列表由 3 列改 5 列+ |
+
+---
+
 ### 2025-12-31
 
 ### DataBase:【TailorMed】OMS

@@ -45,10 +45,8 @@ export default function Login(): JSX.Element {
         } else {
           // 根據角色導向不同頁面
           if (role === 'tailormed') {
-            // tailormed 用戶可以訪問供應商稽核數位化方案、Airtable/Data、Airtable/Interface/CRM、Airtable/Interface/FIN/SoA 和 Airtable/Change-Log 目錄，導向到總覽頁面
-            // Docusaurus 會將檔案名稱轉換為小寫並將空格轉為連字號
-            window.location.href =
-              '/docs/TailorMed/Website/2026/供應商稽核數位化方案/supplier-questionnaire';
+            // tailormed 用戶導向到會議記錄頁面
+            window.location.href = '/docs/TailorMed/會議記錄/MM-260103';
           } else {
             window.location.href = '/';
           }
