@@ -5,6 +5,72 @@ sidebar_position: 1
 
 ## Airtable Change Log
 
+### 2026-01-08
+
+### DataBase:【TailorMed】CRM
+
+| 需求方 | 範圍(Table) | 欄位(Field) | 異動 | 備註 |
+| ------ | ----------- | ----------- | ---- | ---- |
+| Ray    | Quotations  | POL & POE   | 新增 | DUS  |
+
+### DataBase:【TailorMed】OMS
+
+| 需求方 | 範圍(Table) | 欄位(Field) | 異動 | 備註 |
+| ------ | ----------- | ----------- | ---- | ---- |
+| Ray    | Flights     | POL & POE   | 新增 | DUS  |
+
+### DataBase:【TailorMed】OMS
+
+| 需求方 | 範圍(Table)                          | 欄位(Field)          | 異動 | 備註     |
+| ------ | ------------------------------------ | -------------------- | ---- | -------- |
+| Hedy   | ✏️ Release Check List for Collection | License Plate Number | 新增 | BQS-8776 |
+
+| 需求方 | 範圍(Table)                       | 欄位(Field)      | 異動 | 備註                |
+| ------ | --------------------------------- | ---------------- | ---- | ------------------- |
+| Hedy   | ✏️ CHAIN OF CUSTODY Page Designer | Product Quantity | 調整 | 加寬以顯示 3 位數字 |
+
+| 需求方 | 範圍(Table)    | 欄位(Field) | 異動        | 備註                                   |
+| ------ | -------------- | ----------- | ----------- | -------------------------------------- |
+| Cody   | AIRWAYBILL/POD | Footer      | 調整 & 新增 | Footer 版面調整 & 加上 Driver 的簽名區 |
+
+![Origin](./260108-Origin.png)
+
+![Modify](./260108-Modify.png)
+
+---
+
+### 2026-01-07
+
+### DataBase:【TailorMed】FIN
+
+| 需求方 | 範圍(Table)    | 欄位(Field) | 異動 | 備註 |
+| ------ | -------------- | ----------- | ---- | ---- |
+| Cody   | Charge Catalog | ••          | 新增 | 4/3  |
+
+---
+
+### 2026-01-06
+
+### DataBase:【TailorMed】CRM & OMS
+
+| 需求方 | 範圍(Table)      | 欄位(Field) | 異動     | 備註    |
+| ------ | ---------------- | ----------- | -------- | ------- |
+| Cody   | 🟨 Package Items | Temp Req.   | 新增項目 | Ambient |
+
+### DataBase:【TailorMed】FIN
+
+| 需求方 | 範圍(Table)    | 欄位(Field) | 異動     | 備註                   |
+| ------ | -------------- | ----------- | -------- | ---------------------- |
+| Cody   | Charge Catalog | •           | 新增項目 | Ambient Box, Bio Pouch |
+
+### DataBase:【TailorMed】CRM
+
+| 需求方 | 範圍(Table)   | 欄位(Field)                                                                                                                                                                                                                                                                                                                                                    | 異動                 | 備註                                                                                                                                     |
+| ------ | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Cody   | ✏️ Quotations | Requester / Requester Add / Email / Phone / Effective Date / Expiration Date / Payment Terms / O&D / Collection Co. / Collection Address / Delivery Co. / Delivery Address / Request Temp. / Package Count / Est. Wt. / Charge / Currency / Net Amount / VAT / VAT included / Total Amount(VAT) / NTC / NTC Amount / Total Amount / Prepare by / Prepare Email | 修改欄位 Description | 因 Ray 說在填表時會不確定哪些該填哪些不該填，也不確定哪些會出現在文件上，希望可以在欄位的說明加上"此欄內容會於 Quotation 文件中顯示"字樣 |
+
+---
+
 ### 2026-01-05
 
 ### DataBase:【TailorMed】FIN

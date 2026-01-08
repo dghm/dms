@@ -27,6 +27,10 @@
   --ifm-background-color: #efefef;
   --ifm-background-surface-color: #fcfcfc;
 
+  /* 內容顏色 - Light Mode */
+  --ifm-color-content: #1c1e21;
+  --ifm-color-content-secondary: #606770;
+
   /* 字型設定 */
   --ifm-font-family-base: 'Encode Sans Expanded', -apple-system,
     BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
@@ -53,6 +57,10 @@
   /* 背景顏色 - Dark Mode */
   --ifm-background-color: #18191a;
   --ifm-background-surface-color: #242526;
+
+  /* 內容顏色 - Dark Mode */
+  --ifm-color-content: #e4e6eb;
+  --ifm-color-content-secondary: #b0b3b8;
 
   /* 字型設定（Dark Mode 通常與 Light Mode 相同） */
   /* 如需不同的字型，可以在這裡重新定義 */
