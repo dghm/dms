@@ -7,6 +7,13 @@ sidebar_position: 1
 
 ### 2026-01-08
 
+### DataBase:【TailorMed】OMS
+
+| 需求方 | 範圍(Table)      | 欄位(Field)  | 異動                   | 備註                                   |
+| ------ | ---------------- | ------------ | ---------------------- | -------------------------------------- |
+| Hedy   | Order            | Order Status | 移除 & 調整 & 新增     | 移除 Draft 選項，調整次序，新增 Closed |
+| Hedy   | 🟨 Package Items | -            | 移至第 3 個 Table 位置 | DUS                                    |
+
 ### DataBase:【TailorMed】CRM
 
 | 需求方 | 範圍(Table) | 欄位(Field) | 異動 | 備註 |
