@@ -1,4 +1,4 @@
-import {themes as prismThemes} from 'prism-react-renderer';
+import { themes as prismThemes } from 'prism-react-renderer';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -13,7 +13,8 @@ const config = {
   },
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  // 自訂域名：dms.dghm.tw
+  url: 'https://dms.dghm.tw',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -24,7 +25,7 @@ const config = {
   projectName: 'tm-docs', // Usually your repo name.
 
   onBrokenLinks: 'warn',
-  
+
   // Markdown 配置
   markdown: {
     mermaid: true,
@@ -46,7 +47,7 @@ const config = {
         htmlLang: 'zh-TW',
         calendar: 'gregory',
       },
-      'en': {
+      en: {
         label: 'English',
         direction: 'ltr',
         htmlLang: 'en-US',
@@ -88,8 +89,23 @@ const config = {
     ],
   ],
 
+  // 客戶端模組 - 用於動態修改 mermaid 顏色和過濾 sidebar
+  // 注意：登出按鈕已通過 Navbar/Content wrapper 實現，不需要客戶端模組
+  clientModules: [
+    './src/clientModules/mermaid-theme.ts',
+    './src/clientModules/sidebar-filter.tsx',
+  ],
+
   // 本地搜尋主題配置（必須放在 themes 中，不是 plugins）
   themes: [
+    [
+      '@docusaurus/theme-mermaid',
+      {
+        mermaid: {
+          theme: { light: 'default', dark: 'dark' },
+        },
+      },
+    ],
     [
       require.resolve('@easyops-cn/docusaurus-search-local'),
       {
@@ -98,7 +114,7 @@ const config = {
         // 語言設定（支援中文和英文）
         language: ['en', 'zh'],
         // 索引設定
-        indexDocs: true,  // 索引文檔
+        indexDocs: true, // 索引文檔
         indexBlog: false, // 不索引部落格
         indexPages: true, // 索引頁面
         // 文檔路徑
@@ -115,8 +131,10 @@ const config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    // Open Graph 圖片（用於社交媒體分享，如 Line、Facebook 等）
+    // 建議尺寸：1200x630 像素
+    // 圖片應放在 static/img/ 目錄下
+    image: 'img/dghm-og-image.jpg', // 自訂 OG 圖片
     colorMode: {
       respectPrefersColorScheme: true,
     },
@@ -125,7 +143,7 @@ const config = {
       logo: {
         alt: 'DGHM Logo',
         src: 'img/dghm-logo.webp', // DGHM Logo
-        width: 40,  // 可選：設定寬度（像素）
+        width: 40, // 可選：設定寬度（像素）
         height: 40, // 可選：設定高度（像素）
       },
       items: [
@@ -135,53 +153,18 @@ const config = {
           position: 'left',
           label: '文件',
         },
-        {
-          type: 'localeDropdown',
-          position: 'right',
-        },
+        // 翻譯連結已隱藏
+        // {
+        //   type: 'localeDropdown',
+        //   position: 'right',
+        // },
         // 搜尋框會自動出現在導航列右側
       ],
     },
     footer: {
       style: 'dark',
-      links: [
-        {
-          title: '文檔',
-          items: [
-            {
-              label: '開始使用',
-              to: '/docs/intro',
-            },
-          ],
-        },
-        {
-          title: '社群',
-          items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
-            },
-          ],
-        },
-        {
-          title: '更多',
-          items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            },
-          ],
-        },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} DGHM. Built with Docusaurus.`,
+      links: [],
+      copyright: `Copyright © ${new Date().getFullYear()} DGHM.`,
     },
     prism: {
       theme: prismThemes.github,
@@ -191,4 +174,3 @@ const config = {
 };
 
 export default config;
-

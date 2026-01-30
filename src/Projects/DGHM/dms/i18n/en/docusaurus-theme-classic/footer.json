@@ -16,7 +16,7 @@
     "description": "The title of the footer links column with title=More in the footer"
   },
   "copyright": {
-    "message": "Copyright © 2025 DGHM. Built with Docusaurus.",
+    "message": "Copyright © 2025 DGHM.",
     "description": "The footer copyright"
   }
 }

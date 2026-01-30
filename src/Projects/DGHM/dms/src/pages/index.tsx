@@ -1,11 +1,12 @@
-import type {ReactNode} from 'react';
-import {useEffect} from 'react';
+import type { ReactNode } from 'react';
+import { useEffect } from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 import SearchBar from '@theme/SearchBar';
+import MainCards from '@site/src/components/MainCards';
 
 import styles from './index.module.css';
 
@@ -29,10 +30,22 @@ const quickNavSections = [
     icon: '💡',
     items: [
       { label: '生物樣本', link: '/docs/Website/2025/Solutions/Bio-Samples' },
-      { label: '細胞與基因治療', link: '/docs/Website/2025/Solutions/Cell & Gene Therapy' },
-      { label: '臨床試驗', link: '/docs/Website/2025/Solutions/Clinical Trial' },
-      { label: '倉儲與配送', link: '/docs/Website/2025/Solutions/Depot & Distribution' },
-      { label: '體外受精', link: '/docs/Website/2025/Solutions/In Vitro Fertilization' },
+      {
+        label: '細胞與基因治療',
+        link: '/docs/Website/2025/Solutions/Cell & Gene Therapy',
+      },
+      {
+        label: '臨床試驗',
+        link: '/docs/Website/2025/Solutions/Clinical Trial',
+      },
+      {
+        label: '倉儲與配送',
+        link: '/docs/Website/2025/Solutions/Depot & Distribution',
+      },
+      {
+        label: '體外受精',
+        link: '/docs/Website/2025/Solutions/In Vitro Fertilization',
+      },
       { label: '製藥', link: '/docs/Website/2025/Solutions/Pharmaceuticals' },
       { label: '疫苗', link: '/docs/Website/2025/Solutions/Vaccine' },
     ],
@@ -52,26 +65,28 @@ const quickNavSections = [
 ];
 
 function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
-  
+  const { siteConfig } = useDocusaurusContext();
+
   // 在首頁添加 class 來隱藏 navbar 的搜尋欄
   useEffect(() => {
     document.body.classList.add('homepage');
     document.body.setAttribute('data-path', '/');
-    
+
     return () => {
       document.body.classList.remove('homepage');
       document.body.removeAttribute('data-path');
     };
   }, []);
-  
+
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <Heading as="h1" className="hero__title">
-          {siteConfig.title}
+          讓企業文件不再失控
         </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <p className="hero__subtitle">
+          將分散的 SOP、流程與專案文件，整理成可維護、可追蹤、可長期使用的知識平台。
+        </p>
         <div className={styles.searchContainer}>
           <SearchBar />
         </div>
@@ -80,7 +95,7 @@ function HomepageHeader() {
   );
 }
 
-function QuickNavCard({section}: {section: typeof quickNavSections[0]}) {
+function QuickNavCard({ section }: { section: (typeof quickNavSections)[0] }) {
   return (
     <div className={styles.quickNavCard}>
       <div className={styles.cardHeader}>
@@ -92,17 +107,12 @@ function QuickNavCard({section}: {section: typeof quickNavSections[0]}) {
       <p className={styles.cardDescription}>{section.description}</p>
       <div className={styles.cardLinks}>
         {section.items.map((item, idx) => (
-          <Link
-            key={idx}
-            className={styles.cardLink}
-            to={item.link}>
+          <Link key={idx} className={styles.cardLink} to={item.link}>
             {item.label}
           </Link>
         ))}
       </div>
-      <Link
-        className="button button--primary button--sm"
-        to={section.link}>
+      <Link className="button button--primary button--sm" to={section.link}>
         查看全部 →
       </Link>
     </div>
@@ -110,12 +120,13 @@ function QuickNavCard({section}: {section: typeof quickNavSections[0]}) {
 }
 
 export default function Home(): ReactNode {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
+
   return (
-    <Layout
-      title={siteConfig.title}
-      description={siteConfig.tagline}>
+    <Layout title={siteConfig.title} description={siteConfig.tagline}>
       <HomepageHeader />
+      {/* 三張卡片組件 */}
+      <MainCards />
       {/* 快速導航區塊已隱藏 */}
       {/* <main className={styles.mainContent}>
         <div className="container">

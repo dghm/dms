@@ -4,11 +4,12 @@
  */
 
 .heroBanner {
+  overflow: visible;
   padding: 4rem 0;
-  text-align: center;
   position: relative;
-  overflow: visible; /* 改為 visible 讓搜尋結果可以顯示 */
-  z-index: 10; /* 確保 Hero 在上層 */
+  text-align: center;
+  z-index: 10;
+  height: 56vh;
 }
 
 @media screen and (max-width: 996px) {

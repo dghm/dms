@@ -7,6 +7,7 @@ import {
   checkPermission,
   getCurrentUserRole,
   LOGIN_STORAGE_KEY,
+  getLatestMeetingRecordPath,
 } from '@site/src/utils/auth';
 
 type Props = WrapperProps<typeof LayoutType>;
@@ -56,10 +57,8 @@ export default function LayoutWrapper(props: Props): ReactNode {
       if (!checkPermission(currentPath, userRole)) {
         // 沒有權限訪問此頁面，導向首頁或允許的頁面
         if (userRole === 'tailormed') {
-          // tailormed 用戶可以訪問供應商稽核數位化方案、Airtable/Data、Airtable/Interface/CRM 和 Airtable/Interface/FIN/SoA 目錄，導向到總覽頁面
-          // Docusaurus 會將檔案名稱轉換為小寫並將空格轉為連字號
-          window.location.href =
-            '/docs/TailorMed/Website/2026/供應商稽核數位化方案/supplier-questionnaire';
+          // tailormed 用戶導向到最新的會議記錄頁面
+          window.location.href = getLatestMeetingRecordPath();
         } else {
           window.location.href = '/';
         }

@@ -1,0 +1,78 @@
+.logoutButtonContainer {
+  display: flex;
+  align-items: center;
+  margin-left: 0.75rem;
+  margin-right: 0.5rem;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.logoutButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  border-radius: 6px;
+  color: #ffffff !important;
+  font-size: 0.875rem;
+  font-weight: 600 !important;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.logoutButton:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.logoutButton:focus,
+.logoutButton:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+}
+
+.logoutIcon {
+  width: 16px;
+  height: 16px;
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+.logoutText {
+  font-weight: 600 !important;
+  color: #ffffff !important;
+}
+
+/* 響應式設計：在小螢幕上隱藏文字，只顯示圖示 */
+@media (max-width: 768px) {
+  .logoutText {
+    display: none;
+  }
+
+  .logoutButton {
+    padding: 0.5rem;
+    min-width: 40px;
+    justify-content: center;
+  }
+}
+
+/* 深色模式支援 */
+[data-theme='dark'] .logoutButton {
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] .logoutButton:hover {
+  background: var(--ifm-color-emphasis-200);
+  border-color: var(--ifm-color-emphasis-400);
+}

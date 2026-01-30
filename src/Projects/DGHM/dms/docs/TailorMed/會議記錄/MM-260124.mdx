@@ -1,0 +1,168 @@
+---
+title: 260124｜新需求說明、討論與其他項目確認
+date: 2026-01-24
+---
+
+# 會議記錄
+
+## **主題：** 新需求說明、討論與其他項目確認
+
+---
+
+## 一、基本資訊
+
+- **會議時間：** 2026-01-24（週六）08:30–11:20
+- **會議地點：** 視訊會議（Google Meet）
+- **與會人員：** Cody, Aries
+
+---
+
+## 二、背景說明
+
+說明近期所接觸到的新專案報價單需求，以及當前資料庫使用狀況以及需要進行調整的地方。
+
+---
+
+## 三、討論重點摘要
+
+### 1. 新專案型態報價單文件需求討論
+
+近期有專案型的客戶，公司會特別為該客戶建立一份專屬的報價列表。以 Chris 所列之報價清單(NovaTec)為例，該清單除需要有專屬的 Quotation 表單外，還需要有專屬的 Charge Items 來進行管理。
+
+考量到因應物價或是通膨等因素，報價列表可能會不定時地在金額上進行調整。因此在計價品項的填單部份，需要有相關欄位或機制來進行管理。
+
+同時，因應物流產業特殊性，客戶的取件地及遞交處會有遠近不一的情況，就可能需要有不同的收費標準，此類情況在系統上傾向以"加權"方式來進行計價。詳細方式待此類業務發展，再進行後續的討論。
+
+#### 作法研擬：
+
+1. 新建立專案型 Quotation 表單
+2. 新建立專案型 Charge Items 表單
+3. 建立獨立的新文件樣版
+4. 新建立專屬的 Interface 操作介面
+
+#### 其他注意事項：
+
+- 此類專案的 Quotation No. 格式為：TM-NVT-QU-XX
+- TM (TailorMed) - NVT(客戶英文 3 碼代稱) - QU(Quotation) - XX(該客戶的專案數累計號)
+- 此類型專案型態屬低頻、高單價之特殊型態案件
+- 共用 FIN > Charge Catelogue 資料表
+
+### 2. CRM Interface 演示
+
+Demo 為 CRM 中給予業務人員使用的 Interface，主要用於業務人員(Sales Rep.)進行訂單列表檢視查詢之用。
+展示介面如下：
+
+#### Overview:
+
+https://airtable.com/appRjtQd5y7Q0hYUu/pagQtRH945TYJg1li
+![PIC](./0124-01.png)
+
+#### Quotation:
+
+https://airtable.com/appRjtQd5y7Q0hYUu/pagRrTLwSs0sxlhn4
+![PIC](./0124-021.png)
+
+#### Quotation > Detail:
+
+![PIC](./0124-022.png)
+
+#### Partners:
+
+https://airtable.com/appRjtQd5y7Q0hYUu/paggrj3BrAntxYvbj
+![PIC](./0124-03.png)
+
+#### Shippers & Consignee:
+
+https://airtable.com/appRjtQd5y7Q0hYUu/pag3ctUdFxuN5348m
+![PIC](./0124-04.png)
+
+#### ATTNS:
+
+https://airtable.com/appRjtQd5y7Q0hYUu/pagxw7ntO843QYc2m
+![PIC](./0124-05.png)
+
+為滿足業務人員可以進行該 Quotation 的工作進度回報，需於系統新增一 Editor 帳號，並有限度地在 Interface 上進行操作。
+回報介面位於 Quotation > Detail 頁面中之 Status 區塊，如下圖：
+![PIC](./0124-023.png)
+
+\*本此擬以最小限度的資料庫調整來進行，以滿足新進之業務人員操作需求，後續若需要因應組織階層劃分(Sales Manager > Sales Rep.)，或是詳細資料呈現及 KPI 的統計，再擇期進行需求評估。
+
+### 3. SoA（Statement of Account）：
+
+再進行一次 SoA 的操作介面演示。本次為此資料庫之 Interface 加上一 Overview 頁面。
+
+#### Overview:
+
+https://airtable.com/appRHvGke4guj8fpe/pag1U5ij1wAWNmpo1
+
+![PIC](./0124-06.png)
+
+#### SoA Generator:
+
+https://airtable.com/appRHvGke4guj8fpe/pagcwc9kxCzyRov6r?DdK7c=recSlunO19QLUR7qT
+![PIC](./0124-07.png)
+
+#### SoA List:
+
+https://airtable.com/appRHvGke4guj8fpe/pagFzcEzNMcK034Gd
+![PIC](./0124-08.png)
+
+## 四、其他討論
+
+### 專案優先次序確認
+
+1. CRM Interface
+   以滿足現有資料可視化(列表)需求為主，同時加上業務進度回報功能即可。
+2. Automation
+   Q:公司內部之郵件系統會從 Hi-Box 轉為 Microsoft 系統，為滿足後續在工作及資料庫自動化通知之需求，請先了解 Microsoft 系統的郵件串連是否可行。
+   A:可行，可用第三方軟體協力共同完成此自動化排程(品耀數位行銷客戶為 Outlook 365 系統)。
+
+   桌機：
+   ![PIC](./0124-09.png)
+   手機：
+   ![PIC](./0124-092.png)
+
+3. AIRWAYBILL/POD 列印文件調整
+   - 後續會由 Hedy 協助調整版面與呈現方式
+
+4. OMS > Tracking 表單使用率
+   此表單使用率相對於 Orders 以及 AIRWAYBILL 低，主因應是當訂單數量一多，在必要之資料及文件內容的登錄後，要再為因應客戶查件需求進行 Tracking 資料的登錄，就明顯增加該員了一定的工作量。
+
+   提供可行之解法：
+   - 1.使用 Automation 機制，當新增一筆 Orders 資料時，系統就於 AIRWAYBILL 跟 Tracking 表中新增一筆相對應訂單號碼(Job No.)之資料。
+   - 2.使用 Automation ，讓使用者只要進行欄位的勾選，就直接完成Tracking 節點的時間戳記登錄。(不同時區的情況再行討論)
+   - 3.亦可以在完成上述二項後，再使用 Interface 操作介面，讓使用者可以在同一畫面進行各式填單工作的一次性完成。減少不同資料表的切換。
+
+5. 跨國營運與資料呈現策略
+   - 美國營運邏輯說明:
+     - 目前在美國公司的業務訂單主要還是以台灣公司承接並於資料庫填寫，故美國公司的身份當前較傾向於在美代理。短近期暫不會有直接接單的業務。
+       於此判定，美國公司需要的不是一份整套如台灣公司可運行全套(CRM,OMS,FIN)的資料庫系統，因為當地的工作人員在接單時會有自己一套的工作及文件產出方式。
+     - 主要需求：希望在台北公司這裡可以看到美國公司的營運帳務相關資料，好作為投資面向的參考及依據。
+   - 日本公司預計於 Q3 / Q4 成立，會有的訂單案件仍由台灣承接並轉出。
+   - 為因應上述可能之需求，實際可行的作法持續嚴究並研擬提出解決方案。
+
+### 其他補充：
+
+Q:因為 Charge Catelogue 表單的新增項目頻繁，是否有可能部內自行新增項目，減少系統管理員的工作量。
+A:應可行，但要有 Interface 操作介面來完成。
+
+Q:Record Template 的應用
+A:已說明新增 Template 功能，但實際情況是 Editor 無法直接操作，還是需要系統管理員才可以新增及維護。
+
+## 五、待辦事項
+
+- [ ] CRM Interface for Sales Rep 提供可操作之參考介面
+- [ ] CRM Interface for Sales Rep 報價單
+      (預計週五 01/30 前提供)
+- [ ] SoA Interface 操作介面提供
+      (預計週二 01/27 前提供)
+- [ ] Automation 於 Outlook 的串連測試
+      (初步於 MAKE 第三方軟體測試運行沒有問題。)
+- [ ] Automation 於不同表單依序自動建單測試
+      (實際於不同表單環境中測試上，但實際於現有之 Orders, AIRWAYBILL 及 Tracking 表單需要再進行測試。)
+- [ ] 跨國用資料庫規劃事宜
+      (本此討論後的切確需求有更新，為滿足美國及日本公司的需求，需再更進一步進行評估及研擬。)
+
+**最後更新：** 2026-01-24
+**文件版本：** v1.0  
+**文件負責人：** Aries

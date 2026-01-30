@@ -5,6 +5,7 @@ import {
   validateLogin,
   LOGIN_STORAGE_KEY,
   USER_ROLE_STORAGE_KEY,
+  getLatestMeetingRecordPath,
 } from '@site/src/utils/auth';
 import styles from './login.module.css';
 
@@ -45,10 +46,8 @@ export default function Login(): JSX.Element {
         } else {
           // 根據角色導向不同頁面
           if (role === 'tailormed') {
-            // tailormed 用戶可以訪問供應商稽核數位化方案、Airtable/Data、Airtable/Interface/CRM 和 Airtable/Interface/FIN/SoA 目錄，導向到總覽頁面
-            // Docusaurus 會將檔案名稱轉換為小寫並將空格轉為連字號
-            window.location.href =
-              '/docs/TailorMed/Website/2026/供應商稽核數位化方案/supplier-questionnaire';
+            // tailormed 用戶導向到最新的會議記錄頁面
+            window.location.href = getLatestMeetingRecordPath();
           } else {
             window.location.href = '/';
           }

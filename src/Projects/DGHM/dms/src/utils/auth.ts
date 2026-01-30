@@ -50,6 +50,8 @@ export function checkPermission(path: string, role: UserRole | null): boolean {
   // 2. TailorMed/Airtable/Data/
   // 3. TailorMed/Airtable/Interface/CRM/
   // 4. TailorMed/Airtable/Interface/FIN/SoA/
+  // 5. TailorMed/Airtable/Change-Log/
+  // 6. TailorMed/會議記錄/
   // 注意：tailormed 不能訪問 TailorMed/Airtable/Billing Info/
   if (role === 'tailormed') {
     // 只允許首頁，不允許 intro（DGHM 文件管理系統）
@@ -146,7 +148,41 @@ export function checkPermission(path: string, role: UserRole | null): boolean {
         );
       });
 
-    return hasAirtableInterfaceFinSoaPath;
+    if (hasAirtableInterfaceFinSoaPath) {
+      return true;
+    }
+
+    // 檢查路徑 5: TailorMed/Airtable/Change-Log/
+    const airtableChangeLogPathSegments = [
+      'tailormed',
+      'airtable',
+      'change-log',
+    ];
+
+    const hasAirtableChangeLogPath = airtableChangeLogPathSegments.every(
+      (segment) => {
+        const segmentLower = segment.toLowerCase();
+        return (
+          pathLower.includes(segmentLower) || decodedPath.includes(segmentLower)
+        );
+      }
+    );
+
+    if (hasAirtableChangeLogPath) {
+      return true;
+    }
+
+    // 檢查路徑 6: TailorMed/會議記錄/
+    const meetingRecordPathSegments = ['tailormed', '會議記錄'];
+
+    const hasMeetingRecordPath = meetingRecordPathSegments.every((segment) => {
+      const segmentLower = segment.toLowerCase();
+      return (
+        pathLower.includes(segmentLower) || decodedPath.includes(segmentLower)
+      );
+    });
+
+    return hasMeetingRecordPath;
   }
 
   return false;
@@ -174,4 +210,22 @@ export function getCurrentUserRole(): UserRole | null {
 export function isLoggedIn(): boolean {
   if (typeof window === 'undefined') return false;
   return localStorage.getItem(LOGIN_STORAGE_KEY) === 'true';
+}
+
+// 會議記錄列表（按日期排序，最新的在前）
+// 當有新的會議記錄時，請在此列表的最前面添加
+const MEETING_RECORDS = [
+  'MM-260109', // 2026-01-09
+  'MM-260108', // 2026-01-08
+  'MM-260103', // 2026-01-03
+] as const;
+
+// 取得最新的會議記錄路徑
+export function getLatestMeetingRecordPath(): string {
+  if (MEETING_RECORDS.length === 0) {
+    // 如果沒有會議記錄，返回會議記錄目錄
+    return '/docs/TailorMed/會議記錄';
+  }
+  // 返回最新的會議記錄路徑
+  return `/docs/TailorMed/會議記錄/${MEETING_RECORDS[0]}`;
 }
