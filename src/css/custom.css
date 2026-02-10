@@ -1,0 +1,1322 @@
+/**
+ * DGHM 文檔網站自訂樣式
+ * 
+ * 主要顏色（來自 DGHM 色彩系統）：
+ * - Primary: #0037D3 (深藍色)
+ * - Secondary: #202833 (深灰藍)
+ * - Accent: #FEC629 (黃色)
+ * - Neutral Light: #F8F8F8 (淺灰)
+ * - Neutral Dark: #1E1E1E (深灰)
+ * - Neutral Gray: #666666 (灰色)
+ */
+
+/* 導入 Encode Sans Expanded 字型 */
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300;500;700;800;900&display=swap');
+
+/* DGHM 品牌顏色變數 - Day Mode */
+:root {
+  --ifm-color-primary: #293c61;
+  --ifm-color-primary-dark: #3c5e90;
+  --ifm-color-primary-darker: #5588bf;
+  --ifm-color-primary-darkest: #60a3d9;
+  --ifm-color-primary-light: #8bb5e6;
+  --ifm-color-primary-lighter: #bcd1f2;
+  --ifm-color-primary-lightest: #f2f6ff;
+
+  /* 背景顏色 - Light Mode */
+  --ifm-background-color: #efefef;
+  --ifm-background-surface-color: #fcfcfc;
+
+  /* 內容顏色 - Light Mode */
+  --ifm-color-content: #1c1e21;
+  --ifm-color-content-secondary: #606770;
+
+  /* 字型設定 */
+  --ifm-font-family-base: 'Encode Sans Expanded', -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --ifm-font-family-monospace: 'SFMono-Regular', Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* Sidebar caret 圖標大小 */
+  /* 注意：可以通過調整 SVG 的 width/height 或使用 CSS 來控制大小 */
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+[data-theme='dark'] {
+  --ifm-color-primary: #b1bad5;;
+  --ifm-color-primary-dark: #4f5a81
+  --ifm-color-primary-darker: #232942;
+  --ifm-color-primary-darkest: #171b2d;
+  --ifm-color-primary-light: #7985ab;
+  --ifm-color-primary-lighter: #b1bad5;
+  --ifm-color-primary-lightest: #f2f6ff;
+
+  /* 背景顏色 - Dark Mode */
+  --ifm-background-color: #18191a;
+  --ifm-background-surface-color: #242526;
+
+  /* 內容顏色 - Dark Mode */
+  --ifm-color-content: #e4e6eb;
+  --ifm-color-content-secondary: #b0b3b8;
+
+  /* 字型設定（Dark Mode 通常與 Light Mode 相同） */
+  /* 如需不同的字型，可以在這裡重新定義 */
+  /* --ifm-font-family-base: ... */
+
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   DGHM Navbar 自訂樣式
+   ============================================ */
+
+/* Navbar 搜尋框 */
+.navbar__search-input {
+  /* 註解掉包含圖標的背景屬性 */
+  /* background: var(--ifm-navbar-search-input-background-color) var(--ifm-navbar-search-input-icon) no-repeat 0.75rem center / 1rem 1rem; */
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  background-image: none !important;
+  border: 1px solid#ccc;
+  border-radius: 6px;
+  color: #ccc;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.navbar__search-input::placeholder {
+  color: #ccc(255, 255, 255, 0.85);
+}
+
+.navbar__search-input:focus {
+  background-color: #ccc(255, 255, 255, 0.85);
+  border-color: #ccc(255, 255, 255, 0.85);
+  outline: none;
+  color: #ccc;
+}
+
+/* Navbar 右上角按鈕和圖示對比度增強 */
+.navbar .navbar__item button,
+.navbar .navbar__item .navbar__link,
+.navbar .navbar__item svg,
+.navbar .navbar__item [class*='icon'],
+.navbar .navbar__item [class*='Icon'] {
+  color: #ccc !important;
+  opacity: 1 !important;
+}
+
+.navbar .navbar__item button:hover,
+.navbar .navbar__item .navbar__link:hover {
+  color: var(--ifm-color-accent) !important;
+  background-color: #ccc !important;
+}
+
+/* 主題切換按鈕 */
+.navbar .navbar__item [aria-label*='theme'],
+.navbar .navbar__item [aria-label*='Theme'],
+.navbar .navbar__item button[aria-label*='theme'],
+.navbar .navbar__item button[aria-label*='Theme'] {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+.navbar .navbar__item button[aria-label*='theme']:hover,
+.navbar .navbar__item button[aria-label*='Theme']:hover {
+  color: var(--ifm-color-accent) !important;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* 登出按鈕 - 使用屬性選擇器匹配 CSS Module 類名和 data 屬性 */
+.navbar button[data-logout-button],
+.navbar [class*='logoutButton'],
+.navbar button[aria-label='登出'],
+.navbar .navbar__item button:has([class*='logout']),
+.navbar .navbar__item button:has([class*='Logout']),
+.navbar .navbar__item [class*='logout'],
+.navbar .navbar__item [class*='Logout'] {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.navbar button[data-logout-button]:hover,
+.navbar [class*='logoutButton']:hover,
+.navbar button[aria-label='登出']:hover,
+.navbar .navbar__item button:has([class*='logout']):hover,
+.navbar .navbar__item button:has([class*='Logout']):hover {
+  color: #ffffff !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.navbar button[data-logout-button]:focus,
+.navbar [class*='logoutButton']:focus,
+.navbar button[aria-label='登出']:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* 登出按鈕內的文字和圖示 */
+.navbar button[data-logout-button] *,
+.navbar [class*='logoutButton'] *,
+.navbar button[aria-label='登出'] *,
+.navbar .navbar__item button:has([class*='logout']) *,
+.navbar .navbar__item button:has([class*='Logout']) *,
+.navbar .navbar__item [class*='logout'] *,
+.navbar .navbar__item [class*='Logout'] * {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+.navbar button[data-logout-button]:hover *,
+.navbar [class*='logoutButton']:hover *,
+.navbar button[aria-label='登出']:hover *,
+.navbar .navbar__item button:has([class*='logout']):hover *,
+.navbar .navbar__item button:has([class*='Logout']):hover * {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* Navbar 右側所有按鈕通用樣式 */
+.navbar .navbar__items--right .navbar__item button,
+.navbar .navbar__items--right .navbar__item .navbar__link {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 6px !important;
+  padding: 0.5rem 1rem !important;
+  transition: all 0.2s ease !important;
+}
+
+.navbar .navbar__items--right .navbar__item button:hover,
+.navbar .navbar__items--right .navbar__item .navbar__link:hover {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.navbar .navbar__items--right .navbar__item button svg,
+.navbar .navbar__items--right .navbar__item .navbar__link svg,
+.navbar .navbar__items--right .navbar__item svg {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+  opacity: 1 !important;
+}
+
+/* 隱藏 Navbar 搜尋欄中的放大鏡圖標 - 最全面的選擇器 */
+.navbar .navbar__search svg,
+.navbar .navbar__search-icon,
+.navbar .DocSearch-Button svg,
+.navbar .DocSearch-Button-Icon,
+.navbar [class*="search"] svg,
+.navbar [class*="search-icon"],
+.navbar [class*="SearchIcon"],
+.navbar [class*="DocSearch"] svg,
+.navbar [class*="DocSearch"] [class*="Icon"],
+.navbar [class*="DocSearch-Button"] svg,
+.navbar [class*="DocSearch-Button"] [class*="Icon"],
+.navbar__search .DocSearch-Button-Icon,
+.navbar__search .DocSearch-Button-Icon svg,
+.navbar__search [class*="Icon"] svg,
+.navbar__search [class*="icon"] svg,
+/* 針對所有可能的圖標容器 */
+.navbar__search * svg,
+.navbar__search svg *,
+.navbar [class*="search"] * svg,
+.navbar [class*="search"] svg *,
+.navbar .DocSearch-Button * svg,
+.navbar .DocSearch-Button svg *,
+/* 針對本地搜尋插件 */
+.navbar [class*="search-local"] svg,
+.navbar [class*="search-local"] * svg,
+.navbar [class*="search-local"] [class*="icon"],
+.navbar [class*="search-local"] [class*="Icon"],
+/* 最廣泛的選擇器 - 隱藏 Navbar 搜尋區域內的所有 SVG */
+.navbar .navbar__search svg,
+.navbar .navbar__search button svg,
+.navbar .navbar__search input + svg,
+.navbar .navbar__search::before,
+.navbar .navbar__search::after,
+.navbar .DocSearch-Button svg,
+.navbar .DocSearch-Button::before,
+.navbar .DocSearch-Button::after {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0) !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+/* 針對可能的圖標容器元素 */
+.navbar__search [class*='icon'],
+.navbar__search [class*='Icon'],
+.navbar [class*='search'] [class*='icon'],
+.navbar [class*='search'] [class*='Icon'],
+.navbar .DocSearch-Button [class*='icon'],
+.navbar .DocSearch-Button [class*='Icon'] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0) !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+/* 最強力的規則 - 隱藏 Navbar 搜尋區域內的所有 SVG 和圖標相關元素 */
+.navbar .navbar__search *:not(input):not(button) svg,
+.navbar .navbar__search button:first-child svg,
+.navbar .navbar__search > svg,
+.navbar .DocSearch-Button > svg:first-child,
+.navbar .DocSearch-Button svg:first-of-type,
+.navbar [class*='search'] > svg,
+.navbar [class*='search'] svg:first-child,
+.navbar [class*='search'] svg:first-of-type {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0) !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+/* 針對可能的 ::before 和 ::after 偽元素圖標 */
+.navbar .navbar__search::before,
+.navbar .navbar__search::after,
+.navbar .DocSearch-Button::before,
+.navbar .DocSearch-Button::after,
+.navbar [class*='search']::before,
+.navbar [class*='search']::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* 隱藏所有搜尋欄中的快捷鍵提示（Ctrl K） */
+.DocSearch-Button-Keys,
+.DocSearch-Button-Key,
+.navbar__search .DocSearch-Button-Keys,
+.navbar__search .DocSearch-Button-Key,
+.navbar__search-input + [class*="Key"],
+.navbar__search [class*="Button-Keys"],
+.navbar__search [class*="Button-Key"],
+[class*="DocSearch-Button-Keys"],
+[class*="DocSearch-Button-Key"],
+[class*="search"] [class*="Key"],
+[class*="search"] [class*="Keys"],
+/* 針對本地搜尋插件的快捷鍵提示 */
+[class*="search-local"] [class*="Key"],
+[class*="search-local"] [class*="Keys"],
+/* 更廣泛的選擇器 */
+button[class*="DocSearch"] [class*="Key"],
+button[class*="DocSearch"] [class*="Keys"],
+.DocSearch-Button > [class*="Key"],
+.DocSearch-Button > [class*="Keys"],
+/* 針對所有可能的快捷鍵容器 */
+.DocSearch-Button span[class*="Key"],
+.DocSearch-Button div[class*="Key"],
+.DocSearch-Button kbd,
+button[aria-label*="Search"] [class*="Key"],
+button[aria-label*="Search"] kbd {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0) !important;
+}
+
+/* 針對可能的文字內容 */
+.DocSearch-Button::after {
+  content: none !important;
+}
+
+/* 如果快捷鍵是文字節點，使用更強力的方式 */
+.DocSearch-Button {
+  /* 確保按鈕內沒有顯示快捷鍵的空間 */
+}
+
+/* 針對所有可能的快捷鍵顯示方式 - 最強力的隱藏 */
+*[class*='DocSearch'] *[class*='Key'],
+*[class*='DocSearch'] *[class*='Keys'],
+*[class*='DocSearch'] kbd,
+*[class*='search'] *[class*='Key'],
+*[class*='search'] *[class*='Keys'],
+*[class*='search'] kbd,
+button[class*='search'] *[class*='Key'],
+button[class*='search'] *[class*='Keys'],
+button[class*='search'] kbd {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0) !important;
+  overflow: hidden !important;
+}
+
+/* 針對可能的 SVG 圖標 */
+*[class*='DocSearch'] svg[class*='Key'],
+*[class*='search'] svg[class*='Key'] {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* 隱藏首頁的 Navbar 搜尋欄（因為 Hero 區塊已有搜尋功能） */
+/* 只針對 navbar 內的搜尋欄，不影響 Hero 區塊的搜尋欄 */
+body.homepage .navbar .navbar__search,
+body.homepage .navbar .navbar__search-input,
+body.homepage .navbar .DocSearch-Button,
+body.homepage .navbar [class*='DocSearch'],
+body.homepage .navbar [class*='search'] {
+  display: none !important;
+}
+
+/* 使用更通用的方式：檢查路徑 */
+/* 如果 body 有 data-path 屬性且為根路徑，只隱藏 navbar 內的搜尋欄 */
+body[data-path='/'] .navbar .navbar__search,
+body[data-path='/'] .navbar .navbar__search-input,
+body[data-path='/'] .navbar .DocSearch-Button,
+body[data-path='/'] .navbar [class*='DocSearch'] {
+  display: none !important;
+}
+
+/* Navbar 切換按鈕（手機版） */
+.navbar__toggle {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.navbar__toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--ifm-color-secondary);
+}
+
+/* Navbar 側邊欄（手機版） */
+.navbar-sidebar {
+  background-color: var(--ifm-color-primary) !important;
+}
+
+/* Day 模式下側邊欄文字顏色 - 確保文字可見 */
+.navbar-sidebar__item {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.navbar-sidebar__item:hover {
+  background-color: rgba(151, 211, 223, 0.15) !important;
+  color: var(--ifm-color-accent) !important;
+}
+
+/* 確保側邊欄內所有連結和文字在 Day 模式下可見 */
+.navbar-sidebar .navbar__item,
+.navbar-sidebar .navbar__link,
+.navbar-sidebar .navbar__item a,
+.navbar-sidebar a,
+.navbar-sidebar .navbar__brand,
+.navbar-sidebar .navbar__brand a,
+.navbar-sidebar button,
+.navbar-sidebar .navbar__item button {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.navbar-sidebar .navbar__item:hover,
+.navbar-sidebar .navbar__link:hover,
+.navbar-sidebar .navbar__item a:hover,
+.navbar-sidebar a:hover,
+.navbar-sidebar button:hover,
+.navbar-sidebar .navbar__item button:hover {
+  color: var(--ifm-color-accent) !important;
+}
+
+/* 深色模式下的 Navbar */
+[data-theme='dark'] .navbar {
+  background-color: #202833;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme='dark'] .navbar__item {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+[data-theme='dark'] .navbar__item:hover {
+  color: var(--ifm-color-accent);
+  background-color: rgba(123, 196, 211, 0.15);
+}
+
+[data-theme='dark'] .navbar__link--active {
+  color: var(--ifm-color-accent);
+  border-bottom-color: var(--ifm-color-accent);
+}
+
+[data-theme='dark'] .navbar__dropdown {
+  background-color: var(--ifm-background-surface-color);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='dark'] .navbar__search-input {
+  /* 註解掉包含圖標的背景屬性 */
+  /* background: var(--ifm-navbar-search-input-background-color) var(--ifm-navbar-search-input-icon) no-repeat 0.75rem center / 1rem 1rem; */
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  background-image: none !important;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+[data-theme='dark'] .navbar__search-input:focus {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  background-image: none !important;
+  border-color: var(--ifm-color-secondary-light);
+}
+
+/* 連結顏色使用次要顏色 */
+a {
+  color: var(--ifm-color-primary);
+}
+
+a:hover {
+  color: var(--ifm-color-secondary);
+}
+
+/* 按鈕樣式 */
+.button--primary {
+  background-color: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+}
+
+.button--primary:hover {
+  background-color: var(--ifm-color-primary-dark);
+  border-color: var(--ifm-color-primary-dark);
+}
+
+.button--secondary {
+  background-color: var(--ifm-color-secondary);
+  border-color: var(--ifm-color-secondary);
+  color: var(--ifm-color-primary);
+}
+
+.button--secondary:hover {
+  background-color: var(--ifm-color-secondary-dark);
+  border-color: var(--ifm-color-secondary-dark);
+}
+
+/* ============================================
+   DGHM 文檔內容樣式
+   ============================================ */
+
+/* 文檔頁面主容器 */
+.markdown {
+  color: var(--ifm-font-color-base);
+}
+
+/* 標題樣式 - 使用 Primary-dark Color */
+.markdown h1 {
+  color: var(--ifm-heading-color);
+  font-weight: 700;
+  border-bottom: 2px solid var(--ifm-color-primary-light);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.markdown h2 {
+  color: var(--ifm-heading-color);
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.markdown h3 {
+  color: var(--ifm-heading-color);
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.markdown h4 {
+  color: var(--ifm-heading-color);
+  font-weight: 500;
+}
+
+/* 段落文字 - 使用 Neutral Color */
+.markdown p {
+  color: #333;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+/* 強調文字 */
+.markdown strong {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+.markdown em {
+  color: var(--ifm-color-primary-dark);
+  font-style: italic;
+}
+
+/* 連結樣式 */
+.markdown a {
+  color: var(--ifm-color-primary);
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.markdown a:hover {
+  color: var(--ifm-color-secondary);
+}
+
+/* 引用區塊 */
+.markdown blockquote {
+  border-left: 4px solid var(--ifm-color-primary);
+  background-color: rgba(0, 55, 211, 0.05);
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 4px;
+}
+
+.markdown blockquote p {
+  color: var(--ifm-color-primary-dark);
+  margin-bottom: 0;
+}
+
+/* 列表樣式 */
+.markdown ul,
+.markdown ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.markdown li {
+  color: #333;
+  margin-bottom: 0.5rem;
+  line-height: 1.8;
+}
+
+.markdown li::marker {
+  color: var(--ifm-color-primary);
+}
+
+/* 程式碼區塊 */
+.markdown code {
+  background-color: rgba(0, 55, 211, 0.1);
+  color: var(--ifm-color-primary-dark);
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+/* 表格樣式 */
+.markdown table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+.markdown table th {
+  background-color: var(--ifm-color-primary);
+  color: #ffffff;
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+.markdown table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid rgba(0, 55, 211, 0.1);
+}
+
+.markdown table tr:hover {
+  background-color: rgba(0, 55, 211, 0.05);
+}
+
+/* 自訂文字顏色類別（可在 Markdown 中使用） */
+.text-primary {
+  color: var(--ifm-color-primary) !important;
+}
+
+.text-secondary {
+  color: var(--ifm-color-secondary-dark) !important;
+}
+
+.text-accent {
+  color: var(--ifm-color-accent) !important;
+}
+
+.text-muted {
+  color: #6c757d !important;
+}
+
+/* 自訂背景顏色類別 */
+.bg-primary {
+  background-color: var(--ifm-color-primary) !important;
+  color: #ffffff !important;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+.bg-secondary {
+  background-color: var(--ifm-color-secondary-lightest) !important;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+/* 間距工具類別（可在 Markdown 中使用） */
+/* 注意：在 Markdown 中使用時，建議使用 <br> 標籤或直接使用 style */
+.spacing-xs {
+  margin-bottom: 0.5rem !important;
+  display: block;
+}
+
+.spacing-sm {
+  margin-bottom: 1rem !important;
+  display: block;
+}
+
+.spacing-md {
+  margin-bottom: 2rem !important;
+  display: block;
+}
+
+.spacing-lg {
+  margin-bottom: 3rem !important;
+  display: block;
+}
+
+.spacing-xl {
+  margin-bottom: 4rem !important;
+  display: block;
+}
+
+/* 使用 <br> 標籤的樣式增強 */
+.markdown br {
+  display: block;
+  margin: 0.5rem 0;
+  content: '';
+}
+
+/* 段落間距 */
+.markdown p + p {
+  margin-top: 1rem;
+}
+
+/* 標題與段落之間的間距 */
+.markdown h1 + p,
+.markdown h2 + p,
+.markdown h3 + p {
+  margin-top: 1rem;
+}
+
+/* 段落與標題之間的間距（增加段落後面的間距） */
+.markdown p + h1,
+.markdown p + h2,
+.markdown p + h3 {
+  margin-top: 3rem;
+}
+
+/* 標題之間的間距 */
+.markdown h1 + h2 {
+  margin-top: 2rem;
+}
+
+.markdown h2 + h1 {
+  margin-top: 3rem;
+}
+
+/* 深色模式下的文檔樣式 */
+[data-theme='dark'] .markdown h1 {
+  color: var(--ifm-heading-color);
+  border-bottom-color: var(--ifm-color-primary);
+}
+
+[data-theme='dark'] .markdown h2 {
+  color: var(--ifm-heading-color);
+}
+
+[data-theme='dark'] .markdown h3 {
+  color: var(--ifm-heading-color);
+}
+
+[data-theme='dark'] .markdown h4 {
+  color: var(--ifm-heading-color);
+}
+
+[data-theme='dark'] .markdown {
+  color: var(--ifm-color-content);
+}
+
+[data-theme='dark'] .markdown p {
+  color: var(--ifm-color-content);
+}
+
+[data-theme='dark'] .markdown li {
+  color: var(--ifm-color-content-secondary);
+}
+
+/* Night Mode 連結 hover 效果 - 使用 Accent 色 */
+[data-theme='dark'] a:hover {
+  color: var(--ifm-color-accent);
+}
+
+[data-theme='dark'] .markdown a:hover {
+  color: var(--ifm-color-accent);
+}
+
+[data-theme='dark'] .markdown blockquote {
+  background-color: rgba(77, 111, 233, 0.1);
+  border-left-color: var(--ifm-color-primary);
+}
+
+[data-theme='dark'] .markdown code {
+  background-color: rgba(77, 111, 233, 0.2);
+  color: var(--ifm-color-primary-light);
+}
+
+[data-theme='dark'] .markdown table th {
+  background-color: var(--ifm-color-primary-darkest);
+}
+
+[data-theme='dark'] .markdown table tr:hover {
+  background-color: rgba(77, 111, 233, 0.1);
+}
+
+/* ============================================
+   Hero 區塊搜尋結果寬度設定
+   ============================================ */
+
+/* 確保首頁 Hero 區塊的搜尋結果與搜尋欄同寬 */
+.hero .searchContainer :global(.DocSearch-Modal),
+.hero .searchContainer :global(.DocSearch-Dropdown),
+.hero .searchContainer :global(.DocSearch-Dropdown-Container),
+.hero .searchContainer :global([class*='search-result']),
+.hero .searchContainer :global([class*='search-dropdown']) {
+  width: 700px !important;
+  max-width: 700px !important;
+  min-width: 700px !important;
+}
+
+/* 本地搜尋插件的搜尋結果 - 針對 dropdownMenu 類名 */
+.hero .searchContainer :global([class*='dropdownMenu']) {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
+  position: absolute !important;
+  text-align: left !important; /* 文字靠左對齊 */
+}
+
+/* 下拉選單中的所有文字元素靠左對齊 */
+.hero .searchContainer :global([class*='dropdownMenu']) * {
+  text-align: left !important;
+}
+
+/* 搜尋結果項目靠左對齊 */
+.hero
+  .searchContainer
+  :global([class*='dropdownMenu'])
+  :global([class*='item']),
+.hero
+  .searchContainer
+  :global([class*='dropdownMenu'])
+  :global([class*='result']),
+.hero .searchContainer :global([class*='dropdownMenu']) :global([class*='hit']),
+.hero .searchContainer :global([class*='dropdownMenu']) a,
+.hero .searchContainer :global([class*='dropdownMenu']) div {
+  text-align: left !important;
+  justify-content: flex-start !important;
+}
+
+/* ============================================
+   搜尋關鍵字螢光筆高亮效果
+   ============================================ */
+
+/* 關鍵字高亮樣式 - 使用 DGHM Accent 顏色（黃色） */
+.hero .searchContainer :global([class*='dropdownMenu']) mark,
+.hero .searchContainer :global([class*='dropdownMenu']) [class*='highlight'],
+.hero .searchContainer :global([class*='dropdownMenu']) [class*='mark'],
+.searchContainer :global([class*='dropdownMenu']) mark,
+.searchContainer :global([class*='dropdownMenu']) [class*='highlight'],
+.searchContainer :global([class*='dropdownMenu']) [class*='mark'] {
+  background: var(--ifm-color-accent) !important;
+  background-color: var(--ifm-color-accent) !important;
+  color: var(--ifm-color-neutral-dark) !important;
+  padding: 0.1em 0.2em !important;
+  border-radius: 3px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 1px 2px rgba(254, 198, 41, 0.3) !important;
+}
+
+/* 深色模式下的關鍵字高亮 - 使用 DGHM Accent 顏色（黃色） */
+[data-theme='dark']
+  .hero
+  .searchContainer
+  :global([class*='dropdownMenu'])
+  mark,
+[data-theme='dark']
+  .hero
+  .searchContainer
+  :global([class*='dropdownMenu'])
+  [class*='highlight'],
+[data-theme='dark'] .searchContainer :global([class*='dropdownMenu']) mark,
+[data-theme='dark']
+  .searchContainer
+  :global([class*='dropdownMenu'])
+  [class*='highlight'] {
+  background: var(--ifm-color-accent) !important;
+  background-color: var(--ifm-color-accent) !important;
+  color: var(--ifm-color-neutral-dark) !important;
+  box-shadow: 0 1px 2px rgba(255, 217, 102, 0.4) !important;
+}
+
+/* 針對所有可能的關鍵字標記元素 - 使用 DGHM Accent 顏色（黃色） */
+.hero .searchContainer :global([class*='dropdownMenu']) em,
+.hero .searchContainer :global([class*='dropdownMenu']) strong,
+.searchContainer :global([class*='dropdownMenu']) em,
+.searchContainer :global([class*='dropdownMenu']) strong {
+  background: var(--ifm-color-accent) !important;
+  color: var(--ifm-color-neutral-dark) !important;
+  padding: 0.1em 0.2em !important;
+  border-radius: 3px !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
+  box-shadow: 0 1px 2px rgba(254, 198, 41, 0.3) !important;
+}
+
+/* 確保搜尋結果文字內容靠左 */
+.hero .searchContainer :global([class*='dropdownMenu']) p,
+.hero .searchContainer :global([class*='dropdownMenu']) span,
+.hero .searchContainer :global([class*='dropdownMenu']) div[class*='snippet'],
+.hero .searchContainer :global([class*='dropdownMenu']) div[class*='content'],
+.searchContainer :global([class*='dropdownMenu']) p,
+.searchContainer :global([class*='dropdownMenu']) span,
+.searchContainer :global([class*='dropdownMenu']) div[class*='snippet'],
+.searchContainer :global([class*='dropdownMenu']) div[class*='content'] {
+  text-align: left !important;
+  text-align-last: left !important;
+}
+
+@media screen and (max-width: 996px) {
+  .hero .searchContainer :global(.DocSearch-Modal),
+  .hero .searchContainer :global(.DocSearch-Dropdown),
+  .hero .searchContainer :global([class*='search-result']),
+  .hero .searchContainer :global([class*='search-dropdown']) {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: auto !important;
+  }
+
+  .hero .searchContainer :global(.navbar__search) + *,
+  .hero .searchContainer :global(.navbar__search) ~ * {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: auto !important;
+  }
+}
+
+/* ============================================
+   PDF 嵌入樣式
+   ============================================ */
+
+/* PDF iframe 容器 */
+.markdown iframe[src*='.pdf'],
+.markdown iframe[src*='pdf'] {
+  width: 100%;
+  border: 1px solid rgba(0, 55, 211, 0.2);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin: 1.5rem 0;
+  background-color: #f8f8f8;
+}
+
+/* 響應式 PDF 容器 */
+.markdown .pdf-container {
+  position: relative;
+  padding-bottom: 75%; /* 4:3 比例 */
+  height: 0;
+  overflow: hidden;
+  margin: 1.5rem 0;
+}
+
+.markdown .pdf-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0, 55, 211, 0.2);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* PDF 下載連結樣式 */
+.markdown a[href*='.pdf'],
+.markdown a[href*='pdf'] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--ifm-color-primary);
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.markdown a[href*='.pdf']:hover,
+.markdown a[href*='pdf']:hover {
+  background-color: var(--ifm-color-primary);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* 深色模式下的 PDF iframe */
+[data-theme='dark'] .markdown iframe[src*='.pdf'],
+[data-theme='dark'] .markdown iframe[src*='pdf'] {
+  border-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme='dark'] .markdown .pdf-container iframe {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================
+   圖片大小控制樣式類別
+   ============================================ */
+
+/* 圖片容器樣式 */
+.markdown img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: none;
+  margin: 1.5rem 0;
+}
+
+/* 注意：尺寸控制的 CSS 規則需要在通用樣式之後，確保優先級正確 */
+
+/* ============================================
+   根據檔名自動控制圖片大小（適合記事本編輯）
+   ============================================ */
+
+/* 使用方法：在圖片檔名中加入尺寸標記
+   例如：
+   - ios-9001_logo-small.png  → 小圖（200px）
+   - ios-9001_logo-medium.png → 中圖（400px）
+   - ios-9001_logo-large.png  → 大圖（600px）
+   - ios-9001_logo-tiny.png   → 超小圖（100px）
+   - ios-9001_logo-wide.png   → 全寬（最大 800px）
+*/
+
+/* 超小圖（100px） - 匹配所有包含 "-tiny" 或 "_tiny" 的檔名 */
+.markdown img[src*='-tiny'],
+.markdown img[src*='_tiny'] {
+  width: 100px !important;
+  max-width: 100px !important;
+  height: auto !important;
+}
+
+/* 小圖（200px） - 匹配所有包含 "-small" 或 "_small" 的檔名 */
+.markdown img[src*='-small'],
+.markdown img[src*='_small'] {
+  width: 200px !important;
+  max-width: 200px !important;
+  height: auto !important;
+}
+
+/* 中圖（400px） - 匹配所有包含 "-medium" 或 "_medium" 的檔名 */
+.markdown img[src*='-medium'],
+.markdown img[src*='_medium'] {
+  width: 400px !important;
+  max-width: 400px !important;
+  height: auto !important;
+}
+
+/* 大圖（600px） - 匹配所有包含 "-large" 或 "_large" 的檔名 */
+.markdown img[src*='-large'],
+.markdown img[src*='_large'] {
+  width: 600px !important;
+  max-width: 600px !important;
+  height: auto !important;
+}
+
+/* 全寬圖片（響應式，最大 800px） - 匹配所有包含 "-wide" 或 "_wide" 的檔名 */
+.markdown img[src*='-wide'],
+.markdown img[src*='_wide'] {
+  width: 100% !important;
+  max-width: 800px !important;
+  height: auto !important;
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* 響應式調整（手機版自動縮小） */
+@media screen and (max-width: 996px) {
+  .markdown img[src*='-tiny.'],
+  .markdown img[src*='-tiny_'],
+  .markdown img[src*='_tiny.'],
+  .markdown img[src*='_tiny_'] {
+    width: 80px;
+    max-width: 80px;
+  }
+
+  .markdown img[src*='-small.'],
+  .markdown img[src*='-small_'],
+  .markdown img[src*='_small.'],
+  .markdown img[src*='_small_'] {
+    width: 150px;
+    max-width: 150px;
+  }
+
+  .markdown img[src*='-medium.'],
+  .markdown img[src*='-medium_'],
+  .markdown img[src*='_medium.'],
+  .markdown img[src*='_medium_'] {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .markdown img[src*='-large.'],
+  .markdown img[src*='-large_'],
+  .markdown img[src*='_large.'],
+  .markdown img[src*='_large_'] {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* 小圖（200px） */
+.markdown img.img-small,
+.markdown .img-small {
+  width: 200px;
+  max-width: 200px;
+  height: auto;
+}
+
+/* 中圖（400px） */
+.markdown img.img-medium,
+.markdown .img-medium {
+  width: 400px;
+  max-width: 400px;
+  height: auto;
+}
+
+/* 大圖（600px） */
+.markdown img.img-large,
+.markdown .img-large {
+  width: 600px;
+  max-width: 600px;
+  height: auto;
+}
+
+/* 全寬圖片（響應式，最大 800px） */
+.markdown img.img-full-width,
+.markdown .img-full-width {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+}
+
+/* 居中圖片 */
+.markdown img.img-center,
+.markdown .img-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 圓角圖片 */
+.markdown img.img-rounded,
+.markdown .img-rounded {
+  border-radius: 12px;
+}
+
+/* 無陰影圖片 */
+.markdown img.img-no-shadow,
+.markdown .img-no-shadow {
+  box-shadow: none;
+}
+
+/* 響應式圖片（手機版自動縮小） */
+@media screen and (max-width: 996px) {
+  .markdown img.img-small {
+    width: 150px;
+    max-width: 150px;
+  }
+
+  .markdown img.img-medium {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .markdown img.img-large {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* ============================================
+   Sidebar 選單連結字體大小
+   ============================================ */
+
+/* Sidebar 選單連結字體大小 */
+.menu__link {
+  font-size: 0.8rem; /* 預設約 14.4px，可調整此值 */
+}
+
+/* Sidebar 選單連結 hover 顏色 */
+.menu__link:hover {
+  color: var(--ifm-color-primary-dark); /* hover 時的文字顏色 */
+  background-color: rgba(0, 0, 0, 0.05); /* hover 時的背景顏色 */
+}
+
+[data-theme='dark'] .menu__link:hover {
+  color: var(--ifm-color-primary-light); /* Dark mode hover 時的文字顏色 */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.05
+  ); /* Dark mode hover 時的背景顏色 */
+}
+
+/* 如果需要不同層級的字體大小 */
+.menu__list-item-collapsible > .menu__link {
+  font-size: 0.8rem;
+}
+
+.menu__list-item > .menu__link {
+  font-size: 0.775rem; /* 子項目可以稍小一點，約 14px */
+}
+
+/* ============================================
+   Sidebar 選單項目圖標 (Icon)
+   ============================================ */
+
+/* 資料夾圖標（所有 collapsible 項目，即資料夾） */
+.menu__list-item-collapsible > .menu__link::before,
+.theme-doc-sidebar-container
+  .menu__list-item-collapsible
+  > .menu__link::before {
+  content: '' !important;
+  display: inline-block !important;
+  width: 18px !important;
+  height: 18px !important;
+  margin-right: 0.5rem !important;
+  background-image: url('/img/folder.svg') !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: contain !important;
+  vertical-align: middle !important;
+}
+
+/* 文件圖標（所有非 collapsible 的 menu__list-item，即 markdown 文件） */
+/* 包含嵌套在資料夾內的文件 */
+.menu__list-item:not(.menu__list-item-collapsible) > .menu__link::before,
+.menu__list-item:not(.menu__list-item-collapsible)
+  > .menu__link--active::before,
+.menu__list-item:not(.menu__list-item-collapsible):not(.icon-folder)
+  > .menu__link::before,
+.menu__list
+  .menu__list-item:not(.menu__list-item-collapsible)
+  > .menu__link::before,
+.theme-doc-sidebar-container
+  .menu__list-item:not(.menu__list-item-collapsible):not(.icon-folder)
+  > .menu__link::before {
+  content: '' !important;
+  display: inline-block !important;
+  width: 18px !important;
+  height: 18px !important;
+  margin-right: 0.5rem !important;
+  background-image: url('/img/docu.svg') !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: contain !important;
+  vertical-align: middle !important;
+}
+
+/* 確保資料夾內的子項目（文件）也使用 docu.svg */
+.menu__list-item-collapsible
+  .menu__list
+  .menu__list-item:not(.menu__list-item-collapsible)
+  > .menu__link::before {
+  content: '' !important;
+  display: inline-block !important;
+  width: 18px !important;
+  height: 18px !important;
+  margin-right: 0.5rem !important;
+  background-image: url('/img/docu.svg') !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: contain !important;
+  vertical-align: middle !important;
+}
+
+/* ============================================
+   Sidebar 選單展開/收合圖標 (Caret Icon)
+   ============================================ */
+
+/* 調整 caret 圖標大小 - 使用 ::after 偽元素（Infima 使用 SVG 背景圖） */
+.menu__link--sublist::after,
+.menu__caret::before {
+  width: 1rem !important; /* 調整圖標寬度 */
+  height: 1rem !important; /* 調整圖標高度 */
+  background-size: 1rem 1rem !important; /* 調整 SVG 背景圖大小 */
+}
+
+/* 更具體的選擇器確保樣式被應用 */
+.menu__list-item-collapsible .menu__link--sublist::after,
+.menu__list-item-collapsible .menu__caret::before,
+.theme-doc-sidebar-container .menu__link--sublist::after,
+.theme-doc-sidebar-container .menu__caret::before {
+  width: 1rem !important;
+  height: 1rem !important;
+  background-size: 1rem 1rem !important;
+}
+
+/* ============================================
+   Mermaid 流程圖樣式
+   ============================================ */
+
+/* Mermaid 使用內建主題自動切換 Day/Night 模式 */
+/* 如果需要自訂樣式，可以在這裡添加 */
+/* 目前讓 mermaid 使用預設主題自動處理 */
