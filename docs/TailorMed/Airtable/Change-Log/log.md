@@ -4,34 +4,70 @@ sidebar_position: 1
 ---
 
 ---
+
 ## Airtable Change Log
+
+### 2026-02-12
+
+### DataBase:【TailorMed】CRM
+
+| 需求方 | 範圍(Table) | 欄位(Field) | 異動 | 備註 |
+| ------ | ----------- | ----------- | ---- | ---- |
+| Ray    | Quotations  | Currancy    | 新增 | EUR  |
+
+### DataBase:【TailorMed】FIN
+
+| 需求方 | 範圍(Table) | 欄位(Field) | 異動 | 備註 |
+| ------ | ----------- | ----------- | ---- | ---- |
+| Ray    | Debit Notes | Currancy    | 新增 | EUR  |
+
+---
+
+### 2026-02-11
+
+### DataBase:【TailorMed】OMS
+
+| 需求方 | 範圍(Table)  | 欄位(Field) | 異動 | 備註    |
+| ------ | ------------ | ----------- | ---- | ------- |
+| Hedy   | Package Item | Unit        | 新增 | KG, CTN |
+
+### 2026-02-11
+
+### DataBase:【TailorMed】OMS
+
+| 需求方 | 範圍(Table)        | 欄位(Field)       | 異動 | 備註        |
+| ------ | ------------------ | ----------------- | ---- | ----------- |
+| Cody   | Quotation 列印文件 | QUOTATION INFO 取 | 新增 | Ref. Number |
+
+---
 
 ### 2026-01-22
 
 ### DataBase:【TailorMed】OMS
 
-| 需求方 | 範圍(Table)    | 欄位(Field) | 異動 | 備註                                                          |
-| ------ | -------------- | ----------- | ---- | ------------------------------------------------------------- |
-|  Hedy   | ✏️ Release Check List for Collection | License Plate Number           | 新增 | Fedex | 
-|  Hedy   | ✏️ Sample R/R Checklist | Lot Number           | 調整 | 寬度以符合文字不要斷行 |  
+| 需求方 | 範圍(Table)                          | 欄位(Field)          | 異動 | 備註                   |
+| ------ | ------------------------------------ | -------------------- | ---- | ---------------------- |
+| Hedy   | ✏️ Release Check List for Collection | License Plate Number | 新增 | Fedex                  |
+| Hedy   | ✏️ Sample R/R Checklist              | Lot Number           | 調整 | 寬度以符合文字不要斷行 |
 
 ### DataBase:【TailorMed】FIN
 
-| 需求方 | 範圍(Table)    | 欄位(Field) | 異動 | 備註                                                          |
-| ------ | -------------- | ----------- | ---- | ------------------------------------------------------------- |
-| Cody   | Charge Catalog | •           | 新增 | FRIGGA | 
-| Cody   | Charge Catalog | ••          | 新增 | T7(2)-Pro, T7(0)-Pro | 
+| 需求方 | 範圍(Table)    | 欄位(Field) | 異動 | 備註                 |
+| ------ | -------------- | ----------- | ---- | -------------------- |
+| Cody   | Charge Catalog | •           | 新增 | FRIGGA               |
+| Cody   | Charge Catalog | ••          | 新增 | T7(2)-Pro, T7(0)-Pro |
 
 ---
+
 ### 2026-01-20
 
 ### DataBase:【TailorMed】FIN
 
-| 需求方 | 範圍(Table)    | 欄位(Field) | 異動 | 備註                                                          |
-| ------ | -------------- | ----------- | ---- | ------------------------------------------------------------- |
-| Cody   | Charge Catalog | •           | 新增 | CREDO | 
-| Cody   | Charge Catalog | ••          | 新增 | Full Pallet | 
-| Cody   | Charge Catalog | •••          | 新增 | S4 | 
+| 需求方 | 範圍(Table)    | 欄位(Field) | 異動 | 備註        |
+| ------ | -------------- | ----------- | ---- | ----------- |
+| Cody   | Charge Catalog | •           | 新增 | CREDO       |
+| Cody   | Charge Catalog | ••          | 新增 | Full Pallet |
+| Cody   | Charge Catalog | •••         | 新增 | S4          |
 
 ---
 
@@ -39,10 +75,12 @@ sidebar_position: 1
 
 ### DataBase:【TailorMed】FIN
 
-| 需求方 | 範圍(Table)    | 欄位(Field) | 異動 | 備註                                                          |
-| ------ | -------------- | ----------- | ---- | ------------------------------------------------------------- |
-| Cody   | Charge Catalog | •           | 新增 | Empty Trip | 
+| 需求方 | 範圍(Table)    | 欄位(Field) | 異動 | 備註       |
+| ------ | -------------- | ----------- | ---- | ---------- |
+| Cody   | Charge Catalog | •           | 新增 | Empty Trip |
+
 ---
+
 ### 2026-01-15
 
 ### DataBase:【TailorMed】FIN
