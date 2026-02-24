@@ -23,11 +23,7 @@ export const ACCOUNTS = {
     username: 'tailormed',
     password: '93585598',
     role: 'tailormed',
-    permissions: [
-      'tailormed/website',
-      'tailormed/airtable/data',
-      'tailormed/airtable/interface',
-    ], // 可以看到 TailorMed/Website、TailorMed/Airtable/Data 和 TailorMed/Airtable/Interface，但不能看到 Billing Info
+    permissions: ['tailormed'], // 可看 TailorMed 全部，Billing Info 例外
   },
 } as const;
 
@@ -45,16 +41,9 @@ export function checkPermission(path: string, role: UserRole | null): boolean {
     return true;
   }
 
-  // tailormed 只能看到以下路徑的內容：
-  // 1. TailorMed/Website/2026/供應商稽核數位化方案/
-  // 2. TailorMed/Airtable/Data/
-  // 3. TailorMed/Airtable/Interface/CRM/
-  // 4. TailorMed/Airtable/Interface/FIN/SoA/
-  // 5. TailorMed/Airtable/Change-Log/
-  // 6. TailorMed/會議記錄/
-  // 注意：tailormed 不能訪問 TailorMed/Airtable/Billing Info/
+  // tailormed 可看 TailorMed 全部內容，但不可訪問 Billing Info
   if (role === 'tailormed') {
-    // 只允許首頁，不允許 intro（DGHM 文件管理系統）
+    // 允許首頁
     if (path === '/') {
       return true;
     }
@@ -67,122 +56,21 @@ export function checkPermission(path: string, role: UserRole | null): boolean {
     const pathLower = path.toLowerCase();
     const decodedPath = decodeURIComponent(pathLower);
 
-    // 明確禁止訪問 Billing Info
+    // 明確禁止訪問 Billing Info（含編碼與空白變形）
     if (
-      pathLower.includes('billing') &&
-      (pathLower.includes('info') || decodedPath.includes('billing info'))
+      (pathLower.includes('billing') || decodedPath.includes('billing')) &&
+      (
+        pathLower.includes('info') ||
+        decodedPath.includes('info') ||
+        pathLower.includes('billing%20info') ||
+        decodedPath.includes('billing info')
+      )
     ) {
       return false;
     }
 
-    // 檢查路徑 1: TailorMed/Website/2026/供應商稽核數位化方案/
-    const websitePathSegments = [
-      'tailormed',
-      'website',
-      '2026',
-      '供應商稽核數位化方案',
-    ];
-
-    const hasWebsitePath = websitePathSegments.every((segment) => {
-      const segmentLower = segment.toLowerCase();
-      return (
-        pathLower.includes(segmentLower) ||
-        pathLower.includes(segmentLower.replace(' ', '')) ||
-        decodedPath.includes(segmentLower)
-      );
-    });
-
-    if (hasWebsitePath) {
-      return true;
-    }
-
-    // 檢查路徑 2: TailorMed/Airtable/Data/
-    const airtableDataPathSegments = ['tailormed', 'airtable', 'data'];
-
-    const hasAirtableDataPath = airtableDataPathSegments.every((segment) => {
-      const segmentLower = segment.toLowerCase();
-      return (
-        pathLower.includes(segmentLower) || decodedPath.includes(segmentLower)
-      );
-    });
-
-    if (hasAirtableDataPath) {
-      return true;
-    }
-
-    // 檢查路徑 3: TailorMed/Airtable/Interface/CRM/
-    const airtableInterfaceCrmPathSegments = [
-      'tailormed',
-      'airtable',
-      'interface',
-      'crm',
-    ];
-
-    const hasAirtableInterfaceCrmPath = airtableInterfaceCrmPathSegments.every(
-      (segment) => {
-        const segmentLower = segment.toLowerCase();
-        return (
-          pathLower.includes(segmentLower) || decodedPath.includes(segmentLower)
-        );
-      }
-    );
-
-    if (hasAirtableInterfaceCrmPath) {
-      return true;
-    }
-
-    // 檢查路徑 4: TailorMed/Airtable/Interface/FIN/SoA/
-    const airtableInterfaceFinSoaPathSegments = [
-      'tailormed',
-      'airtable',
-      'interface',
-      'fin',
-      'soa',
-    ];
-
-    const hasAirtableInterfaceFinSoaPath =
-      airtableInterfaceFinSoaPathSegments.every((segment) => {
-        const segmentLower = segment.toLowerCase();
-        return (
-          pathLower.includes(segmentLower) || decodedPath.includes(segmentLower)
-        );
-      });
-
-    if (hasAirtableInterfaceFinSoaPath) {
-      return true;
-    }
-
-    // 檢查路徑 5: TailorMed/Airtable/Change-Log/
-    const airtableChangeLogPathSegments = [
-      'tailormed',
-      'airtable',
-      'change-log',
-    ];
-
-    const hasAirtableChangeLogPath = airtableChangeLogPathSegments.every(
-      (segment) => {
-        const segmentLower = segment.toLowerCase();
-        return (
-          pathLower.includes(segmentLower) || decodedPath.includes(segmentLower)
-        );
-      }
-    );
-
-    if (hasAirtableChangeLogPath) {
-      return true;
-    }
-
-    // 檢查路徑 6: TailorMed/會議記錄/
-    const meetingRecordPathSegments = ['tailormed', '會議記錄'];
-
-    const hasMeetingRecordPath = meetingRecordPathSegments.every((segment) => {
-      const segmentLower = segment.toLowerCase();
-      return (
-        pathLower.includes(segmentLower) || decodedPath.includes(segmentLower)
-      );
-    });
-
-    return hasMeetingRecordPath;
+    // 允許訪問 TailorMed 底下所有內容
+    return pathLower.includes('tailormed') || decodedPath.includes('tailormed');
   }
 
   return false;
