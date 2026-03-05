@@ -157,7 +157,7 @@
 
 ---
 
-## 7. 前端使用說明（track.tailormed-intl.com）
+## 7. 前端使用說明（trackking.tailormed-intl.com）
 
 - URL 參數：?orderNo=&trackingNo=（亦相容 ?order=&tracking=）（可選）
 - 查詢成功時以 history.pushState 更新 URL
@@ -274,6 +274,12 @@
 - **資料儲存**：所有 Tracking 資料儲存於 Airtable，並設有 API 權限控制。
 - **外部查詢限制**：使用者僅可透過 Tracking No. 與驗證碼查詢自身貨件資料，無其他操作權限。
 - **Airtable 權限配置**：由專案管理者控管表單存取權限，並定期檢視使用者帳號設定。
+
+### 11.1 Data Protection & Privacy Statement
+
+- 系統僅顯示運輸狀態，不儲存敏感醫療資料。
+- 不儲存查詢歷史（除非啟用監控記錄功能）。
+- 系統處理流程不涉及病患個人資料。
 
 ## 12. 系統異常與備援處理
 

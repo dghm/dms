@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TailorMed Tracking System 文件</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 18mm 16mm 18mm 16mm;
+    }
+    :root {
+      --text: #1f2937;
+      --title: #0f172a;
+      --muted: #6b7280;
+      --line: #d1d5db;
+      --brand: #1d4ed8;
+      --bg-soft: #f8fafc;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC",
+        "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      color: var(--text);
+      font-size: 11pt;
+      line-height: 1.75;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .cover {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 24px;
+      margin-bottom: 28px;
+      background: linear-gradient(180deg, #ffffff 0%, var(--bg-soft) 100%);
+    }
+    .cover h1 {
+      margin: 0 0 10px;
+      font-size: 23pt;
+      color: var(--title);
+      line-height: 1.25;
+    }
+    .cover .subtitle {
+      font-size: 12pt;
+      color: #334155;
+      margin: 0 0 20px;
+    }
+    .cover .meta {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 10pt;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+    }
+    .content h1, .content h2, .content h3 {
+      color: var(--title);
+      margin-top: 1.3em;
+      margin-bottom: 0.5em;
+      line-height: 1.4;
+      page-break-after: avoid;
+      break-after: avoid-page;
+    }
+    .content h1 { font-size: 18pt; border-bottom: 2px solid var(--line); padding-bottom: 0.25em; }
+    .content h2 { font-size: 14pt; border-left: 4px solid var(--brand); padding-left: 10px; }
+    .content h3 { font-size: 12pt; }
+    .content p { margin: 0.35em 0 0.75em; }
+    .content ul, .content ol { margin: 0.4em 0 0.9em 1.3em; }
+    .content li { margin: 0.2em 0; }
+    .content hr {
+      border: 0;
+      border-top: 1px dashed var(--line);
+      margin: 18px 0;
+    }
+    .content blockquote {
+      margin: 0.8em 0;
+      padding: 10px 12px;
+      background: var(--bg-soft);
+      border-left: 4px solid var(--brand);
+    }
+    .content img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 10px auto 14px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .content code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 10pt;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      padding: 1px 4px;
+    }
+    .footer {
+      margin-top: 26px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 9pt;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <section class="cover">
+    <h1>TailorMed Tracking System</h1>
+    <p class="subtitle">驗收檢核表（正式文件版）</p>
+    <div class="meta">
+      <div>文件名稱：UAT-Checklist.md</div>
+      <div>文件版本：Formal PDF</div>
+      <div>輸出日期：2026-03-03</div>
+    </div>
+  </section>
+  <main class="content">
+    <h1 id="驗收檢核表（客戶填寫）">驗收檢核表（客戶填寫）</h1>
+<p>本文件供客戶驗收時逐項確認與勾選。</p>
+<hr>
+<h2 id="1-功能驗收">1. 功能驗收</h2>
+<ul>
+<li><input disabled="" type="checkbox"> 輸入 Order No. 及 Tracking No. 正確可顯示貨件狀況</li>
+<li><input disabled="" type="checkbox"> 兩種運輸狀態以及運輸完成下之時間軸類型正常顯示</li>
+<li><input disabled="" type="checkbox"> 時間軸可以正確反應當下訂單狀態及時間戳記</li>
+<li><input disabled="" type="checkbox"> 節點狀態依訂單狀態進行正確切換</li>
+<li><input disabled="" type="checkbox"> 動畫效果流暢運行</li>
+<li><input disabled="" type="checkbox"> Hover 互動正常響應</li>
+</ul>
+<hr>
+<h2 id="2-視覺驗收">2. 視覺驗收</h2>
+<ul>
+<li><input disabled="" type="checkbox"> 顏色規範正確應用</li>
+<li><input disabled="" type="checkbox"> 字體大小符合設計</li>
+<li><input disabled="" type="checkbox"> 間距對齊準確</li>
+<li><input disabled="" type="checkbox"> 響應式設計正常</li>
+</ul>
+<hr>
+<h2 id="3-效能驗收">3. 效能驗收</h2>
+<ul>
+<li><input disabled="" type="checkbox"> 頁面載入時間 &lt; 3 秒</li>
+<li><input disabled="" type="checkbox"> 動畫幀率 ≥ 50fps</li>
+<li><input disabled="" type="checkbox"> 記憶體使用穩定</li>
+<li><input disabled="" type="checkbox"> 跨瀏覽器相容性</li>
+</ul>
+<hr>
+<h2 id="客戶確認">客戶確認</h2>
+<p><strong>驗收日期</strong>：＿＿＿＿＿＿＿＿＿＿＿＿<br><strong>公司/部門</strong>：＿＿＿＿＿＿＿＿＿＿＿＿<br><strong>驗收人</strong>：＿＿＿＿＿＿＿＿＿＿＿＿<br><strong>備註</strong>：＿＿＿＿＿＿＿＿＿＿＿＿</p>
+
+  </main>
+  <div class="footer">TailorMed Tracking System UAT Checklist</div>
+</body>
+</html>

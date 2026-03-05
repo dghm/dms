@@ -7,6 +7,108 @@ sidebar_position: 1
 
 ## Airtable Change Log
 
+### 2026-03-04
+
+### DataBase:【TailorMed】CRM
+
+| 需求方 | 範圍(Table)        | 欄位(Field) | 異動 | 備註            |
+| ------ | ------------------ | ----------- | ---- | --------------- |
+| Ray    | Quotation 列印文件 | 包材資訊區  | 調整 | 字級 & 行高縮減 |
+
+![2026-03-04 變更截圖](./260304.png)
+
+---
+
+### 2026-03-02
+
+### DataBase:【TailorMed】CRM
+
+| 需求方 | 範圍(Table)      | 欄位(Field) | 異動 | 備註               |
+| ------ | ---------------- | ----------- | ---- | ------------------ |
+| Hedy   | AWB/POD 列印文件 | 多處版面    | 調整 | v2(左) 改為 v3(右) |
+
+![2026-03-02 變更截圖](./260302.png)
+
+---
+
+### 2026-03-01
+
+### DataBase:【TailorMed】CRM
+
+| 需求方 | 範圍(Table)         | 欄位(Field) | 異動 | 備註               |
+| ------ | ------------------- | ----------- | ---- | ------------------ |
+| Cody   | Debit Note 列印文件 | Job#        | 新增 | REF# 下方加上 JOB# |
+
+![2026-03-01 變更截圖](./260301.jpg)
+
+| 需求方 | 範圍(Table)    | 欄位(Field) | 異動 | 備註 |
+| ------ | -------------- | ----------- | ---- | ---- |
+| Cody   | Charge Catalog | •           | 新增 | K96  |
+
+---
+
+### 2026-02-26
+
+### DataBase:【TailorMed】CRM
+
+| 需求方 | 範圍(Table) | 欄位(Field) | 異動 | 備註 |
+| ------ | ----------- | ----------- | ---- | ---- |
+| Chris  | Quotations  | POL & POE   | 新增 | DTW  |
+
+### DataBase:【TailorMed】OMS
+
+| 需求方 | 範圍(Table) | 欄位(Field) | 異動 | 備註 |
+| ------ | ----------- | ----------- | ---- | ---- |
+| Chris  | FLIGHTS     | POL & POE   | 新增 | DTW  |
+
+---
+
+### 2026-02-24
+
+### DataBase:【TailorMed】FIN
+
+| 需求方 | 範圍(Table)    | 欄位(Field) | 異動 | 備註     |
+| ------ | -------------- | ----------- | ---- | -------- |
+| Cody   | Charge Catalog | •           | 新增 | BKY      |
+| Cody   | Charge Catalog | ••          | 新增 | 56L, 28L |
+
+### DataBase:【TailorMed】OMS&FIN
+
+| 需求方 | 範圍(Table)      | 欄位(Field) | 異動 | 備註           |
+| ------ | ---------------- | ----------- | ---- | -------------- |
+| Hedy   | AWB.OID          | -           | 新增 | Cost Weight(#) |
+| hedy   | Debit Notes(FIN) | -           | 新增 | Cost Weight(#) |
+
+![2026-02-24 變更截圖](./260224.png)
+
+---
+
+### 2026-02-23
+
+### DataBase:【TailorMed】CRM
+
+| 需求方 | 範圍(Table) | 欄位(Field) | 異動 | 備註 |
+| ------ | ----------- | ----------- | ---- | ---- |
+| Ray    | Quotations  | POL & POE   | 新增 | SAN  |
+
+### DataBase:【TailorMed】OMS
+
+| 需求方 | 範圍(Table) | 欄位(Field) | 異動 | 備註 |
+| ------ | ----------- | ----------- | ---- | ---- |
+| Ray    | Flights     | POL & POE   | 新增 | SAN  |
+
+---
+
+### 2026-02-18
+
+### DataBase:【TailorMed】FIN
+
+| 需求方 | 範圍(Table)    | 欄位(Field) | 異動 | 備註   |
+| ------ | -------------- | ----------- | ---- | ------ |
+| Hedy   | Charge Catalog | •           | 調整 | CIM 24 |
+
+---
+
 ### 2026-02-12
 
 ### DataBase:【TailorMed】CRM
