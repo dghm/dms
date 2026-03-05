@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TailorMed Tracking System 文件</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 18mm 16mm 18mm 16mm;
+    }
+    :root {
+      --text: #1f2937;
+      --title: #0f172a;
+      --muted: #6b7280;
+      --line: #d1d5db;
+      --brand: #1d4ed8;
+      --bg-soft: #f8fafc;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC",
+        "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      color: var(--text);
+      font-size: 11pt;
+      line-height: 1.75;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .cover {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 24px;
+      margin-bottom: 28px;
+      background: linear-gradient(180deg, #ffffff 0%, var(--bg-soft) 100%);
+    }
+    .cover h1 {
+      margin: 0 0 10px;
+      font-size: 23pt;
+      color: var(--title);
+      line-height: 1.25;
+    }
+    .cover .subtitle {
+      font-size: 12pt;
+      color: #334155;
+      margin: 0 0 20px;
+    }
+    .cover .meta {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 10pt;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+    }
+    .content h1, .content h2, .content h3 {
+      color: var(--title);
+      margin-top: 1.3em;
+      margin-bottom: 0.5em;
+      line-height: 1.4;
+      page-break-after: avoid;
+      break-after: avoid-page;
+    }
+    .content h1 { font-size: 18pt; border-bottom: 2px solid var(--line); padding-bottom: 0.25em; }
+    .content h2 { font-size: 14pt; border-left: 4px solid var(--brand); padding-left: 10px; }
+    .content h3 { font-size: 12pt; }
+    .content p { margin: 0.35em 0 0.75em; }
+    .content ul, .content ol { margin: 0.4em 0 0.9em 1.3em; }
+    .content li { margin: 0.2em 0; }
+    .content hr {
+      border: 0;
+      border-top: 1px dashed var(--line);
+      margin: 18px 0;
+    }
+    .content blockquote {
+      margin: 0.8em 0;
+      padding: 10px 12px;
+      background: var(--bg-soft);
+      border-left: 4px solid var(--brand);
+    }
+    .content img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 10px auto 14px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .content code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 10pt;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      padding: 1px 4px;
+    }
+    .footer {
+      margin-top: 26px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 9pt;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <section class="cover">
+    <h1>TailorMed Tracking System</h1>
+    <p class="subtitle">專案技術與需求文件（正式文件版）</p>
+    <div class="meta">
+      <div>文件名稱：ProjectDocs-PDF.md</div>
+      <div>文件版本：Formal PDF</div>
+      <div>輸出日期：2026-03-03</div>
+    </div>
+  </section>
+  <main class="content">
+    <h1 id="貨件追蹤系統-專案技術與需求文件">貨件追蹤系統 專案技術與需求文件</h1>
+<hr>
+<p><strong>專案名稱</strong>：TailorMed Tracking System<br><strong>適用對象</strong>：專案管理與開發團隊<br><strong>文件性質</strong>：技術與需求存檔<br><strong>更新日期</strong>：2026-01<br><strong>文件版本</strong>：v1.0</p>
+<hr>
+<p>本文件彙整專案之需求概覽、開發說明與時程規劃，<br>用於專案交付存檔與後續維護參考。</p>
+<hr>
+<h2 id="netlify-專案部署資訊">Netlify 專案部署資訊</h2>
+<p>目前前端頁面部署於 Netlify 平台，正式站網址為：<br><code>https://tracking.tailormed-intl.com</code><br>所有前端程式碼變動經由 GitHub 操作後，會由 Netlify 自動部署至此網址。</p>
+<p>為確保日後維護作業順暢，請確保具備 Collaborator 權限的帳號能操作 Netlify 介面以查看部署紀錄與錯誤日誌。</p>
+<hr>
+<h2 id="github-專案管理原則">GitHub 專案管理原則</h2>
+<p>Tracking System 原始碼儲存於 GitHub 私有專案中，由萬能數維有限公司維護與控管。</p>
+<p>基本管理規則如下：</p>
+<ul>
+<li>嚴禁直接修改 <code>main</code> 分支，所有更新請經由 PR 流程審核與合併。</li>
+<li>每次重要更新需撰寫簡要 Release Note。</li>
+<li>建議版本命名方式：<code>v1.0.0</code>、<code>v1.0.1-hotfix</code> 等，並標示更新日期與摘要。</li>
+</ul>
+<hr>
+<h2 id="異常排查與處理流程">異常排查與處理流程</h2>
+<p>若前端頁面出現異常（如查詢結果無法呈現、版面錯位）或 Airtable API 無法回應，請依以下流程操作：</p>
+<ol>
+<li>確認 Airtable Base 狀態與 Token 是否過期或更換，更新於環境變數欄位中。</li>
+<li>至 Netlify 控制台檢查最新部署版本與錯誤紀錄。</li>
+<li>若需回復先前版本，請於 GitHub 將程式碼回溯至穩定版本並重新部署。</li>
+<li>無法排除問題時，請聯繫原開發單位萬能數維有限公司協助排查。</li>
+</ol>
+<hr>
+<hr>
+<div class="page-break"></div>
+
+<h2 id="tailormed-tracking-system-專案技術與需求說明">TailorMed Tracking System 專案技術與需求說明</h2>
+<blockquote>
+<p>本文件提供需求、設計與時程參考，不含前台使用教學內容。</p>
+</blockquote>
+<hr>
+<h2 id="一、系統需求概覽">一、系統需求概覽</h2>
+<h3 id="1-專案簡介與目標">1. 專案簡介與目標</h3>
+<ul>
+<li>目的：提供收送件之貨況查詢（客戶前台）與狀態資料查詢（API），提升透明度、降低內部人工查詢作業及提升客戶服務品質。</li>
+<li>交付：前端查貨頁（index.html）、時間軸模組（兩種樣式與事件節點）、Netlify Functions API、Airtable 連結、監控 Dashboard（可選）。</li>
+</ul>
+<h3 id="2-角色與利害關係人">2. 角色與利害關係人</h3>
+<ul>
+<li>最終用戶：Shipper/Consignee（查詢貨況）。</li>
+<li>後台營運人員：維護資料與回覆需求。</li>
+<li>系統維運：萬能數維有限公司。</li>
+<li>第三方：Netlify、Airtable。</li>
+</ul>
+<h3 id="3-使用情境（user-stories）">3. 使用情境（User Stories）</h3>
+<ul>
+<li>作為顧客，輸入 Job No. 與 Tracking No. 查詢貨件狀態與時間軸。</li>
+<li>作為營運，可在 Airtable 更新各階段時間欄位，前台即時反映。</li>
+<li>作為維運，可透過監控頁了解 API 成功率、平均回應時間與最近請求（需有監控 Dashboard 功能）。</li>
+</ul>
+<h3 id="4-範圍與不在範圍">4. 範圍與不在範圍</h3>
+<ul>
+<li>範圍：國內及國際運輸單件查詢、時間軸視覺、基礎監控（可選）、自訂網域部署、基本安全驗證與限流。</li>
+<li>不在範圍：會員系統、權限分級、支付、第三方物流 API 聚合、報表 BI、長期監控資料庫持久化（可選）。</li>
+</ul>
+<h3 id="5-功能需求（functional）">5. 功能需求（Functional）</h3>
+<ul>
+<li>F1 前台查詢頁：表單（Job No./Tracking No.）。</li>
+<li>F2 時間軸模組：依資料呈現 Executed/Processing/Pending；支援 Domestic, Import/Export/Cross 樣式分歧；特殊事件 Dry Ice Refilled(Terminal), Dry Ice Refilled。</li>
+<li>F3 後端 API（可選）：<ul>
+<li>GET /api/tracking?orderNo&amp;trackingNo：提供客戶點選連結後可直接查貨。</li>
+<li>GET /api/health：健康檢查。</li>
+<li>GET /api/monitoring/Admin：監控統計與最近請求。</li>
+</ul>
+</li>
+<li>F4 資料來源：Airtable（Tracking 表單），若無資料回傳 404。</li>
+<li>F5 安全與限流：API key（可選）與 IP-based rate limit；CORS 設定。</li>
+<li>F6 部署與網域：Netlify Pro，redirects 與 netlify.toml 管理路由。</li>
+</ul>
+<h3 id="6-非功能需求（nfr）">6. 非功能需求（NFR）</h3>
+<ul>
+<li>可用性：P95 回應 &lt; 1.5s（Airtable 正常時）。</li>
+<li>可維運性：環境變數管理、日誌可追蹤 requestId/IP。</li>
+<li>可擴充性：時間軸節點可擴增；支援更多運輸型別。</li>
+<li>安全性：CORS 白名單、API Key 驗證（如開啟）、不回傳敏感欄位。</li>
+<li>可測試性：Staging 與 Production；接口以例外/404 區分。</li>
+</ul>
+<h3 id="7-業務規則（br）">7. 業務規則（BR）</h3>
+<ul>
+<li>BR1 以 Airtable Tracking 表中欄位為單一真實來源（SSOT）。</li>
+<li>BR2 若 A 階段時間存在即為 Executed，下一未填階段為 Processing…，再往後為 Pending…。</li>
+<li>BR3 Dry Ice Refilled<ul>
+<li>Dry Ice Refilled(Terminal)：僅在 In Transit 之後且事件為 Yes/True 才顯示。</li>
+<li>Dry Ice Refilled：僅在 Destination Customs Process 之後且事件為 Yes/True 才顯示。</li>
+</ul>
+</li>
+<li>BR4 查無資料即回 404；Airtable 失效時回 500 並記錄錯誤。</li>
+</ul>
+<h3 id="8-介面與規格摘要">8. 介面與規格摘要</h3>
+<ul>
+<li>前端：Pug + Stylus（RWD），URL 支援 ?orderNo=XXXXXX &amp; trackingNo=XXXXXX（可選）。</li>
+<li>後端：Netlify Functions（Node），單入口 routing。</li>
+<li>資料：Airtable REST SDK。</li>
+<li>監控（可選）：/api/monitoring/stats + Admin 頁（Chart.js）。</li>
+</ul>
+<h3 id="9-驗收條件（uat）">9. 驗收條件（UAT）</h3>
+<ul>
+<li>依 3 組以上有效資料可正確呈現兩種樣式時間軸與事件節點。</li>
+<li>API 正確回 200/404/429/500 各場景。<ul>
+<li>200：請求成功</li>
+<li>404：查無資料</li>
+<li>429：查詢過於頻繁</li>
+<li>500：內部伺服器錯誤</li>
+</ul>
+</li>
+<li>網域可用、redirects 與 netlify.toml 路由生效。</li>
+<li>監控頁（可選）可顯示今日/月累計、平均回應、成功率、最近 20 筆請求。</li>
+</ul>
+<h3 id="10-上線與維運">10. 上線與維運</h3>
+<ul>
+<li>部署：GitHub → Netlify 自動部署；Staging → Production。</li>
+<li>環境變數：AIRTABLE_API_KEY / BASE_ID / TABLE / API_KEY_xxx。</li>
+<li>監控：Netlify logs + Admin 監控頁（可選）。</li>
+<li>備援：Airtable 異常回退 500。</li>
+</ul>
+<hr>
+<h2 id="二、tailormed-貨件追蹤系統開發說明文件">二、TailorMed 貨件追蹤系統開發說明文件</h2>
+<h3 id="技術架構">技術架構</h3>
+<ul>
+<li>前端框架: HTML5 + CSS3 + JavaScript</li>
+<li>模板引擎: Pug</li>
+<li>樣式預處理器: Stylus</li>
+<li>字型: Noto Sans (Google Fonts)</li>
+<li>部署平台: Netlify</li>
+<li>版本控制: Git</li>
+</ul>
+<h3 id="功能需求">功能需求</h3>
+<h4 id="1-時間軸追蹤系統-timeline-tracking-system">1. 時間軸追蹤系統 (Timeline Tracking System)</h4>
+<h5 id="11-支援的追蹤類型">1.1 支援的追蹤類型</h5>
+<ul>
+<li>DOMESTIC (國內運輸) 4 個節點</li>
+<li>IMPORT/EXPORT (進出口運輸/跨國貿易) 7 個節點 + 2 個事件</li>
+<li>ORDER COMPLETION (訂單完成) 3 個節點</li>
+</ul>
+<h5 id="12-節點狀態系統">1.2 節點狀態系統</h5>
+<ul>
+<li>Completed (已執行): 藍色實心圓 + 白色實心圓 + 勾選圖標</li>
+<li>Processing (處理中): 桃色實心圓 + 白色實心圓 + 卡車圖標 + 狀態文字有 Gradient Shine 動畫</li>
+<li>In Transit (轉運中): 桃色實心圓 + 白色實心圓 + 飛機運輸圖標 + 狀態文字有 Gradient Shine 動畫</li>
+<li>Pending (待處理): 灰色實心圓圈 + 白色實心圓 + 無圖標</li>
+<li>Acomplishment (已完成): 藍色圓圈 + 白色勾選圖標</li>
+<li>Shipment Delivered (貨件已完成遞交): 藍色圓角卡 + TM Mark</li>
+</ul>
+<h5 id="13-互動效果">1.3 互動效果</h5>
+<ul>
+<li>已執行節點 Hover 效果: 圓圈放大 1.10 倍 + 陰影效果</li>
+<li>已執行完成狀態 Hover: :before 從白色變為 accent-color，圖標從藍色變為白色</li>
+<li>處理中/轉運中節點 Hover 效果: 圓圈放大 1.10 倍 + 陰影效果</li>
+<li>處理中/轉運中完成狀態 Hover: :before 從白色變為 accent-color，圖標從變為白色</li>
+<li>Processing/In Transit 狀態: 文字有 Gradient Shine 動畫效果</li>
+</ul>
+<h4 id="2-視覺設計系統">2. 視覺設計系統</h4>
+<h5 id="21-顏色規範">2.1 顏色規範</h5>
+<ul>
+<li>Primary Color: 主要藍色 (用於完成狀態、連接線)</li>
+<li>Accent Color: 輔助桃色 (用於漸層效果)</li>
+<li>Neutral Colors: 淺灰藍色系 (用於待處理狀態、文字)</li>
+</ul>
+<h5 id="22-連接線樣式">2.2 連接線樣式</h5>
+<ul>
+<li>DOMESTIC: 漸層連接線 (primary-color → accent-color)</li>
+<li>IMPORT/EXPORT/CROSS: 漸層連接線 (primary-color → accent-color)</li>
+<li>SHIPMENT DELIVERED: 純色連接線 (primary-color)</li>
+</ul>
+<h5 id="23-節點樣式">2.3 節點樣式</h5>
+<ul>
+<li>圓圈尺寸: 40x40px</li>
+<li>連接線高度: 5px</li>
+<li>日期字體: 1.1rem, Title Case (如 &quot;Oct 13&quot;)</li>
+<li>狀態文字: 0.9rem</li>
+<li>時間文字: 0.85rem</li>
+<li>狀態區域寬度: 110px</li>
+</ul>
+<h4 id="3-動畫效果">3. 動畫效果</h4>
+<h5 id="31-gradient-shine-動畫">3.1 Gradient Shine 動畫</h5>
+<ul>
+<li>觸發條件: Processing 和 In Transit 狀態</li>
+<li>動畫效果: 白色漸層從左到右掃過文字</li>
+<li>動畫時長: 2 秒循環</li>
+<li>動畫範圍: 僅限於狀態文字區域</li>
+</ul>
+<h5 id="32-hover-動畫">3.2 Hover 動畫</h5>
+<ul>
+<li>節點圓圈: 縮放效果 + 陰影</li>
+<li>過渡時間: 0.3 秒</li>
+<li>顏色變化: 完成狀態的顏色反轉效果</li>
+</ul>
+<h4 id="4-響應式設計">4. 響應式設計</h4>
+<h5 id="41-桌面版本">4.1 桌面版本</h5>
+<ul>
+<li>最大寬度: 1200px</li>
+<li>間距: 40px padding</li>
+<li>字體大小: 標準尺寸</li>
+</ul>
+<h5 id="42-移動版本">4.2 移動版本</h5>
+<ul>
+<li>媒體查詢: @media (max-width: 768px)</li>
+<li>字體縮放: 相對縮小</li>
+<li>間距調整: 減少 padding</li>
+</ul>
+<h3 id="具體實現需求">具體實現需求</h3>
+<h4 id="1-節點內容結構">1. 節點內容結構</h4>
+<h5 id="11-標準節點">1.1 標準節點</h5>
+<h4 id="image1">![][image1]</h4>
+<h5 id="12-order-completion-特殊節點">1.2 Order Completion 特殊節點</h5>
+<p>![][image2]</p>
+<h4 id="2-特殊組件需求">2. 特殊組件需求</h4>
+<h5 id="21-order-completion-容器">2.1 Order Completion 容器</h5>
+<ul>
+<li>尺寸: 55x40px</li>
+<li>圓角: 5px</li>
+<li>背景: primary-color</li>
+<li>圖標: TailorMed mark (36x24px, 原色)</li>
+</ul>
+<h5 id="22-事件標籤-event-tags">2.2 事件標籤 (Event Tags)</h5>
+<ul>
+<li>乾冰補充事件: 垂直連接線 + 標籤文字</li>
+<li>位置: 時間軸下方</li>
+<li>樣式: 淺藍色背景 + 白色圖標</li>
+</ul>
+<h4 id="3-狀態流程定義">3. 狀態流程定義</h4>
+<h5 id="31-domestic-流程">3.1 DOMESTIC 流程</h5>
+<ol>
+<li>Order Created (訂單建立)</li>
+<li>Shipment Collected (貨件收取) Processing 狀態</li>
+<li>In Transit (運輸中) Pending 狀態</li>
+<li>Shipment Delivered (貨件送達) Pending 狀態</li>
+</ol>
+<h5 id="32-importexport-流程">3.2 IMPORT/EXPORT 流程</h5>
+<ol>
+<li>Order Created (訂單建立)</li>
+<li>Shipment Collected (貨件收取)</li>
+<li>Origin Customs Process (起點海關處理)</li>
+<li>In Transit (運輸中) Processing 狀態</li>
+<li>Destination Customs Process (目的地海關處理)</li>
+<li>Out for Delivery (配送中)</li>
+<li>Shipment Delivered (貨件送達)</li>
+</ol>
+<h3 id="技術實現細節">技術實現細節</h3>
+<h4 id="1-檔案結構">1. 檔案結構</h4>
+<p>src/Projects/TailorMed/track/<br>├── Templates/<br>│ ├── tracking_ui.pug (主頁面)<br>│ └── components/<br>│ └── timelineTrack.pug (時間軸組件)<br>├── Styles/<br>│ ├── main.styl (主樣式)<br>│ ├── variables.styl (變數定義)<br>│ └── components/<br>│ └── timelineTrack.styl (時間軸樣式)<br>├── Javascript/<br>│ ├── app.js (應用邏輯)<br>│ ├── config.js (配置檔案)<br>│ └── interaction.js (互動邏輯)<br>├── Assets/<br>│ ├── icon-check.svg (勾選圖標)<br>│ ├── icon-truck.svg (卡車圖標)<br>│ ├── icon-inTransit.svg (飛機圖標)<br>│ └── tailormed-mark.svg (品牌標誌)<br>└── compile.js (編譯腳本)</p>
+<h4 id="2-編譯流程">2. 編譯流程</h4>
+<ul>
+<li>Pug → HTML: 模板編譯</li>
+<li>Stylus → CSS: 樣式編譯</li>
+<li>資源複製: 圖片和 JavaScript 檔案複製到 dist 目錄</li>
+</ul>
+<h4 id="3-部署需求">3. 部署需求</h4>
+<ul>
+<li>靜態檔案服務: 支援 HTML, CSS, JS, 圖片</li>
+<li>路由設定: SPA 路由支援 (Netlify _redirects)</li>
+<li>CDN: 字型載入優化</li>
+</ul>
+<h3 id="效能需求">效能需求</h3>
+<h4 id="1-載入效能">1. 載入效能</h4>
+<ul>
+<li>字型預載: Google Fonts preconnect</li>
+<li>圖片優化: SVG 格式，適當尺寸</li>
+<li>CSS 優化: Stylus 編譯，移除未使用樣式</li>
+</ul>
+<h4 id="2-互動效能">2. 互動效能</h4>
+<ul>
+<li>動畫流暢度: 60fps 動畫效果</li>
+<li>響應時間: Hover 效果 &lt; 100ms</li>
+<li>記憶體使用: 最小化 DOM 操作</li>
+</ul>
+<h4 id="3-瀏覽器支援">3. 瀏覽器支援</h4>
+<ul>
+<li>現代瀏覽器: Chrome, Firefox, Safari, Edge</li>
+<li>CSS 支援: Flexbox, CSS Grid, CSS Variables</li>
+<li>JavaScript: ES6+ 語法支援</li>
+</ul>
+<h3 id="維護需求">維護需求</h3>
+<h4 id="1-程式碼品質">1. 程式碼品質</h4>
+<ul>
+<li>模組化設計: 組件化架構</li>
+<li>樣式分離: 變數統一管理</li>
+<li>註解完整: 中文註解說明</li>
+</ul>
+<h4 id="2-擴展性">2. 擴展性</h4>
+<ul>
+<li>新增時間軸類型: 易於擴展新的追蹤流程</li>
+<li>狀態系統: 支援新增節點狀態</li>
+<li>主題系統: 支援顏色主題切換</li>
+</ul>
+<h4 id="3-版本控制">3. 版本控制</h4>
+<ul>
+<li>Git 管理: 功能分支開發</li>
+<li>部署自動化: Netlify 自動部署</li>
+<li>回滾機制: 快速回滾到穩定版本</li>
+</ul>
+<h3 id="驗收標準">驗收標準</h3>
+<h4 id="1-功能驗收">1. 功能驗收</h4>
+<ul>
+<li><input disabled="" type="checkbox"> 輸入 Order No. 及 Tracking No. 正確可顯示貨件狀況</li>
+<li><input disabled="" type="checkbox"> 兩種運輸狀態以及運輸完成下之時間軸類型正常顯示</li>
+<li><input disabled="" type="checkbox"> 時間軸可以正確反應當下訂單狀態及時間戳記</li>
+<li><input disabled="" type="checkbox"> 節點狀態依訂單狀態進行正確切換</li>
+<li><input disabled="" type="checkbox"> 動畫效果流暢運行</li>
+<li><input disabled="" type="checkbox"> Hover 互動正常響應</li>
+</ul>
+<h4 id="2-視覺驗收">2. 視覺驗收</h4>
+<ul>
+<li><input disabled="" type="checkbox"> 顏色規範正確應用</li>
+<li><input disabled="" type="checkbox"> 字體大小符合設計</li>
+<li><input disabled="" type="checkbox"> 間距對齊準確</li>
+<li><input disabled="" type="checkbox"> 響應式設計正常</li>
+</ul>
+<h4 id="3-效能驗收">3. 效能驗收</h4>
+<ul>
+<li><input disabled="" type="checkbox"> 頁面載入時間 &lt; 3 秒</li>
+<li><input disabled="" type="checkbox"> 動畫幀率 ≥ 50fps</li>
+<li><input disabled="" type="checkbox"> 記憶體使用穩定</li>
+<li><input disabled="" type="checkbox"> 跨瀏覽器相容性</li>
+</ul>
+<h3 id="前期工作成果">前期工作成果</h3>
+<h4 id="1-需求文件整理">1. 需求文件整理</h4>
+<p>基於客戶訪談結果，我們整理了完整的系統需求文件，包含：</p>
+<h5 id="11-功能需求分析">1.1 功能需求分析</h5>
+<ul>
+<li>核心功能識別: 貨件追蹤系統需要支援兩種不同的運輸流程類型</li>
+<li>使用者故事: 從訂單客戶角度定義完整的追蹤體驗需求</li>
+<li>業務流程梳理: 詳細分析了 DOMESTIC、IMPORT/EXPORT、CROSS TRADE、ORDER COMPLETION 三種狀態</li>
+<li>狀態定義: 明確定義了 Completed、Processing、In Transit、Pending 四種節點狀態</li>
+</ul>
+<h5 id="12-非功能性需求">1.2 非功能性需求</h5>
+<ul>
+<li>效能要求: 頁面載入時間 &lt; 3 秒，動畫幀率 ≥ 50fps</li>
+<li>可用性要求: 支援現代瀏覽器，響應式設計</li>
+<li>維護性要求: 模組化設計，易於擴展新的追蹤流程</li>
+</ul>
+<h5 id="13-需求優先級排序">1.3 需求優先級排序</h5>
+<ul>
+<li>高優先級: 時間軸顯示、節點狀態切換、基本互動效果</li>
+<li>中優先級: 動畫效果、響應式設計、特殊節點樣式</li>
+<li>低優先級: 主題切換、進階互動功能</li>
+</ul>
+<h4 id="2-技術可行性評估">2. 技術可行性評估</h4>
+<h5 id="21-技術選型分析">2.1 技術選型分析</h5>
+<ul>
+<li>前端框架: 選擇 HTML5 + CSS3 + JavaScript 原生技術棧<ul>
+<li>評估理由: 輕量級、快速載入、易於維護、相容性佳</li>
+<li>替代方案: React/Vue.js (考慮到專案規模，原生技術更適合)</li>
+</ul>
+</li>
+<li>模板引擎: 採用 Pug<ul>
+<li>評估理由: 簡潔語法、組件化支援、編譯時優化</li>
+<li>效能優勢: 預編譯模板，減少運行時處理</li>
+</ul>
+</li>
+<li>樣式預處理器: 選擇 Stylus<ul>
+<li>評估理由: 簡潔語法、變數管理、嵌套支援</li>
+<li>維護優勢: 統一的樣式變數管理，易於主題切換</li>
+</ul>
+</li>
+</ul>
+<h5 id="22-技術風險評估">2.2 技術風險評估</h5>
+<ul>
+<li>瀏覽器相容性: 低風險 使用標準 Web 技術</li>
+<li>效能風險: 低風險 輕量級實現，優化動畫效果</li>
+<li>維護風險: 低風險 清晰的代碼結構和文檔</li>
+</ul>
+<h5 id="23-技術債務管理">2.3 技術債務管理</h5>
+<ul>
+<li>代碼品質: 建立統一的代碼規範和註解標準</li>
+<li>文檔維護: 完整的技術文檔和使用說明</li>
+<li>版本控制: Git 分支管理策略</li>
+</ul>
+<h4 id="3-系統架構設計">3. 系統架構設計</h4>
+<h5 id="31-整體架構">3.1 整體架構</h5>
+<h4 id="image3">![][image3]</h4>
+<h5 id="32-組件架構設計">3.2 組件架構設計</h5>
+<ul>
+<li>模組化設計: 每個時間軸類型為獨立組件</li>
+<li>狀態管理: 統一的節點狀態系統</li>
+<li>樣式系統: 基於變數的主題系統</li>
+<li>互動系統: 分離的 JavaScript 互動邏輯</li>
+</ul>
+<h5 id="33-資料流設計">3.3 資料流設計</h5>
+<ul>
+<li>靜態資料: 時間軸配置和節點資訊</li>
+<li>動態狀態: 節點狀態和動畫效果</li>
+<li>使用者互動: Hover 效果和狀態切換</li>
+</ul>
+<h5 id="34-擴展性設計">3.4 擴展性設計</h5>
+<ul>
+<li>新增時間軸類型: 通過配置檔案快速添加</li>
+<li>狀態擴展: 統一的狀態系統支援新狀態</li>
+<li>主題系統: 基於 CSS 變數的主題切換</li>
+</ul>
+<h5 id="35-資料流程">3.5 資料流程</h5>
+<ol>
+<li><strong>使用者請求</strong> → 前端發送 HTTP 請求到 /api/tracking</li>
+<li><strong>CDN 處理</strong> → Netlify CDN 處理靜態資源和路由</li>
+<li><strong>Function 執行</strong> → Netlify Function 處理 API 請求</li>
+<li><strong>資料查詢</strong> → Function 呼叫 Airtable API 查詢資料</li>
+<li><strong>資料處理</strong> → Function 處理和轉換資料格式</li>
+<li><strong>回應資料</strong> → Function 返回 JSON 回應給前端</li>
+<li><strong>前端顯示</strong> → 前端接收資料並顯示時間軸</li>
+</ol>
+<h4 id="4-資料庫設計">4. 資料庫設計</h4>
+<h5 id="41-資料庫平台">4.1 資料庫平台</h5>
+<ul>
+<li>平台: Airtable</li>
+<li>資料表: Tracking</li>
+<li>認證方式: Personal Access Token (PAT)</li>
+</ul>
+<h5 id="42-資料結構設計">4.2 資料結構設計</h5>
+<p>由於此專案主要為前端展示系統，資料庫設計主要針對靜態配置資料：<br>![][image4]</p>
+<h5 id="43-資料管理策略">4.3 資料管理策略</h5>
+<ul>
+<li>靜態配置: 時間軸結構和節點資訊</li>
+<li>動態狀態: 即時追蹤狀態更新</li>
+<li>快取策略: 本地儲存常用配置</li>
+<li>版本控制: 配置檔案版本管理</li>
+</ul>
+<h5 id="44-資料驗證">4.4 資料驗證</h5>
+<ul>
+<li>結構驗證: 確保時間軸配置完整性</li>
+<li>狀態驗證: 驗證節點狀態的有效性</li>
+<li>一致性檢查: 確保資料間的一致性</li>
+</ul>
+<h4 id="5-介面設計規範">5. 介面設計規範</h4>
+<h5 id="51-視覺設計系統">5.1 視覺設計系統</h5>
+<p><strong>色彩系統</strong></p>
+<ul>
+<li>Primary Color: 主要藍色 (#143463)</li>
+<li>Accent Color: 輔助藍色 (#97d3df)</li>
+<li>Neutral Colors: 灰色系 (#666, #999, #ccc)</li>
+</ul>
+<p><strong>字型系統</strong></p>
+<ul>
+<li>主要字型: Noto Sans (Google Fonts)</li>
+<li>字重: 300, 400, 500, 600, 700</li>
+<li>字級: 0.85rem 1.1rem</li>
+</ul>
+<p><strong>間距系統</strong></p>
+<ul>
+<li>基礎單位: 8px</li>
+<li>常用間距: 10px, 16px, 24px, 32px, 40px</li>
+</ul>
+<h5 id="52-組件設計規範">5.2 組件設計規範</h5>
+<p><strong>節點設計</strong></p>
+<ul>
+<li>圓圈尺寸: 40x40px</li>
+<li>狀態指示: 顏色 + 圖標組合</li>
+<li>互動效果: 縮放 + 陰影</li>
+</ul>
+<p><strong>連接線設計</strong></p>
+<ul>
+<li>線條高度: 5px</li>
+<li>漸層效果: 支援純色和漸層兩種模式</li>
+<li>動畫效果: 進度條動畫</li>
+</ul>
+<p><strong>文字設計</strong></p>
+<ul>
+<li>日期格式: Title Case (Oct 13)</li>
+<li>狀態文字: 0.9rem</li>
+<li>時間文字: 0.85rem</li>
+</ul>
+<h5 id="53-互動設計規範">5.3 互動設計規範</h5>
+<p><strong>Hover 效果</strong></p>
+<ul>
+<li>節點圓圈: scale(1.10) + box-shadow</li>
+<li>過渡時間: 0.3s ease</li>
+<li>顏色變化: 完成狀態反轉效果</li>
+</ul>
+<p><strong>動畫效果</strong></p>
+<ul>
+<li>Gradient Shine: 2 秒循環，白色漸層掃過</li>
+<li>適用狀態: Processing, In Transit</li>
+<li>動畫範圍: 僅限狀態文字區域</li>
+</ul>
+<h5 id="54-響應式設計規範">5.4 響應式設計規範</h5>
+<ul>
+<li>桌面版本: 最大寬度 1200px，標準間距</li>
+<li>平板版本: 768px - 1024px，調整間距</li>
+<li>手機版本: &lt; 768px，緊湊佈局</li>
+</ul>
+<h5 id="55-無障礙設計規範">5.5 無障礙設計規範</h5>
+<ul>
+<li>色彩對比: 確保文字與背景有足夠對比度</li>
+<li>鍵盤導航: 支援 Tab 鍵導航</li>
+<li>螢幕閱讀器: 適當的 ARIA 標籤</li>
+<li>動畫控制: 支援使用者偏好設定</li>
+</ul>
+<h3 id="專案里程碑">專案里程碑</h3>
+<h4 id="phase-1-基礎架構">Phase 1: 基礎架構</h4>
+<ul>
+<li>[✓] 專案結構建立</li>
+<li>[✓] 基礎樣式系統</li>
+<li>[✓] 時間軸組件開發</li>
+</ul>
+<h4 id="phase-2-核心功能">Phase 2: 核心功能</h4>
+<ul>
+<li>[✓] 三種時間軸類型實現</li>
+<li>[✓] 節點狀態系統</li>
+<li>[✓] 互動效果開發</li>
+</ul>
+<h4 id="phase-3-優化完善">Phase 3: 優化完善</h4>
+<ul>
+<li>[✓] 動畫效果優化</li>
+<li>[✓] 響應式設計</li>
+<li>[✓] 效能優化</li>
+</ul>
+<h4 id="phase-4-部署上線">Phase 4: 部署上線</h4>
+<ul>
+<li>[✓] 生產環境部署</li>
+<li>[✓] 效能監控設定</li>
+<li>[✓] 使用者測試反饋</li>
+</ul>
+<p>文件版本: 1.0<br>最後更新: 2025 年 11 月<br>維護者: 萬能數維</p>
+<hr>
+<h2 id="三、工作時程及內容規劃">三、工作時程及內容規劃</h2>
+<h3 id="1-需求分析與資料庫設計">1. 需求分析與資料庫設計</h3>
+<p><strong>時程：</strong>11/05(三) ～ 11/07(五)<br><strong>工作內容：</strong></p>
+<ol>
+<li>訪談</li>
+<li>需求文件整理</li>
+<li>技術可行性評估</li>
+<li>系統架構設計</li>
+<li>資料庫設計</li>
+<li>介面設計規範</li>
+</ol>
+<h3 id="2-前端開發（frontend）">2. 前端開發（Frontend）</h3>
+<p><strong>時程：</strong>11/10(一) ～ 11/14(五)<br><strong>工作內容：</strong></p>
+<ol>
+<li>HTML/CSS/JS 結構設計</li>
+<li>查詢輸入介面（單號 + 查詢碼）</li>
+<li>查詢結果卡片樣式（含 10 欄資料欄位）</li>
+<li>RWD 響應式設計（桌機/手機）</li>
+</ol>
+<h3 id="3-時間軸模組（tracking-timeline-ui）">3. 時間軸模組（Tracking Timeline UI）</h3>
+<p><strong>時程：</strong>11/10(一) ～ 11/14(五)<br><strong>工作內容：</strong></p>
+<ol>
+<li>後端時間軸資料處理邏輯開發</li>
+<li>Airtable 欄位映射與狀態判斷</li>
+<li>前端時間軸 UI 元件開發</li>
+<li>動態樣式切換邏輯</li>
+<li>響應式設計（桌機/手機）</li>
+<li>前後端整合測試</li>
+<li>效能優化與錯誤處理</li>
+</ol>
+<h3 id="4-品牌設計整合（uiux--theme）">4. 品牌設計整合（UI/UX + Theme）</h3>
+<p><strong>時程：</strong>11/10(一) ～ 11/14(五)<br><strong>工作內容：</strong></p>
+<ol>
+<li>配色與字型符合客戶品牌規範</li>
+<li>按鈕、卡片、圖示設計統一</li>
+<li>依品牌風格調整前端樣式（亮度、邊角、陰影）</li>
+</ol>
+<h3 id="5-後端與-api-串接（backend--integration）">5. 後端與 API 串接（Backend / Integration）</h3>
+<p><strong>時程：</strong>11/17(一) ～ 11/21(五)<br><strong>工作內容：</strong></p>
+<ol>
+<li>Node.js 後端 API 設計（接收單號與查詢碼）</li>
+<li>連線 Airtable API（含驗證、錯誤處理）</li>
+<li>回傳資料 JSON 結構規範化</li>
+<li>基礎安全防護：API key 加密、限制查詢次數、CORS 設定</li>
+</ol>
+<h3 id="6-部署與測試（deployment--qa）">6. 部署與測試（Deployment &amp; QA）</h3>
+<p><strong>時程：</strong>11/24(一) ～ 11/28(五)<br><strong>工作內容：</strong></p>
+<ol>
+<li>Netlify 前端部署與 Functions 後端連接測試</li>
+<li>API 錯誤與異常查詢測試</li>
+<li>RWD 測試（桌機/手機）</li>
+<li>Airtable 權限與資料驗證測試</li>
+<li>程式碼部署自動化測試</li>
+<li>跨瀏覽器相容性測試</li>
+<li>負載測試</li>
+</ol>
+<h3 id="7-文件與交付（documentation--handover）">7. 文件與交付（Documentation &amp; Handover）</h3>
+<p><strong>時程：</strong>12/01(一) ～ 12/02(二)<br><strong>工作內容：</strong></p>
+<ol>
+<li>系統架構文件（API 結構、欄位對應表）</li>
+<li>前後端部署說明文件</li>
+<li>管理者維護指南</li>
+<li>部署指南</li>
+<li>用戶操作手冊</li>
+</ol>
+<h3 id="8-網站主機申購">8. 網站主機申購</h3>
+<p><strong>時程：</strong>12/01(一)<br><strong>工作內容：</strong></p>
+<ol>
+<li>子網域設定</li>
+<li>DNS 指向</li>
+<li>SSL 部署及測試</li>
+</ol>
+<hr>
+<div class="page-break"></div>
+
+<h2 id="使用範圍與說明">使用範圍與說明</h2>
+<p>本文件為 TailorMed Tracking System 之專案交付與技術需求存檔文件，<br>用於保留需求、設計、規格與時程之記錄。</p>
+<p>如需調整系統行為或新增功能，<br>請另行提出需求並進行評估與報價。</p>
+
+  </main>
+  <div class="footer">TailorMed Tracking System Project Documentation</div>
+</body>
+</html>
