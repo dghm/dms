@@ -97,6 +97,48 @@
       border-radius: 4px;
       padding: 1px 4px;
     }
+    .content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 16px;
+      font-size: 10.5pt;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .content th,
+    .content td {
+      border: 1px solid #9ca3af;
+      padding: 8px 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+    .content thead th,
+    .content tr:first-child th {
+      background: #e5e7eb;
+      font-weight: 700;
+      color: #111827;
+    }
+    .content tbody tr:nth-child(even) td {
+      background: #f9fafb;
+    }
+    .no-page-break {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .compact-image-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      margin: 8px 0 10px;
+    }
+    .compact-image-row img {
+      width: calc(50% - 5px);
+      max-height: 150px;
+      object-fit: contain;
+      margin: 0;
+    }
     .footer {
       margin-top: 26px;
       padding-top: 10px;
@@ -110,11 +152,10 @@
 <body>
   <section class="cover">
     <h1>TailorMed Tracking System</h1>
-    <p class="subtitle">維運說明手冊（正式文件版）</p>
+    <p class="subtitle">維運說明手冊</p>
     <div class="meta">
-      <div>文件名稱：OpsManual-PDF.md</div>
-      <div>文件版本：Formal PDF</div>
-      <div>輸出日期：2026-03-03</div>
+      <div>文件名稱：3.維運說明手冊.md</div>
+      <div>輸出日期：2026-03-09</div>
     </div>
   </section>
   <main class="content">
@@ -154,7 +195,7 @@
 <h3 id="12-source-code--maintenance">1.2 Source Code &amp; Maintenance</h3>
 <p>本系統以前端靜態頁面方式建置，無需伺服器端語言處理，查詢功能透過 Airtable API 取得資料並即時渲染查詢結果。</p>
 <ul>
-<li>主要技術：HTML / JS / CSS / Airtable API</li>
+<li>主要技術：HTML / JS / Tailwind CSS / Airtable API</li>
 <li>部署類型：Static Site + API Call</li>
 <li>程式結構：包含查詢主頁、資料節點解譯、狀態圖示渲染、使用者提示元件等</li>
 </ul>
@@ -369,6 +410,12 @@
 <li><strong>外部查詢限制</strong>：使用者僅可透過 Tracking No. 與驗證碼查詢自身貨件資料，無其他操作權限。</li>
 <li><strong>Airtable 權限配置</strong>：由專案管理者控管表單存取權限，並定期檢視使用者帳號設定。</li>
 </ul>
+<h3 id="111-data-protection--privacy-statement">11.1 Data Protection &amp; Privacy Statement</h3>
+<ul>
+<li>系統僅顯示運輸狀態，不儲存敏感醫療資料。</li>
+<li>不儲存查詢歷史（除非啟用監控記錄功能）。</li>
+<li>系統處理流程不涉及病患個人資料。</li>
+</ul>
 <h2 id="12-系統異常與備援處理">12. 系統異常與備援處理</h2>
 <ul>
 <li><strong>例行檢查</strong>：定期檢查 Airtable API 回應與查詢畫面載入狀況，若發生異常將由技術人員排查。</li>
@@ -396,6 +443,6 @@
 <hr>
 
   </main>
-  <div class="footer">TailorMed Tracking System Operations Manual</div>
+  <div class="footer">TailorMed Tracking System Manual</div>
 </body>
 </html>

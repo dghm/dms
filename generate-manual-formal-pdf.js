@@ -12,10 +12,27 @@ const docsDir = path.join(
 );
 const args = process.argv.slice(2);
 const inputFileName = args[0] || "Manual.md";
+const displayFileName = path.basename(inputFileName);
 const outputBaseName = args[1] || "Manual-Formal";
-const coverSubtitle = args[2] || "使用者操作手冊（正式文件版）";
+const coverSubtitle = displayFileName
+  .replace(/\.md$/i, "")
+  .replace(/^\d+\.\s*/, "");
+const coverTitle = args[2] || args[4] || "TailorMed Tracking System";
 const footerText = args[3] || "TailorMed Tracking System Manual";
-const coverTitle = args[4] || "TailorMed Tracking System";
+const hideSubtitle = [args[4], args[5], args[6]].some(
+  (arg) => String(arg || "").toLowerCase() === "no-subtitle"
+);
+const customSubtitle =
+  (args[6] && String(args[6]).toLowerCase() !== "no-subtitle" && args[6]) ||
+  (args[5] && String(args[5]).toLowerCase() !== "no-subtitle" && args[5]) ||
+  // Backward-compatible: when cover title is passed at args[2],
+  // treat args[4] as subtitle override if provided.
+  (args[2] &&
+    args[4] &&
+    String(args[4]).toLowerCase() !== "no-subtitle" &&
+    args[4]) ||
+  "";
+const finalSubtitle = customSubtitle || coverSubtitle;
 
 const inputMd = path.join(docsDir, inputFileName);
 const outputHtml = path.join(docsDir, `${outputBaseName}.html`);
@@ -24,7 +41,6 @@ const chromePath = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome
 const inputDir = path.dirname(inputMd);
 
 let markdown = fs.readFileSync(inputMd, "utf8");
-const coverMetaRows = [];
 
 // If markdown starts with title + metadata lines, move them into cover box.
 {
@@ -55,7 +71,6 @@ const coverMetaRows = [];
   }
 
   if (hasTopTitle && metadataRows.length >= 2) {
-    coverMetaRows.push(...metadataRows);
     // Remove top heading + metadata block + immediate separator from body
     let cut = i;
     while (cut < lines.length && !lines[cut].trim()) cut += 1;
@@ -245,9 +260,10 @@ const html = `<!doctype html>
 <body>
   <section class="cover">
     <h1>${coverTitle}</h1>
-    <p class="subtitle">${coverSubtitle}</p>
+    ${hideSubtitle ? "" : `<p class="subtitle">${finalSubtitle}</p>`}
     <div class="meta">
-      ${coverMetaRows.map((m) => `<div>${m.label}：${m.value}</div>`).join("\n      ")}
+      <div>文件名稱：${displayFileName}</div>
+      <div>輸出日期：${dateText}</div>
     </div>
   </section>
   <main class="content">

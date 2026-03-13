@@ -97,6 +97,48 @@
       border-radius: 4px;
       padding: 1px 4px;
     }
+    .content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 16px;
+      font-size: 10.5pt;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .content th,
+    .content td {
+      border: 1px solid #9ca3af;
+      padding: 8px 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+    .content thead th,
+    .content tr:first-child th {
+      background: #e5e7eb;
+      font-weight: 700;
+      color: #111827;
+    }
+    .content tbody tr:nth-child(even) td {
+      background: #f9fafb;
+    }
+    .no-page-break {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .compact-image-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      margin: 8px 0 10px;
+    }
+    .compact-image-row img {
+      width: calc(50% - 5px);
+      max-height: 150px;
+      object-fit: contain;
+      margin: 0;
+    }
     .footer {
       margin-top: 26px;
       padding-top: 10px;
@@ -110,11 +152,10 @@
 <body>
   <section class="cover">
     <h1>TailorMed Tracking System</h1>
-    <p class="subtitle">驗收檢核表（正式文件版）</p>
+    <p class="subtitle">驗收檢核表</p>
     <div class="meta">
-      <div>文件名稱：UAT-Checklist.md</div>
-      <div>文件版本：Formal PDF</div>
-      <div>輸出日期：2026-03-03</div>
+      <div>文件名稱：4.驗收檢核表.md</div>
+      <div>輸出日期：2026-03-09</div>
     </div>
   </section>
   <main class="content">
@@ -151,6 +192,6 @@
 <p><strong>驗收日期</strong>：＿＿＿＿＿＿＿＿＿＿＿＿<br><strong>公司/部門</strong>：＿＿＿＿＿＿＿＿＿＿＿＿<br><strong>驗收人</strong>：＿＿＿＿＿＿＿＿＿＿＿＿<br><strong>備註</strong>：＿＿＿＿＿＿＿＿＿＿＿＿</p>
 
   </main>
-  <div class="footer">TailorMed Tracking System UAT Checklist</div>
+  <div class="footer">TailorMed Tracking System Manual</div>
 </body>
 </html>

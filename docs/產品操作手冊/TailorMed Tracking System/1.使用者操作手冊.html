@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TailorMed Tracking System 操作手冊</title>
+  <title>TailorMed Tracking System 文件</title>
   <style>
     @page {
       size: A4;
@@ -97,6 +97,48 @@
       border-radius: 4px;
       padding: 1px 4px;
     }
+    .content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 16px;
+      font-size: 10.5pt;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .content th,
+    .content td {
+      border: 1px solid #9ca3af;
+      padding: 8px 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+    .content thead th,
+    .content tr:first-child th {
+      background: #e5e7eb;
+      font-weight: 700;
+      color: #111827;
+    }
+    .content tbody tr:nth-child(even) td {
+      background: #f9fafb;
+    }
+    .no-page-break {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .compact-image-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      margin: 8px 0 10px;
+    }
+    .compact-image-row img {
+      width: calc(50% - 5px);
+      max-height: 150px;
+      object-fit: contain;
+      margin: 0;
+    }
     .footer {
       margin-top: 26px;
       padding-top: 10px;
@@ -110,23 +152,22 @@
 <body>
   <section class="cover">
     <h1>TailorMed Tracking System</h1>
-    <p class="subtitle">使用者操作手冊（正式文件版）</p>
+    <p class="subtitle">使用者操作手冊</p>
     <div class="meta">
-      <div>文件名稱：Manual.md</div>
-      <div>文件版本：Formal PDF</div>
-      <div>輸出日期：2026-03-03</div>
+      <div>文件名稱：1.使用者操作手冊.md</div>
+      <div>輸出日期：2026-03-09</div>
     </div>
   </section>
   <main class="content">
     <h1 id="手冊">手冊</h1>
-<p>本系統為 TailorMed 提供之專屬查詢平台，協助客戶即時追蹤貨件運輸與溫控資訊。使用者僅需輸入「Job No.」與「Tracking No.」，即可查詢對應的運輸狀態與溫度紀錄。</p>
-<p>本手冊將說明操作方式與查詢結果的各項定義，並提供後台設定指引與常見問題解答。</p>
+<p>本系統為 TailorMed 提供之專屬查詢平台，協助客戶即時追蹤貨件運輸與狀態資訊。使用者僅需輸入「Job No.」與「Tracking No.」，即可查詢對應的運輸狀態與溫度紀錄。</p>
+<p>本手冊將說明操作方式與查詢結果的各項定義，並提供資料填寫指引與常見問題解答。</p>
 <hr>
 <h2 id="1-系統簡介">1. 系統簡介</h2>
 <ul>
 <li>平台網址：<a href="https://tracking.tailormed-intl.com/">https://tracking.tailormed-intl.com/</a></li>
-<li>功能目的：提供客戶與合作夥伴即時查詢冷鏈貨件的狀態與相關資訊。</li>
-<li>資料來源：由【TailorMed】OMS 資料庫系統同步更新。</li>
+<li>功能目的：提供客戶與合作夥伴、服務對象即時查詢冷鏈貨件的狀態與相關資訊。</li>
+<li>資料來源：由【TailorMed】OMS 資料庫系統(Tracking 表單)同步更新。</li>
 </ul>
 <h2 id="2-登入與基本操作">2. 登入與基本操作</h2>
 <ul>
@@ -152,9 +193,9 @@
 <li>Job No.：貨件單號（輸入欄位）</li>
 <li>Tracking No.：查詢碼（輸入欄位）</li>
 </ul>
-<p><img src="images/01.Tracking-Lookup.png" alt="Tracking Lookup"></p>
+<p><img src="file:///Users/arieshsieh/Develop/Development/src/Projects/DGHM/DMS/docs/%E7%94%A2%E5%93%81%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8A/TailorMed%20Tracking%20System/images/01.Tracking-Lookup.png" alt="Tracking Lookup"></p>
 <p>查詢結果如下圖：
-<img src="images/02.Last-Shipment-Update.png" alt="Tracking Lookup"></p>
+<img src="file:///Users/arieshsieh/Develop/Development/src/Projects/DGHM/DMS/docs/%E7%94%A2%E5%93%81%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8A/TailorMed%20Tracking%20System/images/02.Last-Shipment-Update.png" alt="Tracking Lookup"></p>
 <ul>
 <li>Job No.：貨件單號，顯示於左側卡片欄位。</li>
 <li>Original / Destination：起訖機場資訊，顯示為 IATA 三碼與箭頭標示（如 TPE → SFO）。</li>
@@ -163,15 +204,15 @@
 <li>ETA：預估到達日期（Estimated Time of Arrival）。</li>
 <li>Tracking No.：查詢碼，顯示於右側深藍區塊。</li>
 <li>Status：目前狀態，依據資料庫即時更新（如：Shipment Delivered）。</li>
-<li>Status Icon：依據狀態顯示圖示（如：已送達顯示禮盒符號）。</li>
+<li>Status Icon：依據乾冰有無添加狀態顯示圖示（如：有添加即顯示乾冰符號）。</li>
 <li>Last Update：系統顯示之最新狀態時間戳記。</li>
 <li>STATUS CHECK：查詢按鈕，輸入 Job No. 與 Tracking No. 後按下即可查詢。</li>
-<li>Support Info：若查無資料，會顯示聯絡資訊協助處理。</li>
+<li>Support Info：顯示若查無資料，可聯絡資訊協助處理。</li>
 </ul>
 <hr>
 <h3 id="（2）運輸進度時間軸（shipment-history-timeline）">（2）運輸進度時間軸（Shipment History Timeline）</h3>
 <p>位於畫面中央，呈現完整的運輸歷程，各節點包含時間戳記：
-<img src="images/03.Shipment-History.png" alt="Shipment History Timeline"></p>
+<img src="file:///Users/arieshsieh/Develop/Development/src/Projects/DGHM/DMS/docs/%E7%94%A2%E5%93%81%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8A/TailorMed%20Tracking%20System/images/03.Shipment-History.png" alt="Shipment History Timeline"></p>
 <ul>
 <li>Order Created</li>
 <li>Shipment Collected</li>
@@ -202,9 +243,9 @@
 <hr>
 <h3 id="（3）狀態圖例區（legend-area）">（3）狀態圖例區（Legend Area）</h3>
 <p>位於畫面底部，提供所有圖示狀態的對照說明：
-<img src="images/04.Legend.png" alt="Legend Area"></p>
+<img src="file:///Users/arieshsieh/Develop/Development/src/Projects/DGHM/DMS/docs/%E7%94%A2%E5%93%81%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8A/TailorMed%20Tracking%20System/images/04.Legend.png" alt="Legend Area"></p>
 <ul>
-<li>Executed：已執行</li>
+<li>Executed：該節點已執行</li>
 <li>On the Road：運送途中</li>
 <li>In Transit：轉運中</li>
 <li>Pending：尚未執行</li>
@@ -216,7 +257,7 @@
 <hr>
 <h3 id="（4）使用回饋與滿意度調查區（feedback-section）">（4）使用回饋與滿意度調查區（Feedback Section）</h3>
 <p>此區塊位於查詢結果與狀態圖例（Legend）下方，於貨件查詢完成後顯示，目的為蒐集使用者對 Tracking System 的實際使用體驗與 TailorMed 崴宇國際物流所提供之服務回饋。</p>
-<p><img src="images/05.Greeting-Feedback-Form-Btn.png" alt="Feedback Section"></p>
+<p><img src="file:///Users/arieshsieh/Develop/Development/src/Projects/DGHM/DMS/docs/%E7%94%A2%E5%93%81%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8A/TailorMed%20Tracking%20System/images/05.Greeting-Feedback-Form-Btn.png" alt="Feedback Section"></p>
 <ul>
 <li>本區顯示感謝訊息，提醒使用者 Tracking System 已完成本次查詢服務</li>
 <li>提供「Share Your Feedback」按鈕，連結至線上滿意度回饋表單</li>
@@ -231,7 +272,7 @@
 <hr>
 <h3 id="（5）合作推廣與廣告預留區（promotion--advertisement-area）">（5）合作推廣與廣告預留區（Promotion / Advertisement Area）</h3>
 <p>本區塊為預留之視覺展示區域，設計目的在於支援未來業務推廣與合作需求，預設情況下顯示為示意 Banner。</p>
-<p><img src="images/06.AD-Area.png" alt="Promotion Area"></p>
+<p><img src="file:///Users/arieshsieh/Develop/Development/src/Projects/DGHM/DMS/docs/%E7%94%A2%E5%93%81%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8A/TailorMed%20Tracking%20System/images/06.AD-Area.png" alt="Promotion Area"></p>
 <ul>
 <li>可用於展示合作廠商、物流相關服務或指定推廣內容</li>
 <li>內容可依不同客戶、專案或合作情境進行調整</li>
@@ -250,19 +291,19 @@
 <h3 id="tracking-資料建立與填寫說明（airtable-操作步驟）">Tracking 資料建立與填寫說明（Airtable 操作步驟）</h3>
 <p>建立 Tracking 資料列時，請依照以下步驟操作：</p>
 <ol>
-<li><p><strong>新增貨件資料列</strong></p>
+<li><p><strong>新增貨資料列</strong></p>
 <ul>
 <li>點選畫面下方 <code>+</code> 鈕新增列（如圖示【Step 1】）。</li>
 <li>輸入該筆貨件之 **Order No.**，並連結對應的 <strong>AIRWAYBILL/POD</strong>。</li>
 <li>系統將依照規則自動產生不重複的 **Tracking No.**。</li>
 </ul>
-<p><img src="images/airtable-step1.png" alt="Step 1"></p>
+<p><img src="file:///Users/arieshsieh/Develop/Development/src/Projects/DGHM/DMS/docs/%E7%94%A2%E5%93%81%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8A/TailorMed%20Tracking%20System/images/airtable-step1.png" alt="Step 1"></p>
 </li>
 <li><p><strong>資料自動帶入與關聯欄位填寫</strong></p>
 <ul>
 <li>一旦 Order 與 AIRWAYBILL/POD 成功連結，<strong>Ref. No.<strong>、</strong>Transport Type</strong>、<strong>Origin/Destination</strong> 將自動帶入，無須手動填寫（如圖示【Step 2】）。</li>
 </ul>
-<p><img src="images/airtable-step2.png" alt="Step 2"></p>
+<p><img src="file:///Users/arieshsieh/Develop/Development/src/Projects/DGHM/DMS/docs/%E7%94%A2%E5%93%81%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8A/TailorMed%20Tracking%20System/images/airtable-step2.png" alt="Step 2"></p>
 </li>
 <li><p><strong>運輸節點時間填寫</strong></p>
 <ul>
@@ -282,6 +323,12 @@
 <ul>
 <li>查無資料：請確認輸入內容(Job No. 或是 Tracking No.)是否正確。</li>
 <li>手機操作支援：支援行動版查詢。</li>
+</ul>
+<h2 id="7-data-protection--privacy-statement">7. Data Protection &amp; Privacy Statement</h2>
+<ul>
+<li>系統僅顯示運輸狀態，不儲存敏感醫療資料。</li>
+<li>不儲存查詢歷史（除非啟用監控記錄功能）。</li>
+<li>系統不涉及病患個人資料。</li>
 </ul>
 
   </main>

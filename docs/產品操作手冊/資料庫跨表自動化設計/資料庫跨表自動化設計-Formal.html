@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>資料庫跨表自動化設計 文件</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 18mm 16mm 18mm 16mm;
+    }
+    :root {
+      --text: #1f2937;
+      --title: #0f172a;
+      --muted: #6b7280;
+      --line: #d1d5db;
+      --brand: #1d4ed8;
+      --bg-soft: #f8fafc;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC",
+        "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      color: var(--text);
+      font-size: 11pt;
+      line-height: 1.75;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .cover {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 24px;
+      margin-bottom: 28px;
+      background: linear-gradient(180deg, #ffffff 0%, var(--bg-soft) 100%);
+    }
+    .cover h1 {
+      margin: 0 0 10px;
+      font-size: 23pt;
+      color: var(--title);
+      line-height: 1.25;
+    }
+    .cover .subtitle {
+      font-size: 12pt;
+      color: #334155;
+      margin: 0 0 20px;
+    }
+    .cover .meta {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 10pt;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+    }
+    .content h1, .content h2, .content h3 {
+      color: var(--title);
+      margin-top: 1.3em;
+      margin-bottom: 0.5em;
+      line-height: 1.4;
+      page-break-after: avoid;
+      break-after: avoid-page;
+    }
+    .content h1 { font-size: 18pt; border-bottom: 2px solid var(--line); padding-bottom: 0.25em; }
+    .content h2 { font-size: 14pt; border-left: 4px solid var(--brand); padding-left: 10px; }
+    .content h3 { font-size: 12pt; }
+    .content p { margin: 0.35em 0 0.75em; }
+    .content ul, .content ol { margin: 0.4em 0 0.9em 1.3em; }
+    .content li { margin: 0.2em 0; }
+    .content hr {
+      border: 0;
+      border-top: 1px dashed var(--line);
+      margin: 18px 0;
+    }
+    .content blockquote {
+      margin: 0.8em 0;
+      padding: 10px 12px;
+      background: var(--bg-soft);
+      border-left: 4px solid var(--brand);
+    }
+    .content img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 10px auto 14px;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .content code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 10pt;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      padding: 1px 4px;
+    }
+    .content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 16px;
+      font-size: 10.5pt;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .content th,
+    .content td {
+      border: 1px solid #9ca3af;
+      padding: 8px 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+    .content thead th,
+    .content tr:first-child th {
+      background: #e5e7eb;
+      font-weight: 700;
+      color: #111827;
+    }
+    .content tbody tr:nth-child(even) td {
+      background: #f9fafb;
+    }
+    .no-page-break {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .compact-image-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      margin: 8px 0 10px;
+    }
+    .compact-image-row img {
+      width: calc(50% - 5px);
+      max-height: 150px;
+      object-fit: contain;
+      margin: 0;
+    }
+    .footer {
+      margin-top: 26px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 9pt;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <section class="cover">
+    <h1>資料庫跨表自動化設計</h1>
+    <p class="subtitle">操作手冊</p>
+    <div class="meta">
+      <div>文件名稱：資料庫跨表自動化設計.md</div>
+      <div>輸出日期：2026-03-09</div>
+    </div>
+  </section>
+  <main class="content">
+    <h1 id="airtable-自動化操作手冊">Airtable 自動化操作手冊</h1>
+<blockquote>
+<p><strong>文件版本</strong>：v1.1<br><strong>建立日期</strong>：2026-02-08<br><strong>最後更新</strong>：2026-03-04<br><strong>維護者</strong>：萬能數維<br><strong>適用對象</strong>：報價單操作人員、新進人員、系統管理員</p>
+</blockquote>
+<hr>
+<h2 id="一、文件定位與目的">一、文件定位與目的</h2>
+<p>本手冊用於說明 Airtable 報價系統中「主表 × 子表 × 自動化」的正確操作方式，<br>協助操作人員在日常填單時避免資料錯誤，並在異常時能正確回報。</p>
+<p>本文件<strong>不是</strong>系統開發教學，亦不包含以下內容：</p>
+<ul>
+<li>Automation 設定畫面逐步教學</li>
+<li>Script 程式邏輯修改教學</li>
+<li>欄位架構重設與資料模型改造</li>
+</ul>
+<p>如需調整系統邏輯（觸發條件、欄位關聯、分群規則），請由管理員另案評估。</p>
+<hr>
+<h2 id="二、系統架構概覽">二、系統架構概覽</h2>
+<p>本系統涉及四張主要資料表：</p>
+<table>
+<thead>
+<tr>
+<th>表單名稱</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>✏️ Quotations Table</td>
+<td>報價單主表，操作人員的唯一主要作業介面</td>
+</tr>
+<tr>
+<td>🟨 Package Items</td>
+<td>包材項目明細表（子表）</td>
+</tr>
+<tr>
+<td>🔴 Charge Items</td>
+<td>計費項目明細表（子表）</td>
+</tr>
+<tr>
+<td>🔵 Non-Taxable Charges</td>
+<td>免稅項目明細表（子表）</td>
+</tr>
+</tbody></table>
+<p>核心原則：</p>
+<ul>
+<li>操作人員只在主表操作及填寫</li>
+<li>三張子表由系統自動建立、分群、清理</li>
+</ul>
+<h3 id="21-主表與子表角色">2.1 主表與子表角色</h3>
+<ul>
+<li><strong>主表（✏️ Quotations）</strong><ul>
+<li>業務層級資料入口</li>
+<li>填寫 Job No.、Partner、Status 等欄位</li>
+</ul>
+</li>
+<li><strong>子表（🟨 Package Items / 🔴 Charge Items / 🔵 Non-Taxable Charges）</strong><ul>
+<li>由系統依主表操作自動產生</li>
+<li>不建議手動新增或修改連結關係</li>
+</ul>
+</li>
+</ul>
+<h3 id="22-暫存欄位（temp）機制">2.2 暫存欄位（Temp）機制</h3>
+<p>主表中標示 <code>(暫)</code> 的欄位（如：<code>🟨 選取箱型(暫)</code>）僅用於觸發自動化：</p>
+<ol>
+<li>使用者選取品項</li>
+<li>系統建立並分群子表資料（依 Job No.）</li>
+<li>系統自動清空 <code>(暫)</code> 欄位</li>
+</ol>
+<p><code>(暫)</code> 欄位不保留最終資料，屬於觸發型欄位。</p>
+<p><img src="file:///Users/arieshsieh/Develop/Development/src/Projects/DGHM/DMS/docs/%E7%94%A2%E5%93%81%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8A/%E8%B3%87%E6%96%99%E5%BA%AB%E8%B7%A8%E8%A1%A8%E8%87%AA%E5%8B%95%E5%8C%96%E8%A8%AD%E8%A8%88/Pic01.png" alt="暫存欄位操作示意">
+<em>圖 1：紅框處為在✏️ Quotations 資料表中可填入包材、計稅品項及免稅項目之欄位(觸發欄)。</em></p>
+<p><img src="file:///Users/arieshsieh/Develop/Development/src/Projects/DGHM/DMS/docs/%E7%94%A2%E5%93%81%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8A/%E8%B3%87%E6%96%99%E5%BA%AB%E8%B7%A8%E8%A1%A8%E8%87%AA%E5%8B%95%E5%8C%96%E8%A8%AD%E8%A8%88/Pic02.png" alt="子表分群結果示意">
+<em>圖 2：紅框處為單一資料展開後，可填入包材、計稅品項及免稅項目之欄位(觸發欄)。</em></p>
+<h2 id="三、自動化說明">三、自動化說明</h2>
+<h3 id="31-item-table-auto-grouping（🟨🔴🔵）">3.1 Item Table Auto Grouping（🟨🔴🔵）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>觸發條件</td>
+<td>主表記錄符合分群條件</td>
+</tr>
+<tr>
+<td>執行方式</td>
+<td>Airtable Script 自動執行</td>
+</tr>
+<tr>
+<td>狀態</td>
+<td>ON（啟用中）</td>
+</tr>
+</tbody></table>
+<p>功能說明：</p>
+<ul>
+<li>依主表輸入，自動將資料寫入對應之子表</li>
+<li>建立正確主、子表關聯</li>
+<li>避免手動搬資料造成錯誤</li>
+</ul>
+<h3 id="32-auto-remove-orphan-items（子表各一支）">3.2 Auto Remove Orphan Items（子表各一支）</h3>
+<p>對應三張子表：</p>
+<ul>
+<li>Auto Remove Orphan items in 🟨 Package Items</li>
+<li>Auto Remove Orphan items in 🔴 Charge Items</li>
+<li>Auto Remove Orphan items in 🔵 Non-Taxable Charges</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>觸發條件</td>
+<td>子表記錄進入指定 View</td>
+</tr>
+<tr>
+<td>執行方式</td>
+<td>Airtable Script 自動執行</td>
+</tr>
+<tr>
+<td>狀態</td>
+<td>ON（啟用中）</td>
+</tr>
+</tbody></table>
+<p>功能說明：</p>
+<ul>
+<li>清理未與任何主表記錄關聯之孤立項（Orphan Items）</li>
+<li>防止資料膨脹、降低錯誤累積</li>
+</ul>
+<hr>
+<h2 id="四、正確操作流程（建議唯一操作方式）">四、正確操作流程（建議唯一操作方式）</h2>
+<h3 id="41-建立新單-sop">4.1 建立新單 SOP</h3>
+<ol>
+<li>在主表新增一筆<strong>空白資料</strong></li>
+<li>填入全新且未使用過的 Job No.（不可 Duplicate）</li>
+<li>填寫 Partner / Shipper / Consignee 等基本欄位</li>
+<li>於 <code>(暫)</code> 欄位選取所需品項</li>
+<li>等待系統自動化執行（約 1～2 秒）</li>
+<li>確認：<ul>
+<li><code>(暫)</code> 欄位已清空</li>
+<li>對應子表資料已建立且依 Job No. 分群</li>
+</ul>
+</li>
+<li>展開此單，並於該自動加入品項內，填寫相應之數值及內容</li>
+</ol>
+<h3 id="42-子表可人工補充範圍（僅限）">4.2 子表可人工補充範圍（僅限）</h3>
+<p>可填寫：</p>
+<ul>
+<li>Quantity（數量）</li>
+<li>Weight（重量）</li>
+<li>Manual Price（手動價格）</li>
+<li>Item Description、Batch/Lot Number 等品項明細欄位</li>
+</ul>
+<p>不可操作：</p>
+<ul>
+<li>新增子表資料</li>
+<li>修改子表連結欄位</li>
+<li>直接修正 Unnamed record</li>
+</ul>
+<hr>
+<h2 id="五、嚴格禁止事項">五、嚴格禁止事項</h2>
+<h3 id="51-禁止使用-duplicate-建立新單新的-quotation">5.1 禁止使用 Duplicate 建立新單(新的 Quotation)</h3>
+<p>Duplicate 會複製舊連結與舊品項關係，常導致：</p>
+<ul>
+<li>舊單號殘留</li>
+<li>子表關聯錯位</li>
+<li>品項共用與重複計價風險</li>
+</ul>
+<h3 id="52-禁止直接操作子表連結">5.2 禁止直接操作子表連結</h3>
+<p>請勿：</p>
+<ul>
+<li>手動新增子表記錄</li>
+<li>修改子表連結欄位</li>
+<li>嘗試人工修復 Unnamed record</li>
+</ul>
+<h2 id="六、常見異常與處理方式">六、常見異常與處理方式</h2>
+<h3 id="q1：子表出現-unnamed-record">Q1：子表出現 Unnamed record</h3>
+<p>常見原因：</p>
+<ul>
+<li>使用 Duplicate</li>
+<li>人工改動子表連結欄位</li>
+</ul>
+<p>建議處理：</p>
+<ol>
+<li>重新建立新單</li>
+<li>回主表重選 <code>(暫)</code> 欄位品項</li>
+<li>必要時使用 Record Template</li>
+</ol>
+<h3 id="q2：子表有多餘項目，但主表沒有">Q2：子表有多餘項目，但主表沒有</h3>
+<p>可能為孤立項，系統會在觸發時自動清理。<br>請勿手動刪除或重接連結。</p>
+<h3 id="q3：主表已修改，子表未立即更新">Q3：主表已修改，子表未立即更新</h3>
+<p>自動化可能需數秒至數十秒。</p>
+<hr>
+<h2 id="七、操作原則總結">七、操作原則總結</h2>
+<ul>
+<li>不 Duplicate Record</li>
+<li>只操作主表(✏️ Quotations)</li>
+<li>只用 ✏️ Quotations中有 <code>(暫)</code> 欄位觸發分群</li>
+<li>子表交由系統處理</li>
+</ul>
+<hr>
+<h2 id="九、技術背景（管理員參考）">九、技術背景（管理員參考）</h2>
+<p>上述四項自動化使用 Airtable Script 實作：</p>
+<table>
+<thead>
+<tr>
+<th>自動化名稱</th>
+<th>Script 邏輯摘要</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Item Table Auto Grouping</td>
+<td>讀取主表內容後，分類寫入三張子表並建立關聯</td>
+</tr>
+<tr>
+<td>Auto Remove Orphan Items × 3</td>
+<td>掃描子表中未關聯記錄並自動刪除</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>Script 修改需具 JavaScript 能力，請勿直接進行程式碼內容的修改。</p>
+</blockquote>
+<hr>
+<h2 id="十、異動紀錄">十、異動紀錄</h2>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>版本</th>
+<th>修改內容</th>
+<th>修改者</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2026-03-04</td>
+<td>v1.1</td>
+<td>合併內容並重整章節結構</td>
+<td>萬能數維</td>
+</tr>
+<tr>
+<td>2026-02-08</td>
+<td>v1.0</td>
+<td>初版建立</td>
+<td>萬能數維</td>
+</tr>
+</tbody></table>
+<hr>
+<p><em>本文件如有更新，請通知相關操作人員。</em></p>
+
+  </main>
+  <div class="footer">資料庫跨表自動化設計 Manual</div>
+</body>
+</html>

@@ -97,6 +97,48 @@
       border-radius: 4px;
       padding: 1px 4px;
     }
+    .content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 16px;
+      font-size: 10.5pt;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .content th,
+    .content td {
+      border: 1px solid #9ca3af;
+      padding: 8px 10px;
+      vertical-align: top;
+      text-align: left;
+    }
+    .content thead th,
+    .content tr:first-child th {
+      background: #e5e7eb;
+      font-weight: 700;
+      color: #111827;
+    }
+    .content tbody tr:nth-child(even) td {
+      background: #f9fafb;
+    }
+    .no-page-break {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .compact-image-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      page-break-inside: avoid;
+      break-inside: avoid;
+      margin: 8px 0 10px;
+    }
+    .compact-image-row img {
+      width: calc(50% - 5px);
+      max-height: 150px;
+      object-fit: contain;
+      margin: 0;
+    }
     .footer {
       margin-top: 26px;
       padding-top: 10px;
@@ -110,11 +152,10 @@
 <body>
   <section class="cover">
     <h1>TailorMed Tracking System</h1>
-    <p class="subtitle">專案技術與需求文件（正式文件版）</p>
+    <p class="subtitle">專案技術與需求文件</p>
     <div class="meta">
-      <div>文件名稱：ProjectDocs-PDF.md</div>
-      <div>文件版本：Formal PDF</div>
-      <div>輸出日期：2026-03-03</div>
+      <div>文件名稱：2.專案技術與需求文件.md</div>
+      <div>輸出日期：2026-03-09</div>
     </div>
   </section>
   <main class="content">
@@ -254,12 +295,11 @@
 <h5 id="11-支援的追蹤類型">1.1 支援的追蹤類型</h5>
 <ul>
 <li>DOMESTIC (國內運輸) 4 個節點</li>
-<li>IMPORT/EXPORT (進出口運輸/跨國貿易) 7 個節點 + 2 個事件</li>
-<li>ORDER COMPLETION (訂單完成) 3 個節點</li>
+<li>IMPORT/EXPORT/CROSS (進出口運輸/跨國貿易) 7 個節點 + 2 個事件</li>
 </ul>
 <h5 id="12-節點狀態系統">1.2 節點狀態系統</h5>
 <ul>
-<li>Completed (已執行): 藍色實心圓 + 白色實心圓 + 勾選圖標</li>
+<li>Excuted (已執行): 藍色實心圓 + 白色實心圓 + 勾選圖標</li>
 <li>Processing (處理中): 桃色實心圓 + 白色實心圓 + 卡車圖標 + 狀態文字有 Gradient Shine 動畫</li>
 <li>In Transit (轉運中): 桃色實心圓 + 白色實心圓 + 飛機運輸圖標 + 狀態文字有 Gradient Shine 動畫</li>
 <li>Pending (待處理): 灰色實心圓圈 + 白色實心圓 + 無圖標</li>
@@ -323,12 +363,6 @@
 <li>字體縮放: 相對縮小</li>
 <li>間距調整: 減少 padding</li>
 </ul>
-<h3 id="具體實現需求">具體實現需求</h3>
-<h4 id="1-節點內容結構">1. 節點內容結構</h4>
-<h5 id="11-標準節點">1.1 標準節點</h5>
-<h4 id="image1">![][image1]</h4>
-<h5 id="12-order-completion-特殊節點">1.2 Order Completion 特殊節點</h5>
-<p>![][image2]</p>
 <h4 id="2-特殊組件需求">2. 特殊組件需求</h4>
 <h5 id="21-order-completion-容器">2.1 Order Completion 容器</h5>
 <ul>
@@ -351,7 +385,7 @@
 <li>In Transit (運輸中) Pending 狀態</li>
 <li>Shipment Delivered (貨件送達) Pending 狀態</li>
 </ol>
-<h5 id="32-importexport-流程">3.2 IMPORT/EXPORT 流程</h5>
+<h5 id="32-importexportcross-流程">3.2 IMPORT/EXPORT/CROSS 流程</h5>
 <ol>
 <li>Order Created (訂單建立)</li>
 <li>Shipment Collected (貨件收取)</li>
@@ -400,7 +434,6 @@
 <ul>
 <li>模組化設計: 組件化架構</li>
 <li>樣式分離: 變數統一管理</li>
-<li>註解完整: 中文註解說明</li>
 </ul>
 <h4 id="2-擴展性">2. 擴展性</h4>
 <ul>
@@ -493,7 +526,13 @@
 </ul>
 <h4 id="3-系統架構設計">3. 系統架構設計</h4>
 <h5 id="31-整體架構">3.1 整體架構</h5>
-<h4 id="image3">![][image3]</h4>
+<p>本系統採用「前端展示 + Serverless API + Airtable」三層架構：</p>
+<ol>
+<li><strong>前端展示層</strong>：負責接收使用者輸入（Order No. / Tracking No.）並呈現時間軸狀態。</li>
+<li><strong>API 處理層</strong>：由 Netlify Function 接收查詢請求、驗證參數並轉換資料格式。</li>
+<li><strong>資料存取層</strong>：透過 Airtable API 讀取追蹤資料，回傳前端所需之節點資訊與狀態欄位。</li>
+</ol>
+<p>此架構可同時兼顧部署效率、維護彈性與後續擴充性（新增節點或狀態類型）。</p>
 <h5 id="32-組件架構設計">3.2 組件架構設計</h5>
 <ul>
 <li>模組化設計: 每個時間軸類型為獨立組件</li>
@@ -531,7 +570,14 @@
 <li>認證方式: Personal Access Token (PAT)</li>
 </ul>
 <h5 id="42-資料結構設計">4.2 資料結構設計</h5>
-<p>由於此專案主要為前端展示系統，資料庫設計主要針對靜態配置資料：<br>![][image4]</p>
+<p>由於此專案主要為前端展示系統，資料庫設計主要針對靜態配置資料：</p>
+<ul>
+<li><strong>核心識別欄位</strong>：Order No.、Tracking No.</li>
+<li><strong>狀態欄位</strong>：Current Status、Completed At、Updated At</li>
+<li><strong>節點欄位</strong>：各時間軸節點之名稱、排序、時間戳記、啟用狀態</li>
+<li><strong>顯示設定欄位</strong>：節點顏色、圖示、說明文字、前端顯示順序</li>
+</ul>
+<p>資料欄位命名採一致格式，便於 API 映射與前端渲染，降低維護成本。</p>
 <h5 id="43-資料管理策略">4.3 資料管理策略</h5>
 <ul>
 <li>靜態配置: 時間軸結構和節點資訊</li>
@@ -573,7 +619,7 @@
 </ul>
 <p><strong>連接線設計</strong></p>
 <ul>
-<li>線條高度: 5px</li>
+<li>線條高度: 4px</li>
 <li>漸層效果: 支援純色和漸層兩種模式</li>
 <li>動畫效果: 進度條動畫</li>
 </ul>
@@ -716,6 +762,6 @@
 <p>如需調整系統行為或新增功能，<br>請另行提出需求並進行評估與報價。</p>
 
   </main>
-  <div class="footer">TailorMed Tracking System Project Documentation</div>
+  <div class="footer">TailorMed Tracking System Manual</div>
 </body>
 </html>

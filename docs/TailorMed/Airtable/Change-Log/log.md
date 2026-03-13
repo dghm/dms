@@ -7,6 +7,25 @@ sidebar_position: 1
 
 ## Airtable Change Log
 
+### 2026-03-12
+
+### DataBase:【TailorMed】FIN
+
+| 需求方 | 範圍(Table)    | 欄位(Field)   | 異動 | 備註   |
+| ------ | -------------- | ------------- | ---- | ------ |
+| Cody   | Charge Catalog | National Code | 新增 | NL、IT |
+
+---
+
+### 2026-03-08
+
+### DataBase:【TailorMed】FIN
+
+| 需求方 | 範圍(Table)    | 欄位(Field) | 異動 | 備註    |
+| ------ | -------------- | ----------- | ---- | ------- |
+| Hedy   | Charge Catalog | ••          | 新增 | S28     |
+| Hedy   | Charge Catalog | •••         | 新增 | +APP056 |
+
 ### 2026-03-04
 
 ### DataBase:【TailorMed】CRM
