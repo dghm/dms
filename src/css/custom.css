@@ -434,6 +434,12 @@ body[data-path='/'] .navbar [class*='DocSearch'] {
   background-color: var(--ifm-color-primary) !important;
 }
 
+/* 深色模式下的側邊欄（手機 Nav menu）- 改為較深底色以提升對比 */
+[data-theme='dark'] .navbar-sidebar {
+  background-color: #15171a !important; /* 比頁面背景略亮、但仍偏深的灰藍色 */
+  backdrop-filter: blur(6px);
+}
+
 /* Day 模式下側邊欄文字顏色 - 確保文字可見 */
 .navbar-sidebar__item {
   color: rgba(255, 255, 255, 0.95) !important;
@@ -807,8 +813,14 @@ a:hover {
   color: var(--ifm-color-primary-light);
 }
 
+/* 夜晚模式表格：僅用 td 的底線與最後一列形成底邊，不設 table 的 border 以免底線超出欄寬 */
 [data-theme='dark'] .markdown table th {
   background-color: var(--ifm-color-primary-darkest);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+[data-theme='dark'] .markdown table td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 [data-theme='dark'] .markdown table tr:hover {
