@@ -15,7 +15,34 @@
     # NPM 版本
     NPM_VERSION = "10"
 
-# 重定向規則 - 確保所有路由都正確處理
+# 重定向規則（具體規則需放在 /* 之前，否則會被 SPA 規則吃掉）
+
+# 登入後導向：開此網址會直接到「最新一則會議記錄」
+# 請在 Netlify Identity 將「登入後導向 URL」設為 /latest-meeting
+[[redirects]]
+  from = "/latest-meeting"
+  to = "/docs/tailormed/會議記錄/2603/mm-260315"
+  status = 302
+  force = true
+
+# 修正錯誤路徑：登入或舊連結可能指向沒有年月資料夾的會議記錄，導向正確路徑或最新會議
+[[redirects]]
+  from = "/docs/TailorMed/會議記錄/MM-260109"
+  to = "/docs/tailormed/會議記錄/2602/mm-260109"
+  status = 302
+  force = true
+[[redirects]]
+  from = "/docs/tailormed/會議記錄/mm-260109"
+  to = "/docs/tailormed/會議記錄/2602/mm-260109"
+  status = 302
+  force = true
+[[redirects]]
+  from = "/docs/tailormed/會議記錄/MM-260109"
+  to = "/docs/tailormed/會議記錄/2602/mm-260109"
+  status = 302
+  force = true
+
+# SPA 回退：其餘路徑交給前端路由
 [[redirects]]
   from = "/*"
   to = "/index.html"

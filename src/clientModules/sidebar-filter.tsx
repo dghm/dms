@@ -173,7 +173,22 @@ if (typeof window !== 'undefined') {
           return true;
         }
 
-        // 檢查路徑 6: TailorMed/會議記錄/
+        // 檢查路徑 6: TailorMed/Docs/
+        const docsPathSegments = ['tailormed', 'docs'];
+
+        const hasDocsPath = docsPathSegments.every((segment) => {
+          const segmentLower = segment.toLowerCase();
+          return (
+            pathLower.includes(segmentLower) ||
+            decodedPath.includes(segmentLower)
+          );
+        });
+
+        if (hasDocsPath) {
+          return true;
+        }
+
+        // 檢查路徑 7: TailorMed/會議記錄/
         const meetingRecordPathSegments = ['tailormed', '會議記錄'];
 
         const hasMeetingRecordPath = meetingRecordPathSegments.every(
@@ -207,6 +222,7 @@ if (typeof window !== 'undefined') {
           textLower === '2026' ||
           textLower.includes('供應商稽核數位化方案') ||
           textLower.includes('airtable') ||
+          textLower.includes('docs') ||
           textLower === 'data' ||
           textLower === 'interface' ||
           textLower === 'crm' ||
@@ -251,11 +267,12 @@ if (typeof window !== 'undefined') {
         const parentLower = parentText.toLowerCase();
         const childLower = childText.toLowerCase();
 
-        // TailorMed 下允許 Website、Airtable 和會議記錄
+        // TailorMed 下允許 Website、Airtable、Docs 和會議記錄
         if (parentLower.includes('tailormed')) {
           return (
             childLower.includes('website') ||
             childLower.includes('airtable') ||
+            childLower.includes('docs') ||
             childLower.includes('會議記錄') ||
             childLower.includes('會議')
           );
@@ -264,6 +281,11 @@ if (typeof window !== 'undefined') {
         // Website 下只允許 2026
         if (parentLower.includes('website')) {
           return childLower === '2026';
+        }
+
+        // Docs 下允許所有子分類（如 UAT 等）
+        if (parentLower.includes('docs')) {
+          return true;
         }
 
         // Airtable 下允許 Data、Interface 和 Change-Log，不允許 Billing Info
@@ -333,6 +355,11 @@ if (typeof window !== 'undefined') {
         // 2026 下只允許"供應商稽核數位化方案"
         if (parentLower === '2026') {
           return childLower.includes('供應商稽核數位化方案');
+        }
+
+        // 會議記錄下允許所有年月資料夾（2601、2602、2603 等）及其下會議文件
+        if (parentLower.includes('會議記錄') || parentLower.includes('會議')) {
+          return true;
         }
 
         // 其他情況使用預設檢查
@@ -852,8 +879,35 @@ if (typeof window !== 'undefined') {
     }
   }
 
+  // 最新會議記錄路徑（本機無 Netlify redirect，需由前端導向）
+  const LATEST_MEETING_PATH = '/docs/tailormed/會議記錄/2603/mm-260315';
+
   // 頁面載入時執行
   function init() {
+    const path = window.location.pathname;
+
+    // 本機：/latest-meeting 無對應頁面，直接導向最新會議
+    if (path === '/latest-meeting' || path === '/latest-meeting/') {
+      window.location.replace(LATEST_MEETING_PATH);
+      return;
+    }
+
+    // 登入後若被帶到「會議記錄」的舊路徑（沒有年月資料夾 2601/2602/2603），自動導向最新會議
+    const pathDecoded = decodeURIComponent(path);
+    const hasMeetingPath =
+      pathDecoded.includes('會議記錄') || path.includes('會議記錄');
+    const afterMeeting = pathDecoded.split('會議記錄')[1]?.replace(/^\//, '') || '';
+    const hasYearMonth = /^260[123]\//.test(afterMeeting) || /\/260[123]\//.test(pathDecoded);
+    if (
+      hasMeetingPath &&
+      !hasYearMonth &&
+      path !== '/latest-meeting' &&
+      afterMeeting.length > 0
+    ) {
+      window.location.replace('/latest-meeting');
+      return;
+    }
+
     // 等待 sidebar 完全載入
     function waitForSidebar() {
       const sidebar = document.querySelector('.theme-doc-sidebar-container');
