@@ -8,9 +8,9 @@
 
 ### 第一次使用？
 
-1. **閱讀指南**：先看 [`文檔編輯指南.md`](./文檔編輯指南.md) - 這是給非技術人員的完整指南
+1. **閱讀指南**：先看 [`文檔編輯指南.md`](./_internal-guides/文檔編輯指南.md) - 這是給非技術人員的完整指南
 2. **使用模板**：參考 [`docs/template.md`](./docs/template.md) 來創建新文檔
-3. **查詢語法**：需要時查看 [`Markdown快速參考.md`](./Markdown快速參考.md)
+3. **查詢語法**：需要時查看 [`Markdown快速參考.md`](./_internal-guides/Markdown快速參考.md)
 
 ---
 
@@ -93,8 +93,9 @@ tm-docs/
 ├── src/
 │   ├── css/                # 樣式設定
 │   └── pages/              # 自訂頁面
-├── 文檔編輯指南.md          # 📖 完整使用指南
-├── Markdown快速參考.md      # 📋 語法快速查詢
+├── _internal-guides/         # 📖 內部維運與編輯指南
+│   ├── 文檔編輯指南.md
+│   └── Markdown快速參考.md
 ├── docusaurus.config.js    # 網站配置
 └── sidebars.js             # 側邊欄配置
 ```
@@ -105,9 +106,9 @@ tm-docs/
 
 | 文件 | 說明 | 適合對象 |
 |------|------|---------|
-| [`文檔編輯指南.md`](./文檔編輯指南.md) | 完整的使用指南，包含所有操作說明 | 所有人 |
+| [`文檔編輯指南.md`](./_internal-guides/文檔編輯指南.md) | 完整的使用指南，包含所有操作說明 | 所有人 |
 | [`docs/template.md`](./docs/template.md) | 可以直接複製使用的文檔模板 | 所有人 |
-| [`Markdown快速參考.md`](./Markdown快速參考.md) | 語法快速查詢卡片 | 所有人 |
+| [`Markdown快速參考.md`](./_internal-guides/Markdown快速參考.md) | 語法快速查詢卡片 | 所有人 |
 | `README.md`（本文件） | 專案說明和快速開始 | 技術人員 |
 
 ---
@@ -134,8 +135,8 @@ tm-docs/
 
 ## 🆘 需要幫助？
 
-- 📖 查看 [`文檔編輯指南.md`](./文檔編輯指南.md)
-- 📋 查詢 [`Markdown快速參考.md`](./Markdown快速參考.md)
+- 📖 查看 [`文檔編輯指南.md`](./_internal-guides/文檔編輯指南.md)
+- 📋 查詢 [`Markdown快速參考.md`](./_internal-guides/Markdown快速參考.md)
 - 💬 聯絡技術支援
 
 ---
