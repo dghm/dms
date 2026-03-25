@@ -30,6 +30,7 @@
   /* 內容顏色 - Light Mode */
   --ifm-color-content: #1c1e21;
   --ifm-color-content-secondary: #606770;
+  --ifm-link-color: #153a93;
 
   /* 字型設定 */
   --ifm-font-family-base: 'Encode Sans Expanded', -apple-system,
@@ -512,11 +513,11 @@ body[data-path='/'] .navbar [class*='DocSearch'] {
 
 /* 連結顏色使用次要顏色 */
 a {
-  color: var(--ifm-color-primary);
+  color: var(--ifm-link-color);
 }
 
 a:hover {
-  color: var(--ifm-color-secondary);
+  color: var(--ifm-link-color);
 }
 
 /* 按鈕樣式 */
@@ -598,13 +599,19 @@ a:hover {
 
 /* 連結樣式 */
 .markdown a {
-  color: var(--ifm-color-primary);
+  color: var(--ifm-link-color);
   text-decoration: underline;
-  transition: color 0.2s ease;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease, text-decoration-thickness 0.2s ease,
+    text-underline-offset 0.2s ease, background-color 0.2s ease;
 }
 
 .markdown a:hover {
-  color: var(--ifm-color-secondary);
+  color: var(--ifm-link-color);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  background-color: rgba(21, 58, 147, 0.08);
 }
 
 /* 引用區塊 */

@@ -48,7 +48,10 @@
 
 - **封面**（深藍背景）→ `TailorMed_LOGO_WhiteName.svg`（白色文字版，inline SVG）
 - **每頁頁首**（白色背景）→ `TailorMed_LOGO_blueName.svg`（深藍文字版，inline SVG）
-- **封面浮水印** → `ICON.svg`，放置右下角、尺寸 480px、透明度 7%、部分被裁切
+- **封面浮水印** → `ICON-OP15.svg`（已內含 `fill-opacity="0.15"` 的半透明版本）
+  - SVG 直接嵌入 `.page.cover`，**不可包在任何 wrapper div 裡**
+  - Style 直接寫在 SVG tag 上：`position:absolute; bottom:-5%; right:-15%; width:70%; height:auto; pointer-events:none; z-index:0; -webkit-print-color-adjust:exact; print-color-adjust:exact;`
+  - **不使用外層 div opacity**，否則 Chrome 列印時會被忽略
 
 ### 頁面結構
 
@@ -280,4 +283,4 @@ with open('output.html', 'w') as f:
 
 ---
 
-_Last updated: March 2026 | v1.2_
+_Last updated: March 2026 | v1.3_
