@@ -63,6 +63,9 @@
   --ifm-color-content: #e4e6eb;
   --ifm-color-content-secondary: #b0b3b8;
 
+  /* 內文連結：淺藍，避免沿用日間深藍導致對比不足 */
+  --ifm-link-color: #9dc4f8;
+
   /* 字型設定（Dark Mode 通常與 Light Mode 相同） */
   /* 如需不同的字型，可以在這裡重新定義 */
   /* --ifm-font-family-base: ... */
@@ -801,13 +804,16 @@ a:hover {
   color: var(--ifm-color-content-secondary);
 }
 
-/* Night Mode 連結 hover 效果 - 使用 Accent 色 */
+/* Night Mode 連結 hover：與日間一致（同色 + 底色 + 底線加強），可讀性優於改 Accent */
 [data-theme='dark'] a:hover {
-  color: var(--ifm-color-accent);
+  color: var(--ifm-link-color);
 }
 
 [data-theme='dark'] .markdown a:hover {
-  color: var(--ifm-color-accent);
+  color: var(--ifm-link-color);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  background-color: rgba(157, 196, 248, 0.18);
 }
 
 [data-theme='dark'] .markdown blockquote {
