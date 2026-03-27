@@ -11,6 +11,10 @@ sidebar_position: 1
 
 ### DataBase:【TailorMed】OMS
 
+| 需求方 | 範圍(Table) | 欄位(Field)   | 異動 | 備註             |
+| ------ | ----------- | ------------- | ---- | ---------------- |
+| Hedy   | 列印文件    | Dry Ice label | 調整 | 文件 Size & 排版 |
+
 ## ![Dry ice label v.2](SCR-20260327-louf.png)
 
 ### 2026-03-12
