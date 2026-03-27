@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>服務合約 — 崴宇國際物流 × 萬能數維</title>
+<style>
+  /* ── 基礎 ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Noto Sans TC", "微軟正黑體", sans-serif;
+    font-size: 10pt;
+    line-height: 1.8;
+    color: #222;
+    background: #f0f0f0;
+  }
+
+  /* ── 頁面容器 ── */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 12mm auto;
+    padding: 20mm 22mm 24mm;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+    position: relative;
+  }
+
+  /* ── 列印設定 ── */
+  @media print {
+    body { background: #fff; }
+    .page {
+      margin: 0;
+      padding: 18mm 20mm 22mm;
+      box-shadow: none;
+      page-break-after: always;
+    }
+    .page:last-child { page-break-after: avoid; }
+  }
+
+  /* ── 封面標題區 ── */
+  .cover-header {
+    text-align: center;
+    margin-bottom: 10mm;
+    padding-bottom: 6mm;
+    border-bottom: 2px solid #1a3a5c;
+  }
+
+  .doc-title {
+    font-size: 20pt;
+    font-weight: 700;
+    color: #1a3a5c;
+    letter-spacing: 4px;
+    margin-bottom: 3mm;
+  }
+
+  .doc-subtitle {
+    font-size: 10pt;
+    color: #555;
+    letter-spacing: 1px;
+  }
+
+  .contract-no {
+    font-size: 9pt;
+    color: #888;
+    margin-top: 2mm;
+  }
+
+  /* ── 雙方資料表 ── */
+  .parties-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 6mm 0 4mm;
+    font-size: 9.5pt;
+  }
+
+  .parties-table th {
+    background: transparent;
+    color: #111;
+    padding: 0;
+    text-align: left;
+    font-weight: 700;
+    font-size: 9.5pt;
+    letter-spacing: 0;
+    width: 50%;
+  }
+
+  .parties-table td {
+    padding: 1.8mm 6mm;
+    vertical-align: middle;
+    border: none;
+  }
+
+  .parties-table .label {
+    color: #111;
+    font-size: 9pt;
+    font-weight: 600;
+    display: inline-block;
+    width: 26mm;
+    text-align: left;
+    white-space: nowrap;
+    margin-right: 2mm;
+  }
+
+  .parties-table .value {
+    color: #111;
+    font-weight: 500;
+    display: inline-block;
+    min-width: 55mm;
+    border-bottom: 1.2px solid #111;
+    padding-bottom: 1mm;
+  }
+
+  .sign-date-row td {
+    background: transparent !important;
+    text-align: center;
+    font-size: 9pt;
+    color: #444;
+    padding: 3mm 0;
+  }
+
+  /* ── 條文區 ── */
+  .article {
+    margin-bottom: 7mm;
+  }
+
+  .article-title {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #1a3a5c;
+    border-left: 3.5px solid #1a3a5c;
+    padding-left: 3mm;
+    margin-bottom: 3mm;
+    margin-top: 6mm;
+  }
+
+  .article p {
+    margin-bottom: 2mm;
+    text-indent: 0;
+  }
+
+  /* ── 條號清單 ── */
+  ol.clause {
+    padding-left: 7mm;
+    margin: 0;
+  }
+
+  ol.clause > li {
+    margin-bottom: 2mm;
+    padding-left: 1mm;
+  }
+
+  ol.clause > li::marker {
+    color: #1a3a5c;
+    font-weight: 600;
+  }
+
+  ol.clause.sub {
+    list-style-type: lower-alpha;
+    margin-top: 1.5mm;
+  }
+
+  ol.clause.sub > li::marker {
+    color: #444;
+    font-weight: 400;
+  }
+
+  /* ── 附件表格 ── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 3mm 0 4mm;
+    font-size: 9pt;
+  }
+
+  .data-table thead tr {
+    background: #1a3a5c;
+    color: #fff;
+  }
+
+  .data-table thead th {
+    padding: 2.5mm 3mm;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .data-table tbody tr:nth-child(even) {
+    background: #f7f9fb;
+  }
+
+  .data-table tbody td {
+    padding: 2mm 3mm;
+    border: 1px solid #dde4ec;
+    text-align: center;
+  }
+
+  .data-table tbody td:nth-child(3) {
+    text-align: left;
+  }
+
+  .data-table tfoot tr {
+    background: #1a3a5c;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .data-table tfoot td {
+    padding: 2.5mm 3mm;
+    text-align: right;
+    border: none;
+  }
+
+  .data-table tfoot td:last-child {
+    text-align: center;
+  }
+
+  /* ── 時程表 ── */
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 3mm 0 4mm;
+    font-size: 9pt;
+  }
+
+  .schedule-table thead tr {
+    background: #2c5f8a;
+    color: #fff;
+  }
+
+  .schedule-table thead th {
+    padding: 2.5mm 3mm;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .schedule-table tbody tr:nth-child(even) {
+    background: #f7f9fb;
+  }
+
+  .schedule-table tbody td {
+    padding: 2.5mm 3mm;
+    border: 1px solid #dde4ec;
+    text-align: center;
+  }
+
+  /* ── 付款資訊框 ── */
+  .payment-box {
+    border: 1px solid #b0c4d8;
+    border-radius: 3px;
+    padding: 4mm 5mm;
+    margin: 3mm 0;
+    background: #f3f7fb;
+    font-size: 9pt;
+  }
+
+  .payment-box .bank-title {
+    font-weight: 700;
+    color: #1a3a5c;
+    margin-bottom: 2mm;
+    font-size: 9.5pt;
+  }
+
+  .payment-box table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .payment-box table td {
+    padding: 1mm 2mm;
+  }
+
+  .payment-box table td:first-child {
+    color: #555;
+    width: 28mm;
+    font-size: 8.5pt;
+  }
+
+  /* ── 注意框 ── */
+  .note-box {
+    border-left: 3px solid #c0392b;
+    background: #fdf3f2;
+    padding: 3mm 4mm;
+    margin: 3mm 0;
+    font-size: 9pt;
+    color: #444;
+  }
+
+  .info-box {
+    border-left: 3px solid #2c5f8a;
+    background: #f0f5fb;
+    padding: 3mm 4mm;
+    margin: 3mm 0;
+    font-size: 9pt;
+    color: #333;
+  }
+
+  /* ── 分隔線 ── */
+  .divider {
+    border: none;
+    border-top: 1px solid #dde4ec;
+    margin: 6mm 0;
+  }
+
+  /* ── 簽章區 ── */
+  .signature-section {
+    margin-top: 10mm;
+    padding-top: 6mm;
+    border-top: 2px solid #1a3a5c;
+  }
+
+  .sig-title {
+    text-align: center;
+    font-size: 10pt;
+    font-weight: 700;
+    color: #1a3a5c;
+    margin-bottom: 6mm;
+    letter-spacing: 2px;
+  }
+
+  .sig-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8mm;
+  }
+
+  .sig-block {
+    border: 1px solid #c0cdd8;
+    border-radius: 3px;
+    padding: 5mm;
+  }
+
+  .sig-block .party-label {
+    font-weight: 700;
+    color: #1a3a5c;
+    font-size: 10pt;
+    margin-bottom: 3mm;
+    padding-bottom: 2mm;
+    border-bottom: 1px solid #e0e8f0;
+  }
+
+  .sig-block .party-name {
+    font-size: 10.5pt;
+    font-weight: 700;
+    margin-bottom: 3mm;
+  }
+
+  .sig-block .sig-field {
+    font-size: 8.5pt;
+    color: #555;
+    margin-bottom: 2mm;
+  }
+
+  .sig-block .stamp-area {
+    height: 22mm;
+    border: 1px dashed #aaa;
+    border-radius: 50%;
+    width: 22mm;
+    margin: 3mm auto 2mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    font-size: 8pt;
+  }
+
+  .sig-block .date-field {
+    margin-top: 3mm;
+    font-size: 9pt;
+    color: #333;
+  }
+
+  .date-line {
+    display: inline-block;
+    border-bottom: 1px solid #555;
+    width: 8mm;
+    margin: 0 1mm;
+  }
+
+  /* ── 頁尾 ── */
+  .page-footer {
+    position: absolute;
+    bottom: 8mm;
+    left: 22mm;
+    right: 22mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 8pt;
+    color: #aaa;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 3mm;
+  }
+
+  .highlight {
+    font-weight: 700;
+    color: #1a3a5c;
+  }
+
+  .amount {
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ PAGE 1 — 封面 & 雙方資料 ══════════════════ -->
+<div class="page">
+
+  <div class="cover-header">
+    <div class="doc-title">服　務　合　約</div>
+    <div class="doc-subtitle">Airtable Interface 系統建置服務</div>
+    <div class="contract-no">合約編號：DH-01-PJ9-PJ13-CONTRACT-1</div>
+  </div>
+
+  <!-- 雙方資料 -->
+  <table class="parties-table">
+    <tbody>
+      <tr>
+        <td>
+          <span class="label">甲方（委託人） ：</span>
+          <span class="value">崴宇國際物流有限公司</span>
+        </td>
+        <td>
+          <span class="label">乙方（受託人） ：</span>
+          <span class="value">萬能數維有限公司</span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="label">統一編號 ：</span>
+          <span class="value">93585598</span>
+        </td>
+        <td>
+          <span class="label">統一編號 ：</span>
+          <span class="value">60458287</span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="label">地址 ：</span>
+          <span class="value">新北市汐止區康寧街 169 巷 27 號 10 樓</span>
+        </td>
+        <td>
+          <span class="label">地址 ：</span>
+          <span class="value">桃園市楊梅區梅高路 120 巷 33 號</span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="label">聯絡人 ：</span>
+          <span class="value">張于婕</span>
+        </td>
+        <td>
+          <span class="label">聯絡人 ：</span>
+          <span class="value">謝萬錤</span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="label">聯絡電話 ：</span>
+          <span class="value">02-2694-6168</span>
+        </td>
+        <td>
+          <span class="label">聯絡電話 ：</span>
+          <span class="value">0937-805149</span>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr class="sign-date-row">
+        <td colspan="2">
+          立約日期：中華民國 &nbsp;<span class="date-line"></span>&nbsp; 年 &nbsp;<span class="date-line"></span>&nbsp; 月 &nbsp;<span class="date-line"></span>&nbsp; 日
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <!-- 附件報價清單 -->
+  <div class="article-title">附件報價清單</div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width:6%">#</th>
+        <th style="width:24%">報價單號</th>
+        <th style="width:36%">專案名稱</th>
+        <th style="width:12%">未稅小計</th>
+        <th style="width:12%">折扣後</th>
+        <th style="width:10%">含稅總計</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>DH-01-PJ9-QT-1</td>
+        <td style="text-align:left">CRM Interface (TW)</td>
+        <td>$30,000</td>
+        <td>$21,000</td>
+        <td>$22,050</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>DH-01-PJ10-QT-1a</td>
+        <td style="text-align:left">OMS Interface (TW)</td>
+        <td>$63,000</td>
+        <td>$44,100</td>
+        <td>$46,305</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>DH-01-PJ11-QT-1a</td>
+        <td style="text-align:left">FIN Interface (TW)</td>
+        <td>$23,000</td>
+        <td>$16,100</td>
+        <td>$16,905</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>DH-01-PJ10-QT-1b</td>
+        <td style="text-align:left">AWB/POD 填表自動化</td>
+        <td>$4,000</td>
+        <td>$2,800</td>
+        <td>$2,940</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>DH-01-PJ11-QT-1b</td>
+        <td style="text-align:left">Debit Note 計費自動化 &amp; 資料整合套件</td>
+        <td>$40,000</td>
+        <td>$28,000</td>
+        <td>$29,400</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>DH-01-PJ13-QT-1</td>
+        <td style="text-align:left">CRM/OMS/FIN Interface User Guide Documents</td>
+        <td>$21,000</td>
+        <td>$14,700</td>
+        <td>$15,435</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="5" style="text-align:right; padding-right:4mm;">含稅總計（折扣 30% Off，營業稅 5%）</td>
+        <td style="text-align:center; font-size:10.5pt;">NTD 133,035</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <div class="info-box">
+    各項目詳細服務範疇、項目說明及條款，以各對應報價單（附件一至附件六）為準，與本合約具同等效力。
+  </div>
+
+  <div class="page-footer">
+    <span>服務合約 — 崴宇國際物流 × 萬能數維</span>
+    <span>第 1 頁</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════ PAGE 2 — 第一條至第四條 ══════════════════ -->
+<div class="page">
+
+  <div class="article">
+    <div class="article-title">第一條　定義</div>
+    <ol class="clause">
+      <li><span class="highlight">「本合約」</span>：指本服務合約本文及所有附件，具同等效力。</li>
+      <li><span class="highlight">「服務」</span>：指乙方依本合約為甲方建置 Airtable Interface 系統及交付操作說明文件，詳如附件一至附件六所載。</li>
+      <li><span class="highlight">「工作成果」</span>：指乙方依本合約完成之 Airtable Interface 建置、自動化邏輯設定及操作說明文件（含所有相關設定、邏輯與文件交付物）。</li>
+      <li><span class="highlight">「UAT 文件」</span>：指乙方於各專案完成後提供之使用者驗收測試清單，作為各系統驗收之依據。</li>
+      <li><span class="highlight">「驗收」</span>：指甲方依 UAT 文件完成測試確認，並以書面通知乙方通過之程序。</li>
+      <li><span class="highlight">「工作天」</span>：指週一至週五（不含國定假日）之正常工作日。</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title">第二條　服務範疇</div>
+    <ol class="clause">
+      <li>乙方應依本合約及各附件報價單所載範疇提供服務，各附件之報價單與本合約具同等效力。</li>
+      <li>本合約服務範疇以各附件所載項目為限。未載明之功能、自動化邏輯、系統整合、維護或後續功能擴充，均不在本合約範圍內，如需另行辦理，應另行報價並以書面確認。</li>
+      <li>附件五（DH-01-PJ11-QT-1b）第三項「Taxable Charge 計價資料項目合併作業套件」為可選加購項目，須由甲方書面確認後方納入本次服務範疇；未確認者視為不採購，不影響附件五第一、二項之執行。</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title">第三條　專案時程</div>
+    <ol class="clause">
+      <li><span class="highlight">起始日</span>：工作時程自乙方開立發票並送達甲方，且甲方以書面或電子郵件確認收到後次一工作日起算。</li>
+      <li>各系統預計工作天數如下：
+
+        <table class="schedule-table" style="margin-top:3mm;">
+          <thead>
+            <tr>
+              <th>系統</th>
+              <th>開發期</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CRM Interface (TW)</td>
+              <td>約 10 工作天</td>
+            </tr>
+            <tr>
+              <td>OMS Interface (TW)</td>
+              <td>約 21 工作天</td>
+            </tr>
+            <tr>
+              <td>FIN Interface (TW)</td>
+              <td>約 14 工作天</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="info-box" style="margin-top:2mm;">
+          上述時程為預估值。各系統之 AWB/POD 填表自動化及 Debit Note 計費自動化套件之工作時程，包含於對應系統（OMS / FIN）之開發期內。
+        </div>
+      </li>
+      <li><span class="highlight">整合測試期</span>：三系統開發完成後，進行跨系統整合測試，預計約 10 工作天，以確保系統運作正確、資料登載無誤及各系統間資料流通順暢。</li>
+      <li><span class="highlight">操作說明文件撰寫期</span>：整合測試完成後進行操作說明文件撰寫（附件六），預計約 21 工作天。</li>
+      <li>整體工作流程順序為：CRM / OMS / FIN 系統開發 → 整合測試 → 操作說明文件撰寫 → 驗收。各系統開發期得視資源排程同步進行。</li>
+      <li>若甲方未於約定期限內提供乙方執行所需之資料、帳號、系統存取權限或回饋意見，對應工作時程得依延遲天數順延，且不視為乙方違約。</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title">第四條　付款條件</div>
+    <ol class="clause">
+      <li>本合約服務費用合計（含稅）為 <span class="highlight amount">新台幣 133,035 元整</span>，各附件均適用 30% 折扣優惠，詳細金額明細請參閱各附件報價單。</li>
+      <li>付款時程分兩期：
+        <ol class="clause sub">
+          <li><span class="highlight">第一期（簽約款）</span>：甲方完成本合約簽署後七（7）日內，支付合計含稅總金額之 50%，即 <span class="highlight amount">新台幣 66,518 元整</span>。</li>
+          <li><span class="highlight">第二期（完工款）</span>：三系統（CRM / OMS / FIN）全部 UAT 驗收通過，且操作說明文件完整交付後七（7）日內，支付餘款 50%，即 <span class="highlight amount">新台幣 66,517 元整</span>。</li>
+        </ol>
+      </li>
+      <li>付款方式：以匯款方式支付至下列帳戶：
+        <div class="payment-box" style="margin-top:2mm;">
+          <div class="bank-title">匯款帳戶資訊</div>
+          <table>
+            <tr><td>銀行名稱</td><td>玉山銀行 楊梅分行</td></tr>
+            <tr><td>銀行代號</td><td>808</td></tr>
+            <tr><td>帳戶名稱</td><td>萬能數維有限公司</td></tr>
+            <tr><td>匯款帳號</td><td><strong>0369-940-032822</strong></td></tr>
+          </table>
+        </div>
+      </li>
+      <li>甲方完成匯款後，應通知乙方並提供匯款紀錄以利對帳。</li>
+      <li>若甲方未依期付款，乙方有權暫停相關作業，並得相應順延交付時程，不視為乙方違約。</li>
+    </ol>
+  </div>
+
+  <div class="page-footer">
+    <span>服務合約 — 崴宇國際物流 × 萬能數維</span>
+    <span>第 2 頁</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════ PAGE 3 — 第五條至第十條 ══════════════════ -->
+<div class="page">
+
+  <div class="article">
+    <div class="article-title">第五條　驗收程序</div>
+    <ol class="clause">
+      <li>各系統建置完成後，乙方應提供 UAT 文件予甲方，由甲方進行使用者驗收測試。</li>
+      <li>甲方應於收到 UAT 文件後一（1）個月內完成測試，並以書面通知乙方測試結果。</li>
+      <li>如測試期間發現不符 UAT 文件所載事項之問題，甲方應具體說明，乙方應於合理期限內進行修正，修正完成後甲方應重新進行相關項目之測試。</li>
+      <li>甲方逾期未回覆，視為驗收通過。</li>
+      <li>驗收範圍以 UAT 文件所載事項為準，不包含原規格外之新增需求或功能調整。</li>
+      <li>操作說明文件（附件六）之驗收：甲方於收到文件後，包含一次完整校稿回饋，乙方進行修正後即視為交付完成。</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title">第六條　範疇變更</div>
+    <ol class="clause">
+      <li>任何超出各附件所載範疇之需求，雙方均須以書面提出變更申請（Change Request）。</li>
+      <li>乙方收到變更申請後，應提供變更評估，包含費用影響及時程調整建議。</li>
+      <li>雙方書面確認後，變更方正式生效並納入本合約範疇。口頭承諾不具拘束力。</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title">第七條　智慧財產權</div>
+    <ol class="clause">
+      <li>本合約所建置之工作成果，其著作權及相關智慧財產權歸乙方（萬能數維有限公司）所有。</li>
+      <li>甲方於本合約服務費用全額結清後，就本合約工作成果取得永久、不可撤銷之使用授權，得於其內部業務需求範圍內使用。</li>
+      <li>甲方在 Airtable 系統中所填寫、儲存之業務資料（包含但不限於客戶資料、訂單資料、財務資料），屬甲方所有，乙方不得將其用於本合約目的以外之用途。</li>
+      <li>操作說明文件（附件六）交付後，甲方得於其內部使用，不得轉售、轉授權或對外發佈。</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title">第八條　保固</div>
+    <ol class="clause">
+      <li>各系統驗收通過後，乙方提供三（3）個月保固服務。</li>
+      <li>保固期自各系統個別驗收通過日起算。</li>
+      <li>保固範圍限於原建置功能之異常修正，不包含以下情況：
+        <ol class="clause sub">
+          <li>新增功能或規格調整</li>
+          <li>因甲方操作不當或資料錯誤所引發之問題</li>
+          <li>因 Airtable 平台政策異動、版本更新或服務中斷所造成之功能失效</li>
+          <li>附件五第三項可選套件中，因 Airtable Script 平台限制或 API 政策異動導致之功能異常</li>
+        </ol>
+      </li>
+      <li>保固期屆滿後如需持續維護支援，將另行報價。</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title">第九條　第三方平台</div>
+    <ol class="clause">
+      <li>本合約服務建置於 Airtable 第三方平台之上。Airtable 之帳號、權限與訂閱費用由乙方代為訂閱與管理，實際費用依第三方服務當時之官方定價調整，乙方不保證其價格、政策或服務之穩定性不變。</li>
+      <li>乙方對 Airtable 平台之政策變更、定價調整、功能異動或服務中斷，不負任何賠償責任。</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title">第十條　保密</div>
+    <ol class="clause">
+      <li>雙方就因本合約所知悉之對方業務資訊、技術資料、客戶資料及系統架構，均應予以保密，未經對方書面同意，不得對外揭露或提供予第三方。</li>
+      <li>本條保密義務於本合約終止或屆滿後仍繼續有效，期限為三（3）年。</li>
+    </ol>
+  </div>
+
+  <div class="page-footer">
+    <span>服務合約 — 崴宇國際物流 × 萬能數維</span>
+    <span>第 3 頁</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════ PAGE 4 — 第十一條至第十四條 + 簽章 ══════════════════ -->
+<div class="page">
+
+  <div class="article">
+    <div class="article-title">第十一條　責任限制</div>
+    <ol class="clause">
+      <li>乙方因本合約所負之損害賠償責任，以甲方實際已支付之服務費用為上限。</li>
+      <li>系統呈現與資料結果係以甲方提供或填寫之資料為基礎，乙方不負責原始資料之正確性、完整性或因資料錯誤所衍生之業務損失。</li>
+      <li>操作說明文件以本合約服務期間之系統畫面與功能為基準撰寫，系統交付後如因介面或功能變動需更新文件，視為新增需求另行報價。</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title">第十二條　合約終止</div>
+    <ol class="clause">
+      <li>任一方得於對方發生重大違約，且於書面通知後十四（14）工作天內未予改正時，以書面通知終止本合約。</li>
+      <li>本合約終止時，甲方應依乙方已完成工作項目之比例支付相應費用；乙方應交付截至終止日已完成之工作成果。</li>
+      <li>本合約之終止不影響雙方於終止前已產生之權利義務。</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title">第十三條　爭議解決</div>
+    <ol class="clause">
+      <li>本合約之解釋、履行及相關事項，依中華民國法律為準據法。</li>
+      <li>雙方如有爭議，應先以協商方式解決；協商不成時，以乙方所在地之管轄法院（即臺灣桃園地方法院）為第一審管轄法院。</li>
+    </ol>
+  </div>
+
+  <div class="article">
+    <div class="article-title">第十四條　一般條款</div>
+    <ol class="clause">
+      <li>本合約（含各附件）構成雙方就本標的之完整合意，取代雙方先前就本標的所為之一切口頭或書面協議。</li>
+      <li>本合約之修改或補充，須以書面為之，並經雙方授權代表簽署後始生效力。</li>
+      <li>本合約如有任何條款被認定為無效或不可執行，其餘條款之效力不受影響。</li>
+      <li>本合約一式兩份，雙方各執一份，均具同等效力。</li>
+    </ol>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 附件說明 -->
+  <div class="info-box">
+    <strong>附件清單</strong>（附件與本合約具同等效力，如有與正文不一致處，以正文為準）<br>
+    附件一：DH-01-PJ9-QT-1　CRM Interface (TW)<br>
+    附件二：DH-01-PJ10-QT-1a　OMS Interface (TW)<br>
+    附件三：DH-01-PJ11-QT-1a　FIN Interface (TW)<br>
+    附件四：DH-01-PJ10-QT-1b　AWB/POD 填表自動化<br>
+    附件五：DH-01-PJ11-QT-1b　Debit Note 計費自動化 &amp; 資料整合套件<br>
+    附件六：DH-01-PJ13-QT-1　CRM/OMS/FIN Interface User Guide Documents
+  </div>
+
+  <!-- 簽章區 -->
+  <div class="signature-section">
+    <div class="sig-title">雙方簽章</div>
+    <div class="sig-grid">
+
+      <div class="sig-block">
+        <div class="party-label">乙方（受託人）</div>
+        <div class="party-name">萬能數維有限公司</div>
+        <div class="sig-field">統一編號：60458287</div>
+        <div class="sig-field">地址：桃園市楊梅區梅高路 120 巷 33 號</div>
+        <div class="stamp-area">公司印章</div>
+        <div class="date-field">
+          簽署日期：<span class="date-line"></span> 年 <span class="date-line"></span> 月 <span class="date-line"></span> 日
+        </div>
+      </div>
+
+      <div class="sig-block">
+        <div class="party-label">甲方（委託人）</div>
+        <div class="party-name">崴宇國際物流有限公司</div>
+        <div class="sig-field">統一編號：93585598</div>
+        <div class="sig-field">地址：新北市汐止區康寧街 169 巷 27 號 10 樓</div>
+        <div class="stamp-area">公司印章</div>
+        <div class="date-field">
+          簽署日期：<span class="date-line"></span> 年 <span class="date-line"></span> 月 <span class="date-line"></span> 日
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>服務合約 — 崴宇國際物流 × 萬能數維</span>
+    <span>第 4 頁</span>
+  </div>
+</div>
+
+</body>
+</html>

@@ -9,6 +9,12 @@ sidebar_position: 1
 
 ### 2026-03-12
 
+### DataBase:【TailorMed】OMS
+
+## ![Dry ice label v.2](SCR-20260327-louf.png)
+
+### 2026-03-12
+
 ### DataBase:【TailorMed】FIN
 
 | 需求方 | 範圍(Table)    | 欄位(Field)   | 異動 | 備註   |
