@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;500&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --navy:      #292a50;
+  --navy-mid:  #263561;
+  --silver:    #8a919c;
+  --silver-l:  #c8ced6;
+  --silver-b:  #e8ecf0;
+  --silver-d:  #6a717c;
+  --cream:     #f7f5f0;
+  --text-dark: #1a1a1a;
+  --text-mid:  #4a4a4a;
+  --text-light:#696a6d;
+  --white:     #ffffff;
+}
+
+@page {
+  size: A4;
+  margin: 18mm 20mm 18mm 20mm;
+  @top-left   { content: "鴻築室內裝修有限公司 · FP Decoration"; font-family: 'Noto Sans TC', sans-serif; font-size: 7pt; color: var(--text-light); }
+  @top-right  { content: "網站簡報"; font-family: 'Noto Sans TC', sans-serif; font-size: 7pt; color: var(--text-light); }
+  @bottom-center { content: counter(page); font-family: 'Noto Sans TC', sans-serif; font-size: 7pt; color: var(--silver); }
+}
+
+@page :first {
+  margin: 0;
+  @top-left   { content: none; }
+  @top-right  { content: none; }
+  @bottom-center { content: none; }
+}
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 9.5pt;
+  color: var(--text-mid);
+  line-height: 1.7;
+}
+
+/* ── 封面 ── */
+.cover {
+  page: cover;
+  background: var(--navy);
+  min-height: 297mm;
+  padding: 60mm 20mm 20mm;
+  position: relative;
+  overflow: hidden;
+}
+
+@page cover {
+  margin: 0;
+  @top-left   { content: none; }
+  @top-right  { content: none; }
+  @bottom-center { content: none; }
+}
+
+.cover-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(180,185,210,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(180,185,210,0.06) 1px, transparent 1px);
+  background-size: 18mm 18mm;
+}
+
+.cover-geo {
+  position: absolute;
+  bottom: 20mm;
+  right: 20mm;
+  width: 38mm;
+  height: 38mm;
+  border: 0.6pt solid rgba(140,145,156,0.25);
+  transform: rotate(15deg);
+}
+
+.cover-tag {
+  font-size: 7.5pt;
+  letter-spacing: 0.25em;
+  color: var(--silver-l);
+  text-transform: uppercase;
+  margin-bottom: 6mm;
+}
+
+.cover h1 {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 30pt;
+  font-weight: 300;
+  color: var(--white);
+  line-height: 1.25;
+  margin-bottom: 4mm;
+}
+
+.cover-sub {
+  font-size: 11pt;
+  color: var(--silver-l);
+  margin-bottom: 10mm;
+}
+
+.cover-divider {
+  width: 40pt;
+  height: 1.5pt;
+  background: var(--silver);
+  margin-bottom: 8mm;
+}
+
+.cover-desc {
+  font-size: 9pt;
+  color: #9aa0b2;
+  line-height: 1.8;
+  max-width: 120mm;
+  margin-bottom: 10mm;
+}
+
+.cover-badges {
+  display: flex;
+  gap: 3mm;
+  flex-wrap: wrap;
+  margin-bottom: 10mm;
+}
+
+.badge {
+  background: rgba(255,255,255,0.1);
+  color: var(--silver-l);
+  font-size: 7pt;
+  letter-spacing: 0.08em;
+  padding: 2mm 4mm;
+  border-radius: 2pt;
+  border: 0.4pt solid rgba(140,145,156,0.3);
+}
+
+.cover-year {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 10pt;
+  color: var(--silver);
+}
+
+/* ── 內頁共用 ── */
+.page-break { page-break-before: always; }
+
+/* ── 章節標題 ── */
+.section-bar {
+  display: flex;
+  align-items: center;
+  gap: 4mm;
+  margin-bottom: 5mm;
+  padding-bottom: 3mm;
+  border-bottom: 0.5pt solid var(--silver-b);
+}
+
+.section-num {
+  background: var(--silver);
+  color: white;
+  font-size: 7pt;
+  font-weight: 500;
+  width: 18pt;
+  height: 18pt;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 1;
+  padding-top: 1pt;
+}
+
+.section-bar h2 {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 14pt;
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.2;
+}
+
+.section-bar::before {
+  content: '';
+  display: block;
+  width: 3pt;
+  height: 22pt;
+  background: var(--navy);
+  flex-shrink: 0;
+  border-radius: 1pt;
+}
+
+/* ── 小標題 ── */
+h3 {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 11pt;
+  font-weight: 400;
+  color: var(--navy);
+  margin: 5mm 0 3mm;
+}
+
+/* ── 內文 ── */
+p { margin-bottom: 3mm; color: var(--text-mid); }
+
+.note {
+  font-size: 7.5pt;
+  color: var(--silver);
+  line-height: 1.6;
+  margin-top: 2mm;
+}
+
+/* ── 表格 ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 5mm;
+  font-size: 8.5pt;
+}
+
+thead th {
+  background: var(--navy);
+  color: white;
+  padding: 5pt 8pt;
+  text-align: left;
+  font-weight: 400;
+  font-size: 8.5pt;
+}
+
+tbody tr:nth-child(odd)  { background: white; }
+tbody tr:nth-child(even) { background: var(--cream); }
+
+tbody td {
+  padding: 5pt 8pt;
+  color: var(--text-mid);
+  border-bottom: 0.3pt solid var(--silver-b);
+  vertical-align: top;
+}
+
+tbody td:first-child { color: var(--navy); }
+
+.table-outer { border: 0.5pt solid var(--silver-l); }
+
+/* ── 色票 ── */
+.swatches-wrap { margin-bottom: 3mm; }
+.swatches {
+  display: flex;
+  gap: 2mm;
+  margin-bottom: 2mm;
+}
+.swatch {
+  flex: 1;
+}
+.swatch-block {
+  height: 14mm;
+  border-radius: 2pt;
+  margin-bottom: 1.5mm;
+}
+.swatch-hex  { font-size: 7pt; color: var(--text-dark); font-family: monospace; }
+.swatch-name { font-size: 7pt; color: var(--text-light); }
+
+/* ── Sitemap ── */
+.sitemap {
+  background: var(--cream);
+  border: 0.5pt solid var(--silver-l);
+  padding: 6mm;
+  margin-bottom: 3mm;
+}
+
+.sitemap-root {
+  background: var(--navy);
+  color: white;
+  font-family: 'Noto Serif TC', serif;
+  font-size: 10pt;
+  padding: 3mm 8mm;
+  border-radius: 3pt;
+  text-align: center;
+  width: 70mm;
+  margin: 0 auto 5mm;
+}
+
+.sitemap-pages {
+  display: flex;
+  gap: 2mm;
+  justify-content: center;
+  margin-bottom: 4mm;
+}
+
+.sitemap-page {
+  background: var(--navy-mid);
+  color: white;
+  font-size: 7.5pt;
+  padding: 2.5mm 3mm;
+  border-radius: 2pt;
+  text-align: center;
+  flex: 1;
+  line-height: 1.4;
+}
+
+.sitemap-cols {
+  display: flex;
+  gap: 2mm;
+}
+
+.sitemap-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5mm;
+}
+
+.sitemap-sub {
+  background: white;
+  border: 0.3pt solid var(--silver-l);
+  color: var(--text-mid);
+  font-size: 6.5pt;
+  padding: 1.5mm 3mm;
+  border-radius: 1.5pt;
+  text-align: center;
+}
+
+.sitemap-cta {
+  background: var(--silver);
+  color: white;
+  font-size: 7.5pt;
+  padding: 3mm 8mm;
+  border-radius: 3pt;
+  text-align: center;
+  width: 90mm;
+  margin: 4mm auto 0;
+}
+
+.sitemap-arrow {
+  text-align: center;
+  color: var(--silver-l);
+  font-size: 8pt;
+  margin: 1mm 0;
+}
+
+/* ── 目標表 ── */
+.goal-table td.goal-label {
+  background: var(--navy);
+  color: white;
+  font-size: 8pt;
+  width: 26mm;
+  padding: 6pt 8pt;
+  vertical-align: middle;
+}
+
+/* ── 技術表 ── */
+.tech-label {
+  background: var(--silver-d);
+  color: white;
+  font-size: 8pt;
+  width: 24mm;
+  padding: 6pt 8pt;
+  vertical-align: middle;
+}
+
+/* ── 兩欄版面 ── */
+.two-col {
+  display: flex;
+  gap: 8mm;
+  margin-bottom: 5mm;
+}
+.two-col > div { flex: 1; }
+
+/* ── 頁面上方 spacer（非封面頁） */
+.top-spacer { height: 2mm; }
+
+/* ── 聯絡資訊末頁 ── */
+.contact-footer {
+  margin-top: 8mm;
+  padding-top: 4mm;
+  border-top: 0.5pt solid var(--silver-l);
+  display: flex;
+  gap: 8mm;
+  align-items: flex-start;
+}
+
+.contact-company {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 11pt;
+  color: var(--navy);
+  margin-bottom: 2mm;
+}
+
+.contact-detail {
+  font-size: 8.5pt;
+  color: var(--text-mid);
+  line-height: 1.9;
+}
+
+/* ── Phase 甘特 ── */
+.phase-row td.phase-num {
+  background: var(--navy);
+  color: white;
+  font-size: 7.5pt;
+  text-align: center;
+  width: 20mm;
+}
+.phase-row td.phase-name { color: var(--navy); font-weight: 500; width: 24mm; }
+.phase-row td.phase-dur  { color: var(--silver); width: 18mm; }
+
+ul.dot-list {
+  padding-left: 4mm;
+  margin-bottom: 3mm;
+}
+ul.dot-list li {
+  color: var(--text-mid);
+  font-size: 9pt;
+  margin-bottom: 1.5mm;
+  list-style: none;
+}
+ul.dot-list li::before { content: "·  "; color: var(--silver); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════ 封面 ═══ -->
+<div class="cover">
+  <div class="cover-grid"></div>
+  <div class="cover-geo"></div>
+
+  <div class="cover-tag">Website Proposal</div>
+  <h1>鴻築室內裝修有限公司</h1>
+  <p class="cover-sub">FP Decoration 官方形象網站</p>
+  <div class="cover-divider"></div>
+  <p class="cover-desc">
+    本專案涵蓋資訊架構、品牌視覺規範、頁面內容結構與技術建議，供客戶確認方向與執行排程，包含以下：
+  </p>
+  <div class="cover-badges">
+    <span class="badge">首頁 x 1</span>
+    <span class="badge">單元頁 x 4</span>
+    <span class="badge">繁中 | EN 雙語切換按鈕</span>
+    <span class="badge">聯絡 CTA 各頁共用</span>
+  </div>
+  <p class="cover-year">2025</p>
+</div>
+
+<!-- ═══════════════════════════════ 01 專案目標 ═══ -->
+<div class="page-break"></div>
+<div class="top-spacer"></div>
+
+<div class="section-bar"><div class="section-num">01</div><h2>專案目標</h2></div>
+
+<table class="table-outer goal-table">
+  <tbody>
+    <tr><td class="goal-label">品牌形象</td><td>建立「專業、穩重、值得信賴」的品牌網站形象</td></tr>
+    <tr><td class="goal-label">詢問轉換</td><td>以清楚的服務與實績內容，提升潛在客戶詢問意願</td></tr>
+    <tr><td class="goal-label">清晰導覽</td><td>讓訪客快速理解公司優勢、合作流程與聯絡方式</td></tr>
+  </tbody>
+</table>
+
+<!-- ═══════════════════════════════ 02 提案範圍 ═══ -->
+<div class="section-bar"><div class="section-num">02</div><h2>範圍</h2></div>
+
+<table class="table-outer" style="display:none;">
+  <thead><tr><th>檔案</th><th>頁面</th><th>主要區塊</th></tr></thead>
+  <tbody>
+    <tr><td>index.html</td><td>首頁</td><td>Hero、關於鴻築預覽、服務項目、工程實績、最新消息、聯絡 CTA</td></tr>
+    <tr><td>about.html</td><td>關於鴻築</td><td>Banner、創立紀事、發展歷程、組織架構、聯絡 CTA</td></tr>
+    <tr><td>services.html</td><td>服務項目</td><td>Banner、六項服務、合作流程四步驟、聯絡 CTA</td></tr>
+    <tr><td>portfolio.html</td><td>工程實績</td><td>Banner、五格作品展示、聯絡 CTA</td></tr>
+    <tr><td>news.html</td><td>最新消息</td><td>Banner、最新消息、員工活動、友站連結、聯絡 CTA</td></tr>
+  </tbody>
+</table>
+<p class="note">※ 聯絡我們（#contact CTA）非獨立第 6 頁，為各頁底部共用區塊，內容與表單完全一致。導覽列含 6 個連結，右側另設繁中｜EN 雙語切換入口。</p>
+
+<!-- ═══════════════════════════════ 03 品牌視覺 ═══ -->
+<div class="section-bar" style="margin-top:7mm;"><div class="section-num">03</div><h2>品牌視覺方向</h2></div>
+
+<p>整體基調以深藍與銀色金屬搭配，傳達專業、精緻與品質感。版面採留白、線性結構與精緻網格，強化建築與工程語彙，語氣理性穩健、具執行力。</p>
+
+<h3>主要色彩規範</h3>
+
+<div class="swatches-wrap">
+  <div class="swatches">
+    <div class="swatch"><div class="swatch-block" style="background:#292a50;"></div><div class="swatch-hex">#292a50</div><div class="swatch-name">--navy 主色</div></div>
+    <div class="swatch"><div class="swatch-block" style="background:#263561;"></div><div class="swatch-hex">#263561</div><div class="swatch-name">--navy-mid</div></div>
+    <div class="swatch"><div class="swatch-block" style="background:#37569a;"></div><div class="swatch-hex">#37569a</div><div class="swatch-name">--navy-light</div></div>
+    <div class="swatch"><div class="swatch-block" style="background:#8a919c;"></div><div class="swatch-hex">#8a919c</div><div class="swatch-name">--silver 強調</div></div>
+    <div class="swatch"><div class="swatch-block" style="background:#c8ced6;"></div><div class="swatch-hex">#c8ced6</div><div class="swatch-name">--silver-light</div></div>
+  </div>
+  <div class="swatches">
+    <div class="swatch"><div class="swatch-block" style="background:#e8ecf0; border:0.3pt solid #ccc;"></div><div class="swatch-hex">#e8ecf0</div><div class="swatch-name">--silver-bright</div></div>
+    <div class="swatch"><div class="swatch-block" style="background:#6a717c;"></div><div class="swatch-hex">#6a717c</div><div class="swatch-name">--silver-dark</div></div>
+    <div class="swatch"><div class="swatch-block" style="background:#f7f5f0; border:0.3pt solid #ccc;"></div><div class="swatch-hex">#f7f5f0</div><div class="swatch-name">--cream 背景</div></div>
+    <div class="swatch"><div class="swatch-block" style="background:#1a1a1a;"></div><div class="swatch-hex">#1a1a1a</div><div class="swatch-name">--text-dark</div></div>
+    <div class="swatch"><div class="swatch-block" style="background:#696a6d;"></div><div class="swatch-hex">#696a6d</div><div class="swatch-name">--text-light</div></div>
+  </div>
+</div>
+
+<table class="table-outer" style="display:none;">
+  <thead><tr><th>CSS 變數</th><th>Hex</th><th>用途</th></tr></thead>
+  <tbody>
+    <tr><td>--navy</td><td style="font-family:monospace;">#292a50</td><td>nav、hero、footer 深色背景</td></tr>
+    <tr><td>--silver</td><td style="font-family:monospace;">#8a919c</td><td>按鈕、eyebrow、數字編號（強調色）</td></tr>
+    <tr><td>--silver-light</td><td style="font-family:monospace;">#c8ced6</td><td>hover、active 狀態、標題 span 強調</td></tr>
+    <tr><td>--cream</td><td style="font-family:monospace;">#f7f5f0</td><td>section 交替背景色</td></tr>
+  </tbody>
+</table>
+<p class="note">字體：Noto Serif TC（明體，標題）搭配 Noto Sans TC（黑體，內文）。建議後續正式定義品牌色票與元件規範文件。</p>
+
+<!-- ═══════════════════════════════ 04 資訊架構 ═══ -->
+<div class="page-break"></div>
+<div class="top-spacer"></div>
+
+<div class="section-bar"><div class="section-num">04</div><h2>資訊架構（IA）</h2></div>
+
+<p>全站共 5 頁（5 支 HTML），聯絡我們為各頁底部共用 CTA 區塊，非獨立頁面。導覽列含首頁、關於鴻築、服務項目、工程實績、最新消息、聯絡我們 6 個連結，右側設繁中｜EN 語系切換（英文版 en/ 目錄已預備入口）。</p>
+
+<h3>網站 Sitemap</h3>
+
+<div class="sitemap">
+  <div class="sitemap-root">鴻築室內裝修有限公司</div>
+  <div class="sitemap-pages">
+    <div class="sitemap-page">1. 首頁</div>
+    <div class="sitemap-page">2. 關於鴻築</div>
+    <div class="sitemap-page">3. 服務項目</div>
+    <div class="sitemap-page">4. 工程實績</div>
+    <div class="sitemap-page">5. 最新消息</div>
+  </div>
+  <div class="sitemap-cols">
+    <div class="sitemap-col">
+      <div class="sitemap-sub">Hero 主視覺</div>
+      <div class="sitemap-sub">關於鴻築預覽</div>
+      <div class="sitemap-sub">服務項目</div>
+      <div class="sitemap-sub">工程實績</div>
+      <div class="sitemap-sub">最新消息</div>
+    </div>
+    <div class="sitemap-col">
+      <div class="sitemap-sub">Banner</div>
+      <div class="sitemap-sub">創立紀事</div>
+      <div class="sitemap-sub">發展歷程</div>
+      <div class="sitemap-sub">組織架構</div>
+    </div>
+    <div class="sitemap-col">
+      <div class="sitemap-sub">Banner</div>
+      <div class="sitemap-sub">服務項目</div>
+      <div class="sitemap-sub">合作流程</div>
+    </div>
+    <div class="sitemap-col">
+      <div class="sitemap-sub">Banner</div>
+      <div class="sitemap-sub">工程實績</div>
+    </div>
+    <div class="sitemap-col">
+      <div class="sitemap-sub">最新消息</div>
+      <div class="sitemap-sub">內部動態</div>
+      <div class="sitemap-sub">延伸資訊</div>
+    </div>
+  </div>
+  <div class="sitemap-cta">6. 聯絡我們 — CTA（各頁共用底部區塊）</div>
+</div>
+<p class="note">深藍節點為各主頁，銀色節點（6. 聯絡我們 CTA）為全站共用底部區塊，每頁底部皆包含相同聯絡資訊與詢問表單。</p>
+
+<!-- ═══════════════════════════════ 05 各頁重點 ═══ -->
+<div class="section-bar" style="margin-top:7mm;"><div class="section-num">05</div><h2>各頁重點</h2></div>
+
+<h3>首頁 index.html</h3>
+<p>Hero 主視覺（含背景圖）快速建立品牌第一印象，依序帶出關於鴻築預覽、服務項目六格、工程實績五格、最新消息預覽，各區塊均設有導向內頁的 CTA 按鈕。</p>
+
+<h3>關於鴻築 about.html</h3>
+<p>頂部 Banner → 創立紀事（圖文並排，含設計情境照片）→ 發展歷程時間軸（2010 / 2015 / 現今）→ 五部門卡片（管理、業務、設計、工務、規劃）。</p>
+
+<h3>服務項目 services.html</h3>
+<p>頂部 Banner → 六大服務卡片 → 合作流程四步驟（需求洽談 → 規劃設計 → 施工執行 → 驗收交付）。</p>
+
+<h3>工程實績 portfolio.html</h3>
+<p>頂部 Banner → 五格作品展示（購物中心、酒店旅館、百貨公司、住宅公設、複合式商業）。圖片置於 images/profolios/，上線前建議依案例類型重新命名檔案。</p>
+
+<h3>最新消息 news.html</h3>
+<p>頂部 Banner → 最新消息三格 → 員工活動三格 → 友站連結（合作夥伴 / 產業資源 兩欄）。</p>
+
+<div style="display:none;">
+<!-- ═══════════════════════════════ 06 技術維運 ═══ -->
+<div class="page-break"></div>
+<div class="top-spacer"></div>
+
+<div class="section-bar"><div class="section-num">06</div><h2>技術與維運建議</h2></div>
+
+<table class="table-outer">
+  <tbody>
+    <tr><td class="tech-label">前端架構</td><td>HTML / CSS 共用 styles.css，搭配 body class（page-home / page-about 等）做頁面差異樣式，結構清晰可快速上線。</td></tr>
+    <tr><td class="tech-label">SEO</td><td>各頁尚未加入 &lt;meta name="description"&gt;，建議上線前補齊所有頁面的 meta 描述。</td></tr>
+    <tr><td class="tech-label">聯絡表單</td><td>目前為靜態 HTML，建議串接 Formspree 或 Netlify Forms，實現表單送出通知。</td></tr>
+    <tr><td class="tech-label">多語系</td><td>en/ 目錄入口已預備（nav 已有繁中｜EN 切換），英文版頁面開發優先順序待確認。</td></tr>
+    <tr><td class="tech-label">圖片管理</td><td>portfolio 圖片置於 images/profolios/，檔名建議依案例類型整理（現有檔名皆為 hotel-*）。</td></tr>
+    <tr><td class="tech-label">後續升級</td><td>CMS（利於消息與案例維護）、GA4 分析追蹤、案例詳情頁模板、文章系統。</td></tr>
+  </tbody>
+</table>
+
+<!-- ═══════════════════════════════ 07 執行時程 ═══ -->
+<div class="section-bar" style="margin-top:7mm;"><div class="section-num">07</div><h2>執行時程（建議）</h2></div>
+
+<table class="table-outer">
+  <thead><tr><th style="width:20mm;">階段</th><th style="width:26mm;">項目</th><th style="width:18mm;">時程</th><th>說明</th></tr></thead>
+  <tbody>
+    <tr class="phase-row"><td class="phase-num">Phase 1</td><td class="phase-name">專案待確認</td><td class="phase-dur">1 週</td><td>確認 IA、頁面重點、文案方向</td></tr>
+    <tr class="phase-row"><td class="phase-num">Phase 2</td><td class="phase-name">視覺定稿</td><td class="phase-dur">1–2 週</td><td>UI 視覺稿、元件規範、品牌色票確認</td></tr>
+    <tr class="phase-row"><td class="phase-num">Phase 3</td><td class="phase-name">前端實作</td><td class="phase-dur">1–2 週</td><td>響應式調整、互動優化、圖片命名整理</td></tr>
+    <tr class="phase-row"><td class="phase-num">Phase 4</td><td class="phase-name">上線驗收</td><td class="phase-dur">1 週</td><td>測試、部署、交接與操作說明</td></tr>
+  </tbody>
+</table>
+
+<!-- ═══════════════════════════════ 08 交付與下一步 ═══ -->
+<div class="section-bar" style="margin-top:7mm;"><div class="section-num">08</div><h2>交付項目與下一步</h2></div>
+
+<div class="two-col">
+  <div>
+    <h3>交付項目</h3>
+    <ul class="dot-list">
+      <li>5 支 HTML + 共用 styles.css</li>
+      <li>全站底部 #contact CTA 各頁共用</li>
+      <li>視覺規範摘要（色彩、字體、元件）</li>
+      <li>內容維護建議文件</li>
+      <li>上線部署與操作說明</li>
+    </ul>
+  </div>
+  <div>
+    <h3>下一步確認事項</h3>
+    <ul class="dot-list">
+      <li>確認專案方向與優先調整頁面</li>
+      <li>確認英文版 en/ 開發優先順序</li>
+      <li>是否納入後台 CMS</li>
+      <li>是否需要案例詳情頁模板</li>
+      <li>是否需要文章系統</li>
+    </ul>
+  </div>
+</div>
+
+</div>
+
+<div class="contact-footer">
+  <div>
+    <p class="contact-company">鴻築室內裝修有限公司</p>
+    <p class="contact-detail">
+      台北市中山區中山北路二段96號 13樓1305室<br>
+      Tel：02-2378 5777 #106　Fax：02-2378 0333<br>
+      lydia@fp-enterprise.com.tw　www.fp-enterprise.com.tw<br>
+      統一編號 53106523
+    </p>
+  </div>
+</div>
+
+</body>
+</html>
