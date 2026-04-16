@@ -201,7 +201,7 @@ nav {
 
 .pain-item {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 16px;
   padding: 20px 24px;
   background: var(--white);
@@ -215,9 +215,11 @@ nav {
 }
 
 .pain-icon {
-  font-size: 1.3rem;
   flex-shrink: 0;
-  margin-top: 2px;
+  width:80px;
+  height: 80px;
+  display: block;
+  object-fit: contain;
 }
 
 .pain-text strong {
@@ -372,12 +374,21 @@ section { padding: 100px 60px; }
 }
 
 .service-icon {
-  width: 44px; height: 44px;
+  width: 56px;
+  height: 56px;
   background: var(--bg);
   border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 20px;
+}
+
+.service-icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
 }
 
 .service-icon-highlight {
